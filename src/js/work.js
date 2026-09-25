@@ -4,7 +4,7 @@ import { PROJECTS } from './data.js';
 
 const AUTO_MS = 7000;
 
-const videoTag = (id, kind) => `<video muted playsinline loop preload="none" poster="/videos/${id}-${kind}.webp" aria-hidden="true">
+const videoTag = (id, kind) => `<video muted playsinline loop preload="none" data-poster="/videos/${id}-${kind}.webp" aria-hidden="true">
   <source data-src="/videos/${id}-${kind}.webm" type="video/webm" />
   <source data-src="/videos/${id}-${kind}.mp4" type="video/mp4" />
 </video>`;
@@ -111,6 +111,16 @@ export function initWork() {
   root.addEventListener('pointerleave', () => { hovering = false; if (inView) progress?.resume(); });
   root.addEventListener('focusin', () => { hovering = true; progress?.pause(); });
   root.addEventListener('focusout', () => { hovering = false; if (inView) progress?.resume(); });
+
+  // capas só quando a seção se aproxima (e só dos vídeos visíveis nesse tamanho de tela)
+  const posterIO = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    posterIO.disconnect();
+    stage.querySelectorAll('video[data-poster]').forEach((v) => {
+      if (getComputedStyle(v.closest('.browser, .phone')).display !== 'none') v.poster = v.dataset.poster;
+    });
+  }, { rootMargin: '900px 0px' });
+  posterIO.observe(root);
 
   new IntersectionObserver(([e]) => {
     inView = e.isIntersecting;
