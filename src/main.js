@@ -4,14 +4,14 @@ import './styles/sections.css';
 
 import { initLenis, initAnchors, initReveals, initButtons, initTilt, initNav, ScrollTrigger } from './js/motion.js';
 import { bindDom } from './js/store.js';
-import { runCurtain } from './js/curtain.js';
+import { runSplash } from './js/splash.js';
 import { initHero, heroIntro } from './js/hero.js';
 import { initDay } from './js/day.js';
 import { initFacade } from './js/facade.js';
 import { initWork } from './js/work.js';
 import { initCalc } from './js/calc.js';
 import { initChat } from './js/chat.js';
-import { initStamp, initPortrait, initChalk, initFaq, initFinal } from './js/extras.js';
+import { initHire, initPortrait, initChalk, initFaq, initFinal } from './js/extras.js';
 import { initExit } from './js/exit.js';
 
 window.__odReady = true;
@@ -22,7 +22,7 @@ bindDom();
 initAnchors(lenis);
 initButtons();
 initNav();
-initHero({ lenis });
+initHero();
 initDay({ lenis });
 initFacade({ lenis });
 initWork();
@@ -30,14 +30,14 @@ initCalc();
 initChat();
 initFaq();
 initReveals();
-initStamp();
+initHire();
 initPortrait();
 initChalk();
 initFinal();
 initTilt();
 initExit({ lenis });
 
-runCurtain({ lenis }).then(() => {
+runSplash({ lenis }).then(() => {
   heroIntro();
   ScrollTrigger.refresh();
 });

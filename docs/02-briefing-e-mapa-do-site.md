@@ -52,15 +52,15 @@ Tudo isso continua. O redesign muda a embalagem e o movimento, não o argumento.
 
 | Ordem | Seção | Copy | Movimento (referência) |
 |---|---|---|---|
-| 0 | **Cortina** | Logo Origem Digital | A porta de aço da loja sobe revelando o site (APUS vinheta + M17) |
-| 1 | **Hero** | "Sua loja fechou. Seu cliente, não." + campo `seunegocio.com.br [ Acender minha vitrine ]` | Coluna de cards de nichos subindo em loop; ao digitar, trava no nicho certo (Linktree torre + M1/M2) |
+| 0 | **Abertura** | Logo Origem Digital | Tela institucional (estilo banco digital): logo e nome surgem, barra carrega e o logo pousa no menu (APUS vinheta + M17) |
+| 1 | **Hero** | "Sua loja fechou. Seu cliente, não." + campo do nome do negócio e botão para o WhatsApp | Modelo Linktree: fundo âmbar, texto à esquerda, torre de cards com fotos reais dos projetos e o site rodando no celular; ao digitar, traz o projeto mais parecido (Linktree + M1/M2) |
 | 2 | **Celular conector** | "Um dia comum na vida do seu próximo cliente": 07h12, 12h40, 18h05, 23h47 | Celular fixo sobe do hero, a luz âmbar acende e a tela troca a cada horário (APUS storytelling + M18) |
 | 3 | **A fachada mudou de lugar** | Texto da fachada | Letreiro de placas de loja passando atrás (Linktree marquee + M14) |
 | 4 | **Vitrines prontas (portfólio)** | Sites reais por nicho | Card dividido: nichos à esquerda, vídeo em loop à direita (M7); no celular, tela girando (M3) |
-| 5 | **Nunca tira folga** | Ficha de funcionário | Ficha que desliza e é "carimbada" com o nome digitado |
-| 6 | **Quanto custa ficar apagado?** | Calculadora | Bento de números coloridos (Linktree) com contagem animada |
+| 5 | **Nunca tira folga** | Números e crachá | Números grandes (24h, 7 dias, 0 faltas, 3 clientes) e crachá que passa de "Em análise" para "Contratado" |
+| 6 | **Quanto custa ficar apagado?** | Simulador de faturamento perdido | Cara de app de banco: valor perdido em destaque, barrinhas do prejuízo acumulado e extrato |
 | 7 | **Como funciona** | 4 passos + WhatsApp | Leque de celulares; toque para simular a conversa (APUS) |
-| 8 | **Quem sou** | Guilherme | Foto grande, nome em assinatura (M12) |
+| 8 | **Quem sou** | Guilherme | Foto grande revelada ao rolar (M12) |
 | 9 | **Tudo na lousa** | Preço sem enrolação | Lousa com giz aparecendo |
 | 10 | **Tá, mas…** | FAQ | Acordeão em pílulas (Linktree) |
 | 11 | **Deixa a luz acesa** | CTA final | Campo de reservar endereço repetido; a luz "liga" |

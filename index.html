@@ -25,7 +25,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Figtree:wght@400..700&family=Besley:wght@700;900&family=Caveat:wght@500;700&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mrs+Saint+Delafield&text=Guilherme&display=swap" />
   <script type="module" src="/src/main.js"></script>
 </head>
 <body>
@@ -55,17 +54,16 @@
 
   <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-  <!-- Cortina de entrada: a porta de aço da loja sobe -->
-  <div class="curtain" id="curtain" aria-hidden="true">
-    <div class="curtain__ribs"></div>
-    <div class="curtain__center">
-      <svg class="curtain__mark"><use href="#logo-mark"/></svg>
-      <p class="curtain__brand"><span>Origem</span> <span>Digital</span></p>
-      <p class="curtain__hint">abrindo a vitrine</p>
-      <span class="curtain__bar"><i></i></span>
+  <!-- Abertura: tela institucional; o logo pousa no menu -->
+  <div class="splash" id="splash" aria-hidden="true">
+    <div class="splash__center">
+      <svg class="splash__mark"><use href="#logo-mark"/></svg>
+      <p class="splash__brand"><span class="splash__mask"><span>Origem</span></span> <span class="splash__mask"><span>Digital</span></span></p>
     </div>
-    <span class="curtain__handle"></span>
-    <span class="curtain__edge"></span>
+    <div class="splash__foot">
+      <span class="splash__line"><i></i></span>
+      <span class="splash__count"><b id="splash-count">0</b>%</span>
+    </div>
   </div>
 
   <header class="nav" id="nav">
@@ -85,48 +83,34 @@
   </header>
 
   <main id="conteudo">
-    <!-- 1. HERO -->
+    <!-- 1. HERO (modelo Linktree: texto à esquerda, torre de cards à direita) -->
     <section class="hero" id="topo" aria-labelledby="hero-title">
-      <div class="hero__glow" aria-hidden="true"></div>
       <div class="hero__grid container">
         <div class="hero__copy">
-          <p class="eyebrow hero__eyebrow"><span class="br">[</span> 23h47 · uma rua qualquer do seu bairro <span class="br">]</span></p>
           <h1 class="hero__title" id="hero-title">
             <span class="mask"><span class="mask__in">Sua loja fechou.</span></span>
-            <span class="mask"><span class="mask__in holo">Seu cliente, não.</span></span>
+            <span class="mask"><span class="mask__in">Seu cliente, não.</span></span>
           </h1>
           <p class="hero__lede">Agora mesmo, alguém do seu bairro está deitado com o celular na mão, decidindo aonde vai amanhã. Se ele procurar o que você vende, quem aparece?</p>
 
           <form class="claim" id="claim" autocomplete="off">
-            <label class="claim__label" for="negocio">Escreva o nome do seu negócio e veja o que acontece:</label>
+            <label class="sr-only" for="negocio">Nome do seu negócio</label>
             <div class="claim__row">
               <div class="claim__field">
-                <input id="negocio" name="negocio" type="text" maxlength="32" placeholder="Ex.: Padaria Estrela" enterkeyhint="go" />
+                <input id="negocio" name="negocio" type="text" maxlength="32" placeholder="Nome do seu negócio" enterkeyhint="go" />
               </div>
-              <button type="submit" class="btn btn--green btn--lg">Acender a vitrine <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
+              <button type="submit" class="btn btn--ink btn--lg">Quero meu site <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
             </div>
-            <p class="claim__url" aria-live="polite"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><span><b data-bind="slug">seunegocio</b>.com.br</span></p>
-            <div class="chips" role="group" aria-label="Ramo do seu negócio" id="chips"></div>
+            <p class="claim__url" aria-live="polite"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg><span><b data-bind="slug">seunegocio</b>.com.br</span><span class="claim__sep" aria-hidden="true">·</span><span>Você vê funcionando antes de pagar.</span></p>
           </form>
-
-          <div class="lit-msg" id="lit-msg" hidden>
-            <p class="lit-msg__title"><span class="dot-live" aria-hidden="true"></span> Pronto. <span data-bind="openLine">Seu negócio agora atende até de madrugada.</span></p>
-            <p class="lit-msg__text">Isso é uma prévia feita em três segundos. A versão de verdade, com suas fotos, seus preços e seu endereço, fica pronta em poucos dias. E você vê funcionando antes de pagar.</p>
-            <div class="lit-msg__actions">
-              <a class="btn btn--green" data-wa="lit" href="https://wa.me/5511937654207" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Quero a minha de verdade</a>
-              <button class="btn btn--ghost" type="button" id="lit-reset">Baixar a porta de novo</button>
-            </div>
-          </div>
         </div>
 
         <div class="hero__stage">
-          <div class="tower" id="tower" aria-label="Exemplos de vitrines por ramo" role="img">
+          <div class="tower" id="tower" aria-label="Projetos no ar" role="region">
             <div class="tower__track" id="tower-track"></div>
           </div>
-          <p class="tower__caption" aria-hidden="true"><span class="dot-live"></span> <span id="tower-caption">vitrines acesas agora</span></p>
         </div>
       </div>
-      <a class="hero__scroll" href="#dia" aria-label="Rolar para a próxima seção"><svg class="ico" aria-hidden="true"><use href="#i-down"/></svg></a>
     </section>
 
     <!-- 2. UM DIA COMUM (celular conector, fixo no desktop) -->
@@ -216,95 +200,120 @@
 
     <!-- 5. NUNCA TIRA FOLGA -->
     <section class="hire" id="funcionario" aria-labelledby="hire-title">
-      <div class="container hire__grid">
-        <div class="hire__copy">
-          <p class="eyebrow eyebrow--ink" data-reveal>O que um site faz, na prática</p>
-          <h2 class="section-title" id="hire-title" data-words>Contrate alguém que nunca tira folga.</h2>
+      <div class="container">
+        <div class="hire__head">
+          <p class="eyebrow eyebrow--light" data-reveal><span class="br">[</span> O que um site faz, na prática <span class="br">]</span></p>
+          <h2 class="hire__title" id="hire-title" data-words>Contrate alguém que <em>nunca tira folga.</em></h2>
           <p class="hire__text" data-reveal>Atende de madrugada, no domingo e no feriado. Sabe seus preços de cor, nunca esquece de avisar o horário, não pega trânsito e atende três clientes ao mesmo tempo sem perder a paciência. E ainda não reclama do café.</p>
         </div>
 
-        <article class="ficha" id="ficha" data-tilt aria-label="Ficha de registro de funcionário">
-          <header class="ficha__head">
-            <span>Ficha de registro de funcionário</span>
-            <span class="ficha__num">Nº 0001</span>
-          </header>
-          <div class="ficha__top">
-            <div class="ficha__photo" aria-hidden="true">
-              <span class="ficha__mini"><i></i><i></i><i></i></span>
-              <small>3×4</small>
+        <div class="hire__grid">
+          <ul class="stats" aria-label="Números do seu novo funcionário">
+            <li class="stat stat--amber" data-reveal><p class="stat__v"><b data-count="24">24</b>h</p><p class="stat__k">por dia, todo dia</p></li>
+            <li class="stat stat--cream" data-reveal><p class="stat__v"><b data-count="7">7</b> dias</p><p class="stat__k">por semana, feriado incluso</p></li>
+            <li class="stat stat--ember" data-reveal><p class="stat__v"><b>0</b> faltas</p><p class="stat__k">nunca pediu pra sair mais cedo</p></li>
+            <li class="stat stat--night" data-reveal><p class="stat__v"><b data-count="3">3</b> clientes</p><p class="stat__k">atendidos ao mesmo tempo</p></li>
+          </ul>
+
+          <article class="badge" id="badge" data-tilt aria-label="Crachá do seu novo funcionário">
+            <span class="badge__clip" aria-hidden="true"></span>
+            <header class="badge__top">
+              <svg class="badge__logo" aria-hidden="true"><use href="#logo-mark"/></svg>
+              <span>Origem Digital</span>
+              <span class="badge__id">Nº 0001</span>
+            </header>
+            <div class="badge__who">
+              <span class="badge__avatar" aria-hidden="true"><i></i><i></i><i></i></span>
+              <div>
+                <p class="badge__label">Funcionário</p>
+                <p class="badge__name" data-bind="siteName">O site do seu negócio</p>
+                <p class="badge__role">Vendedor, recepcionista e vitrine</p>
+              </div>
             </div>
-            <dl class="ficha__fields">
-              <div><dt>Nome</dt><dd data-bind="siteName">O site do seu negócio</dd></div>
-              <div><dt>Função</dt><dd>Vendedor, recepcionista e vitrine</dd></div>
-              <div class="ficha__half"><dt>Admissão</dt><dd data-bind="today">hoje</dd></div>
-              <div class="ficha__half"><dt>Horário</dt><dd>24h, todo dia</dd></div>
-              <div class="ficha__half"><dt>Feriados</dt><dd>trabalha</dd></div>
-              <div class="ficha__half"><dt>Faltas</dt><dd>nenhuma</dd></div>
+            <dl class="badge__meta">
+              <div><dt>Admissão</dt><dd data-bind="today">hoje</dd></div>
+              <div><dt>Horário</dt><dd>24h, todo dia</dd></div>
+              <div><dt>Feriados</dt><dd>Trabalha</dd></div>
             </dl>
-          </div>
-          <div class="ficha__block">
-            <p class="ficha__label">Atribuições</p>
-            <ul class="ficha__list">
-              <li>Aparece no Google quando procuram o que você vende</li>
-              <li>Mostra suas fotos, seus preços e <span data-bind="kindShow">os serviços</span></li>
-              <li>Leva o cliente direto pro seu WhatsApp</li>
-              <li>Ensina o caminho até a sua porta</li>
-              <li>Responde o de sempre: horário, entrega, pagamento</li>
-              <li><span data-bind="kindVerb">Recebe pedido</span> enquanto você dorme</li>
+            <ul class="badge__list">
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Aparece no Google quando procuram o que você vende</span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Mostra suas fotos, seus preços e <span data-bind="kindShow">os serviços</span></span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Leva o cliente direto pro seu WhatsApp</span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Ensina o caminho até a sua porta</span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span>Responde o de sempre: horário, entrega, pagamento</span></li>
+              <li><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg><span><span data-bind="kindVerb">Recebe pedido</span> enquanto você dorme</span></li>
             </ul>
-          </div>
-          <div class="ficha__block">
-            <p class="ficha__label">Observações</p>
-            <p class="ficha__hand">Nunca chegou atrasado. Nunca pediu pra sair mais cedo.</p>
-          </div>
-          <footer class="ficha__sign">
-            <span class="ficha__line"></span>
-            <small>Assinatura do(a) dono(a)</small>
-          </footer>
-          <span class="stamp" id="stamp">Contratado</span>
-        </article>
+            <footer class="badge__status" id="badge-status" aria-live="polite">
+              <span class="badge__dot" aria-hidden="true"></span>
+              <span class="badge__state">Contratado</span>
+              <span class="badge__since">Nunca chegou atrasado.</span>
+            </footer>
+          </article>
+        </div>
       </div>
     </section>
 
-    <!-- 6. QUANTO CUSTA FICAR APAGADO -->
+    <!-- 6. QUANTO CUSTA FICAR APAGADO (simulador de faturamento perdido) -->
     <section class="calc" id="conta" aria-labelledby="calc-title">
       <div class="container">
         <div class="section-head">
-          <p class="eyebrow" data-reveal><span class="br">[</span> Uma conta de padaria <span class="br">]</span></p>
+          <p class="eyebrow" data-reveal><span class="br">[</span> Simulador de faturamento perdido <span class="br">]</span></p>
           <h2 class="section-title" id="calc-title" data-words>Quanto custa ficar apagado?</h2>
-          <p class="section-sub" data-reveal>Não vou te mostrar pesquisa, gráfico bonito nem número inventado. Faz a conta você mesmo, com os seus números, no caderninho.</p>
+          <p class="section-sub" data-reveal>Não vou te mostrar pesquisa, gráfico bonito nem número inventado. A conta é sua, com os seus números.</p>
         </div>
 
-        <div class="bento">
-          <div class="bento__card bento__note" data-reveal>
-            <p class="note__text">Se só <b id="calc-people">3 pessoas</b> por semana <span id="calc-desist">desistissem</span> de você porque não te <span id="calc-found">acharam</span>…</p>
-            <label class="range">
-              <span class="range__label">Arraste: pessoas por semana</span>
-              <input type="range" id="calc-pw" min="1" max="20" step="1" value="3" />
-            </label>
-            <p class="note__text">…e <span id="calc-each">cada uma</span> gastasse <b id="calc-ticket">R$ 45</b> com você…</p>
-            <label class="range">
-              <span class="range__label">Arraste: quanto cada cliente gasta</span>
-              <input type="range" id="calc-tk" min="10" max="300" step="5" value="45" />
-            </label>
+        <div class="sim">
+          <div class="sim__inputs" data-reveal>
+            <p class="sim__title">Simule</p>
+            <div class="sim__field">
+              <div class="sim__row">
+                <label for="calc-pw">Clientes que desistem de você por semana, porque procuraram e não te acharam</label>
+              </div>
+              <div class="sim__ctrl">
+                <button type="button" class="sim__step" data-step="calc-pw" data-dir="-1" aria-label="Menos um cliente">−</button>
+                <output class="sim__val" id="calc-pw-out" for="calc-pw">3</output>
+                <button type="button" class="sim__step" data-step="calc-pw" data-dir="1" aria-label="Mais um cliente">+</button>
+              </div>
+              <input class="sim__range" type="range" id="calc-pw" min="1" max="20" step="1" value="3" />
+            </div>
+            <div class="sim__field">
+              <div class="sim__row">
+                <label for="calc-tk">Quanto cada um gastaria com você</label>
+              </div>
+              <div class="sim__ctrl">
+                <button type="button" class="sim__step" data-step="calc-tk" data-dir="-1" aria-label="Menos R$ 5">−</button>
+                <output class="sim__val" id="calc-tk-out" for="calc-tk">R$ 45</output>
+                <button type="button" class="sim__step" data-step="calc-tk" data-dir="1" aria-label="Mais R$ 5">+</button>
+              </div>
+              <input class="sim__range" type="range" id="calc-tk" min="10" max="300" step="5" value="45" />
+            </div>
+            <p class="sim__foot">Conta sua, números seus.</p>
           </div>
-          <div class="bento__card bento__month" data-reveal>
-            <p class="bento__k">por mês</p>
-            <p class="bento__v" id="calc-month">R$ 585</p>
-          </div>
-          <div class="bento__card bento__year" data-reveal>
-            <p class="bento__k">por ano</p>
-            <p class="bento__v" id="calc-year">R$ 7.020</p>
-          </div>
-          <div class="bento__card bento__tally" data-reveal>
-            <div class="tally" id="tally" aria-hidden="true"></div>
-            <p class="bento__small">cada risquinho é um cliente que foi pra outro lugar, só neste mês</p>
-          </div>
-          <div class="bento__card bento__else" data-reveal>
-            <p>…no caixa de <em>outra pessoa.</em></p>
+
+          <div class="sim__result" data-reveal>
+            <div class="sim__top">
+              <span class="sim__chip"><span class="sim__chipdot" aria-hidden="true"></span> Faturamento perdido</span>
+              <span class="sim__period">em 12 meses</span>
+            </div>
+            <p class="sim__big" id="calc-year">− R$ 7.020</p>
+            <div class="sim__kpis">
+              <div><span>por mês</span><b id="calc-month">− R$ 585</b></div>
+              <div><span>clientes perdidos no mês</span><b id="calc-lost">13</b></div>
+            </div>
+            <figure class="bars">
+              <figcaption class="bars__cap">Prejuízo acumulado, mês a mês</figcaption>
+              <div class="bars__plot" id="bars" aria-hidden="true"></div>
+              <div class="bars__axis" aria-hidden="true"><span>Mês 1</span><span>Mês 12</span></div>
+              <table class="sr-only" id="bars-table"><caption>Prejuízo acumulado por mês</caption><thead><tr><th scope="col">Mês</th><th scope="col">Acumulado</th></tr></thead><tbody></tbody></table>
+            </figure>
+            <ul class="extrato" aria-label="Extrato de exemplo">
+              <li><span class="extrato__ico" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span><div><b>Cliente foi pro concorrente</b><span>Hoje, 07h12</span></div><b class="extrato__v" data-bind-ticket>− R$ 45</b></li>
+              <li><span class="extrato__ico" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span><div><b>Cliente foi pro concorrente</b><span>Hoje, 12h40</span></div><b class="extrato__v" data-bind-ticket>− R$ 45</b></li>
+              <li><span class="extrato__ico" aria-hidden="true"><svg class="ico"><use href="#i-arrow"/></svg></span><div><b>Cliente foi pro concorrente</b><span>Ontem, 23h47</span></div><b class="extrato__v" data-bind-ticket>− R$ 45</b></li>
+            </ul>
+            <p class="sim__else">…no caixa de outra pessoa.</p>
           </div>
         </div>
-        <p class="calc__foot" data-reveal>Conta sua, números seus. A gente só emprestou o caderno.</p>
       </div>
     </section>
 
@@ -359,7 +368,6 @@
             <source srcset="/img/guilherme.webp" type="image/webp" />
             <img src="/img/guilherme.jpg" alt="Retrato em preto e branco do Guilherme, de blusa preta de gola alta." width="750" height="1334" loading="lazy" />
           </picture>
-          <span class="me__sign" aria-hidden="true">Guilherme</span>
         </figure>
       </div>
     </section>

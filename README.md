@@ -20,7 +20,7 @@ Cada push no GitHub publica sozinho na Vercel.
 | Quero mudar… | Arquivo |
 |---|---|
 | Textos fixos (títulos, parágrafos, FAQ, rodapé) | `index.html` |
-| Ramos do hero, horários do "dia comum", projetos, contatos | `src/js/data.js` |
+| Projetos do hero (foto, legenda, cor), horários do "dia comum", contatos | `src/js/data.js` |
 | Mensagens que vão pro WhatsApp | `src/js/store.js` |
 | Cores, fontes, espaçamentos | `src/styles/base.css` (tokens no topo) |
 | Visual de cada seção | `src/styles/sections.css` |
@@ -38,14 +38,15 @@ scripts/converter-demo.sh meuprojeto-m 480
 scripts/converter-demo.sh meuprojeto-d 1280
 ```
 
-Depois é só acrescentar o projeto em `PROJECTS`, no `src/js/data.js`.
+Depois é só acrescentar o projeto em `PROJECTS`, no `src/js/data.js`, com uma foto em `public/img/hero/`. Ele entra sozinho no hero e na seção de projetos.
 
 ## Estrutura
 
 - `src/main.js`: liga tudo.
-- `src/js/curtain.js`: a porta de aço de abertura.
-- `src/js/hero.js`: torre de vitrines e o campo "nome do seu negócio".
+- `src/js/splash.js`: abertura institucional (o logo pousa no menu).
+- `src/js/hero.js`: hero no modelo Linktree, com a torre de projetos reais e o campo "nome do seu negócio".
 - `src/js/day.js`: o celular fixo com o céu mudando de cor.
 - `src/js/work.js`: projetos com vídeo.
-- `src/js/calc.js`, `chat.js`, `extras.js`, `exit.js`: calculadora, conversa, detalhes e pop-up de saída.
+- `src/js/calc.js`: simulador de faturamento perdido (valores, barrinhas e extrato).
+- `src/js/chat.js`, `extras.js`, `exit.js`: conversa, crachá do "Contratado", detalhes e pop-up de saída.
 - `src/js/motion.js`: rolagem suave (Lenis), revelar ao rolar e efeitos compartilhados (GSAP).

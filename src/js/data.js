@@ -116,21 +116,40 @@ export const MOMENTS = [
 ];
 
 // Projetos no ar (vídeos gravados dos sites reais).
+// hero: foto real do projeto no card (Linktree), com o celular rodando o site por cima.
+//   fit "cover" = foto preenchendo o card; "contain" = produto sobre a cor de fundo (bg).
+//   cut = imagem recortada (ganha sombra); tone "light" = fundo claro (legenda escura).
+//   match = palavras do nome digitado que trazem este card para o centro.
 export const PROJECTS = [
-  {
-    id: 'burger', name: 'Hamburgueria do Gui', type: 'Cardápio com pedido pra retirada e delivery',
-    url: 'https://testeburguerking.lovable.app/', domain: 'testeburguerking.lovable.app', accent: '#E4432D',
-  },
   {
     id: 'supra', name: 'Supra Bar', type: 'Cardápio digital e ambiente · Vila Madalena',
     url: 'https://cardapio-supra-vila-madalena.lovable.app/', domain: 'cardapio-supra-vila-madalena.lovable.app', accent: '#FF6A1A',
+    hero: { photo: '/img/hero/supra.webp', fit: 'cover', pos: '50% 30%', bg: '#1b120c', caption: 'Supra Bar, Vila Madalena. Cardápio digital.' },
+    match: /\bbar\b|boteco|buteco|chopp|adega|cervej|drink|pub\b|choperia/,
+  },
+  {
+    id: 'burger', name: 'Hamburgueria do Gui', type: 'Cardápio com pedido pra retirada e delivery',
+    url: 'https://testeburguerking.lovable.app/', domain: 'testeburguerking.lovable.app', accent: '#E4432D',
+    hero: { photo: '/img/hero/burger.webp', fit: 'contain', cut: true, pos: '50% 38%', bg: '#E4432D', caption: 'Hamburgueria do Gui. Pedido na retirada e no delivery.' },
+    match: /hamburg|burger|lanch|restaur|pizz|comida|cozinha|marmit|pastel|churras|sushi|espeto|acai|sorvet|padaria|confeit|doce|bolo|cafe/,
   },
   {
     id: 'mitte', name: 'Mitte', type: 'Agenda de aniversários para bar',
     url: 'https://mittebar.vercel.app/', domain: 'mittebar.vercel.app', accent: '#FF3EA5',
+    hero: { photo: '/img/hero/mitte.webp', fit: 'cover', pos: '50% 50%', bg: '#10202a', caption: 'Mitte, República. Agenda de aniversários.' },
+    match: /festa|aniversar|evento|balada|buffet|casa de show|salao de festa|boate|pista/,
   },
   {
     id: 'bolsa', name: 'Bolsa & Verso', type: 'Loja de bolsas com pedido pelo WhatsApp',
     url: 'https://bolsaeverso.lovable.app/', domain: 'bolsaeverso.lovable.app', accent: '#C9A27A',
+    hero: { photo: '/img/hero/bolsa.webp', fit: 'contain', tone: 'light', pos: '50% 45%', bg: '#EFE4D6', caption: 'Bolsa & Verso. Loja de bolsas com pedido no WhatsApp.' },
+    match: /loja|bolsa|moda|roupa|boutique|calcad|sapat|acessor|joia|otica|presente|brecho|perfum|cosmet|store|shop/,
   },
 ];
+
+// Qual projeto do hero combina com o nome digitado (ou null).
+export function projectForName(name) {
+  const s = String(name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  if (!s.trim()) return null;
+  return PROJECTS.find((p) => p.match.test(s)) || null;
+}

@@ -20,6 +20,7 @@ export function initExit({ lenis }) {
 
   // Quem já clicou pra falar no WhatsApp não precisa do pop-up.
   document.addEventListener('click', (e) => { if (e.target.closest('[data-wa]')) { blocked = true; markSeen(); } });
+  document.getElementById('claim')?.addEventListener('submit', () => { blocked = true; markSeen(); });
 
   const focusables = () => [...card.querySelectorAll('button, input, a[href]')].filter((el) => !el.disabled);
 
