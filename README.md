@@ -40,6 +40,21 @@ scripts/converter-demo.sh meuprojeto-d 1280
 
 Depois é só acrescentar o projeto em `PROJECTS`, no `src/js/data.js`, com uma foto em `public/img/hero/`. Ele entra sozinho no hero e na seção de projetos.
 
+## Vídeo de apresentação
+
+Os vídeos em `media/` apresentam o próprio site como produto: `origem-digital-demo-desktop.mp4` (1920x1080) e `origem-digital-demo-reels.mp4` (1080x1920). Os dois têm 30 fps e saem sem áudio, para a trilha entrar no editor ou no Reels.
+São gravações reais do site em uso, montadas numa composição com GSAP (câmera, 3D, camadas) e renderizadas quadro a quadro.
+Para refazer depois de mudar o site:
+
+```bash
+npm run build && npm run preview &     # o site em localhost:4173
+node scripts/video/clips.cjs           # grava os trechos (computador e celular)
+node scripts/video/render.cjs desk     # gera media/origem-digital-demo-desktop.mp4
+node scripts/video/render.cjs reel     # gera media/origem-digital-demo-reels.mp4
+```
+
+A montagem (cenas, tempos, textos) fica em `scripts/video/compose.html`. Para conferir só alguns momentos: `node scripts/video/render.cjs desk 3.5,12,30`.
+
 ## Estrutura
 
 - `src/main.js`: liga tudo.

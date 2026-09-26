@@ -3,3 +3,7 @@ dist
 .DS_Store
 *.local
 .vercel
+scripts/video/clips
+scripts/video/raw
+scripts/video/frames-*
+scripts/video/test-*

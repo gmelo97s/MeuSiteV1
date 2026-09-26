@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Origem Digital · vídeo de apresentação</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Figtree:wght@400..800&display=swap" />
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="clips/manifest.js"></script>
+<style>
+  :root { --night:#0f0b08; --amber:#FBCC2F; --ink:#16100b; --cream:#f6ecdf; --muted:#b5a898; --cobalt:#2146c7; --forest:#0d3326; --mint:#b9f5cf; }
+  html, body { margin:0; background:#000; }
+  #stage { position:relative; width:var(--W); height:var(--H); overflow:hidden; background:var(--night); color:var(--cream); font-family:'Figtree',sans-serif; }
+  .scene { position:absolute; inset:0; overflow:hidden; visibility:hidden; }
+  .bg { position:absolute; inset:0; }
+  .cam { position:absolute; inset:0; transform-origin:50% 50%; }
+  .world { position:absolute; inset:0; perspective:2400px; perspective-origin:50% 45%; transform-style:preserve-3d; }
+  .obj { position:absolute; left:50%; top:50%; transform-style:preserve-3d; will-change:transform; }
+  .ui { position:absolute; inset:0; pointer-events:none; }
+
+  .browser { width:1280px; border-radius:18px; overflow:hidden; background:#1b1511; box-shadow:0 70px 140px -40px rgba(0,0,0,.65), 0 0 0 1px rgba(255,255,255,.08); }
+  .browser .bar { height:40px; display:flex; align-items:center; gap:8px; padding:0 16px; }
+  .browser .bar i { width:12px; height:12px; border-radius:50%; background:#3a2e24; }
+  .browser .bar i:nth-child(1){ background:#ff5f57 } .browser .bar i:nth-child(2){ background:#febc2e } .browser .bar i:nth-child(3){ background:#28c840 }
+  .browser .url { flex:1; max-width:520px; margin:0 auto; height:26px; border-radius:999px; background:rgba(255,255,255,.07); color:#b5a898; font-size:14px; font-weight:600; display:flex; align-items:center; justify-content:center; gap:8px; }
+  .browser .url b { color:#6be29a; font-size:12px; }
+  .browser img { display:block; width:1280px; height:800px; object-fit:cover; object-position:top; background:#0f0b08; }
+
+  .phone { width:360px; height:780px; padding:12px; border-radius:58px; box-sizing:border-box; background:linear-gradient(145deg,#3a2e24,#0b0806 40%,#2a2019); box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.12), 0 60px 110px -30px rgba(0,0,0,.7); }
+  .phone .scr { position:relative; width:100%; height:100%; border-radius:46px; overflow:hidden; background:#000; }
+  .phone .scr img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+  .phone .isl { position:absolute; z-index:2; top:12px; left:50%; width:100px; height:28px; margin-left:-50px; border-radius:20px; background:#050403; }
+
+  .photo { width:300px; height:345px; border-radius:24px; overflow:hidden; box-shadow:0 40px 80px -30px rgba(0,0,0,.5); }
+  .photo img { width:100%; height:100%; object-fit:cover; display:block; }
+  .photo.contain { background:var(--pb); } .photo.contain img { object-fit:contain; padding:18px; box-sizing:border-box; }
+
+  .title { font-family:'Bricolage Grotesque',sans-serif; font-weight:800; letter-spacing:-.05em; line-height:.9; margin:0; }
+  .mask { display:block; overflow:hidden; padding-bottom:.09em; margin-bottom:-.03em; }
+  .mask > span { display:inline-block; }
+  .eyebrow { font-weight:700; letter-spacing:.02em; }
+  .pill { position:absolute; display:inline-flex; align-items:center; gap:14px; padding:18px 28px; border-radius:999px; background:#fff; color:var(--ink); font-weight:800; letter-spacing:-.01em; box-shadow:0 24px 60px -12px rgba(0,0,0,.4); white-space:nowrap; }
+  .pill .dot { width:14px; height:14px; border-radius:50%; background:#00e676; box-shadow:0 0 0 6px rgba(0,230,118,.2); }
+  .pill.dark { background:rgba(22,16,11,.86); color:var(--cream); box-shadow:0 24px 60px -12px rgba(0,0,0,.6), inset 0 0 0 1px rgba(246,236,223,.12); }
+  .hour { position:absolute; left:50%; top:50%; font-family:'Bricolage Grotesque'; font-weight:800; letter-spacing:-.06em; line-height:.8; white-space:nowrap; }
+  .grain { position:absolute; inset:-50%; opacity:.08; mix-blend-mode:overlay; pointer-events:none; background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .vignette { position:absolute; inset:0; pointer-events:none; background:radial-gradient(120% 90% at 50% 50%, transparent 58%, rgba(0,0,0,.32)); }
+  .glow { position:absolute; border-radius:50%; filter:blur(80px); pointer-events:none; }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const FMT = new URLSearchParams(location.search).get('fmt') || 'desk';
+const R = FMT === 'reel';
+const W = R ? 1080 : 1920, H = R ? 1920 : 1080;
+const stage = document.getElementById('stage');
+stage.style.setProperty('--W', W + 'px'); stage.style.setProperty('--H', H + 'px');
+document.body.style.width = W + 'px';
+
+const LOGO = `<svg viewBox="0 0 40 40" width="100%" height="100%"><defs><linearGradient id="lg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE08A"/><stop offset=".5" stop-color="#FBCC2F"/><stop offset="1" stop-color="#F9942F"/></linearGradient></defs><rect x="1" y="1" width="38" height="38" rx="12" fill="url(#lg)"/><path d="M1 13a12 12 0 0 1 12-12h14a12 12 0 0 1 12 12v9H1z" fill="#1a130d"/><path d="M6 9.5h28M6 14h28M6 18.5h28" stroke="#3a2c20" stroke-width="1.6" stroke-linecap="round"/><rect x="15.5" y="20.5" width="9" height="3" rx="1.5" fill="#1a130d"/></svg>`;
+
+// ---------- utilidades de montagem ----------
+const el = (parent, html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); const n = t.content.firstElementChild; parent.appendChild(n); return n; };
+const scene = (bg) => { const s = el(stage, `<div class="scene"><div class="bg" style="background:${bg}"></div><div class="cam"><div class="world"></div></div><div class="ui"></div></div>`); return { root: s, bg: s.querySelector('.bg'), cam: s.querySelector('.cam'), world: s.querySelector('.world'), ui: s.querySelector('.ui') }; };
+const seq = (clip, map) => `<img class="seq" data-clip="${clip}" data-map="${map}" alt="">`;
+const browser = (parent, clip, map) => el(parent, `<div class="obj"><div class="browser"><div class="bar"><i></i><i></i><i></i><span class="url"><b>●</b> meu-site-v1-sigma.vercel.app</span></div>${seq(clip, map)}</div></div>`);
+const phone = (parent, clip, map) => el(parent, `<div class="obj"><div class="phone"><div class="scr"><span class="isl"></span>${seq(clip, map)}</div></div></div>`);
+const lines = (parent, arr, css, cls = '') => el(parent, `<div class="${cls}" style="position:absolute;${css}">${arr.map((l) => `<span class="mask"><span>${l}</span></span>`).join('')}</div>`);
+const inner = (node) => node.querySelectorAll('.mask > span');
+const pill = (parent, text, css, dark = false) => {
+  const centered = css.includes('transform:translateX(-50%)');
+  const n = el(parent, `<div class="pill${dark ? ' dark' : ''}" style="${css.replace(';transform:translateX(-50%)', '')}"><span class="dot"></span>${text}</div>`);
+  if (centered) gsap.set(n, { xPercent: -50 });
+  return n;
+};
+const put = (node, v) => gsap.set(node, { xPercent: -50, yPercent: -50, ...v });
+
+const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.inOut' } });
+const show = (s, at, dur = 0.01) => tl.set(s.root, { autoAlpha: 1 }, at);
+const hide = (s, at) => tl.set(s.root, { autoAlpha: 0 }, at);
+const reveal = (node, at, stagger = 0.09) => tl.fromTo(inner(node), { yPercent: 115 }, { yPercent: 0, duration: 0.9, ease: 'power4.out', stagger }, at);
+const popIn = (node, at, from = {}) => tl.fromTo(node, { opacity: 0, scale: 0.8, y: 30, ...from }, { opacity: 1, scale: 1, y: 0, duration: 0.6, ease: 'back.out(2)' }, at);
+const fadeOut = (node, at, d = 0.35) => tl.to(node, { opacity: 0, duration: d, ease: 'power2.in' }, at);
+
+// ---------- cenas (tempos em segundos) ----------
+const T = R
+  ? { A: 0, B: 3.2, C: 9.8, D: 15.0, E: 19.6, F: 24.2, G: 29.0, END: 33.6 }
+  : { A: 0, B: 3.2, C: 10.2, D: 16.2, E: 22.0, F: 27.4, G: 32.4, END: 38.2 };
+
+// A · Abertura: logo, nome e zoom atravessando a luz do logo
+{
+  const s = scene('#0f0b08');
+  el(s.world, `<div class="glow" style="left:50%;top:50%;width:${R ? 900 : 1100}px;height:${R ? 900 : 700}px;margin:-${R ? 450 : 350}px 0 0 -${R ? 450 : 550}px;background:rgba(251,204,47,.14)"></div>`);
+  const size = R ? 190 : 150;
+  const mark = el(s.world, `<div class="obj" style="width:${size}px;height:${size}px">${LOGO}</div>`);
+  put(mark, { y: R ? -120 : -70 });
+  const word = lines(s.ui, ['<span style="font-weight:800">Origem</span>&nbsp;<span style="font-weight:300">Digital</span>'], `left:0;right:0;top:${R ? 1040 : 600}px;text-align:center;font-size:${R ? 92 : 76}px;`, 'title');
+  word.querySelector('.mask').style.display = 'inline-block'; word.style.display = 'block';
+  const tag = el(s.ui, `<p style="position:absolute;left:0;right:0;top:${R ? 1170 : 700}px;margin:0;text-align:center;font-size:${R ? 38 : 28}px;font-weight:600;color:#b5a898">Sites para o comércio de bairro.</p>`);
+  show(s, 0);
+  tl.fromTo(mark, { scale: 0.55, opacity: 0, rotation: -10 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: 'back.out(1.8)' }, 0.1);
+  reveal(word, 0.45);
+  tl.fromTo(tag, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, 1.05);
+  fadeOut([word, tag], 2.2, 0.3);
+  tl.to(mark, { scale: 42, transformOrigin: '50% 76%', duration: 1.05, ease: 'power3.in' }, 2.3);
+  hide(s, T.B + 0.2);
+}
+
+// B · Hero: navegador 3D, camadas de fotos, zoom no campo e na torre
+{
+  const s = scene('#FBCC2F');
+  show(s, T.B);
+  const photos = [['supra', 'cover', ''], ['burger', 'contain', '#E4432D'], ['mitte', 'cover', ''], ['bolsa', 'contain', '#EFE4D6']];
+  const layer = photos.map(([id, fit, bg], i) => el(s.world, `<div class="obj"><div class="photo ${fit === 'contain' ? 'contain' : ''}" style="--pb:${bg}"><img src="../../public/img/hero/${id}.webp"></div></div>`));
+  const pos = R
+    ? [{ x: -310, y: -200, z: -500 }, { x: 330, y: -20, z: -650 }, { x: -330, y: 480, z: -420 }, { x: 320, y: 720, z: -700 }]
+    : [{ x: 260, y: -330, z: -520 }, { x: 830, y: -260, z: -700 }, { x: 900, y: 360, z: -460 }, { x: 180, y: 430, z: -760 }];
+  layer.forEach((n, i) => {
+    put(n, { ...pos[i], rotationY: R ? (i % 2 ? -12 : 12) : -18, opacity: 0, filter: 'blur(1.5px)' });
+    tl.to(n, { opacity: 0.95, duration: 0.8, ease: 'power2.out' }, T.B + 0.4 + i * 0.12);
+    tl.to(n, { y: pos[i].y - (R ? 120 : 180), duration: 7, ease: 'none' }, T.B);
+  });
+
+  if (!R) {
+    const eyebrow = el(s.ui, `<p class="eyebrow" style="position:absolute;left:120px;top:250px;margin:0;font-size:24px;color:rgba(22,16,11,.7)">Origem Digital · o novo site</p>`);
+    const head = lines(s.ui, ['Sua loja fechou.', 'Seu cliente, não.'], 'left:116px;top:300px;font-size:104px;color:#16100b;', 'title');
+    const sub = el(s.ui, `<p style="position:absolute;left:120px;top:560px;margin:0;font-size:30px;font-weight:600;color:#3d2c0f;max-width:620px">Um site que atende de madrugada, feito pro celular e com o nome do seu negócio.</p>`);
+    tl.fromTo(eyebrow, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.5 }, T.B + 0.2);
+    reveal(head, T.B + 0.3, 0.12);
+    tl.fromTo(sub, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, T.B + 0.8);
+
+    const br = browser(s.world, 'D1', '3.3:3.1,5.9:4.5,9.9:8.3');
+    put(br, { x: 1100, y: 40, z: -500, rotationY: -45, rotationX: 12, scale: 0.78 });
+    tl.to(br, { x: 390, y: 30, z: 0, rotationY: -20, rotationX: 8, duration: 1.4, ease: 'power4.out' }, T.B + 0.15);
+    const ph = phone(s.world, 'M1', '3.3:3.1,5.9:4.5,9.9:8.3');
+    put(ph, { x: 690, y: 900, z: 340, rotationY: -14, scale: 0.56 });
+    tl.to(ph, { y: 200, duration: 1.3, ease: 'power4.out' }, T.B + 0.55);
+
+    // limpa o palco e deita o navegador de frente
+    tl.to([eyebrow, sub], { opacity: 0, x: -80, duration: 0.5, ease: 'power2.in' }, 5.6);
+    tl.to(inner(head), { yPercent: -115, duration: 0.5, ease: 'power3.in', stagger: 0.06 }, 5.6);
+    tl.to(ph, { x: 1400, duration: 0.7, ease: 'power3.in' }, 5.6);
+    tl.to(layer, { opacity: 0.35, duration: 0.6 }, 5.7);
+    tl.to(br, { x: 0, y: 0, rotationY: 0, rotationX: 0, scale: 1, duration: 0.9, ease: 'power3.inOut' }, 5.7);
+    // zoom no campo de digitação
+    const f1 = { x: 356, y: 581 }; // ponto no navegador (1280x840)
+    const P1 = { x: 960 + (f1.x - 640), y: 540 + (f1.y - 420) };
+    tl.to(s.cam, { scale: 2.1, x: -2.1 * (P1.x - 960), y: -2.1 * (P1.y - 540), duration: 0.9 }, 6.35);
+    const c1 = pill(s.ui, 'Digitou o nome? O site já responde.', 'left:50%;top:880px;font-size:34px;transform:translateX(-50%)');
+    popIn(c1, 6.9); fadeOut(c1, 8.0);
+    // pan até a torre, que trouxe o projeto do ramo dele
+    const f2 = { x: 966, y: 463 };
+    const P2 = { x: 960 + (f2.x - 640), y: 540 + (f2.y - 420) };
+    tl.to(s.cam, { scale: 1.65, x: -1.65 * (P2.x - 960), y: -1.65 * (P2.y - 540), duration: 1.0 }, 7.9);
+    const c2 = pill(s.ui, 'E já mostra um projeto do ramo dele.', 'left:120px;top:880px;font-size:34px', true);
+    popIn(c2, 8.5); fadeOut(c2, 9.5);
+    // chicote para a próxima cena
+    tl.to(s.cam, { scale: 0.7, x: -900, filter: 'blur(14px)', duration: 0.55, ease: 'power3.in' }, 9.7);
+  } else {
+    const head = lines(s.ui, ['Sua loja fechou.', 'Seu cliente, não.'], 'left:0;right:0;top:170px;text-align:center;font-size:96px;color:#16100b;', 'title');
+    reveal(head, T.B + 0.25, 0.12);
+    const ph = phone(s.world, 'M1', '3.3:3.0,9.8:9.6');
+    put(ph, { x: 0, y: 1300, z: 0, rotationY: -25, rotationX: 10, scale: 1.08 });
+    tl.to(ph, { y: 250, duration: 1.3, ease: 'power4.out' }, T.B + 0.3);
+    tl.to(ph, { rotationY: 8, rotationX: 4, duration: 6, ease: 'sine.inOut' }, T.B + 1.2);
+    tl.to(s.cam, { scale: 1.18, y: 60, duration: 1.2 }, 4.8);
+    const c1 = pill(s.ui, 'Digitou o nome? O site já responde.', 'left:50%;top:1640px;font-size:36px;transform:translateX(-50%)');
+    popIn(c1, 5.4); fadeOut(c1, 7.3);
+    tl.to(s.cam, { scale: 1, y: 0, duration: 1.0 }, 7.2);
+    const c2 = pill(s.ui, 'E mostra um projeto do ramo dele.', 'left:50%;top:1640px;font-size:36px;transform:translateX(-50%)', true);
+    popIn(c2, 8.0); fadeOut(c2, 9.3);
+    tl.to(inner(head), { yPercent: -115, duration: 0.4, ease: 'power3.in' }, 9.3);
+    tl.to(s.cam, { scale: 0.7, x: -700, filter: 'blur(14px)', duration: 0.5, ease: 'power3.in' }, 9.35);
+  }
+  hide(s, T.C + 0.3);
+}
+
+// C · Um dia comum: o fundo segue o céu; horas gigantes em camadas
+{
+  const s = scene('#0f0b08');
+  show(s, T.C);
+  tl.fromTo(s.root, { opacity: 0 }, { opacity: 1, duration: 0.3, ease: 'none' }, T.C);
+  const sky = R
+    ? [['#F8C66A', '#16100b', 10.55], ['#FBCC2F', '#16100b', 11.75], ['#EC5F24', '#16100b', 12.85], ['#0F0B08', '#f6ecdf', 13.85]]
+    : [['#F8C66A', '#16100b', 10.95], ['#FBCC2F', '#16100b', 12.15], ['#EC5F24', '#16100b', 13.25], ['#0F0B08', '#f6ecdf', 14.35]];
+  const hours = ['07h12', '12h40', '18h05', '23h47'];
+  sky.forEach(([bg, ink, at], i) => {
+    tl.to(s.bg, { backgroundColor: bg, duration: 0.5, ease: 'power2.inOut' }, at - 0.2);
+    const hNode = el(s.world, `<div class="hour" style="font-size:${R ? 300 : 380}px;color:${ink};opacity:0">${hours[i]}</div>`);
+    const y = R ? (i % 2 ? -640 : 700) : -40;
+    put(hNode, { x: R ? 900 : 1500, y, z: -420 });
+    tl.to(hNode, { opacity: 0.9, duration: 0.25 }, at - 0.1);
+    tl.to(hNode, { x: R ? -900 : -1500, duration: 1.9, ease: 'none' }, at - 0.15);
+    tl.to(hNode, { opacity: 0, duration: 0.25 }, at + 1.45);
+  });
+  if (!R) {
+    const br = browser(s.world, 'D2', '10.3:1.6,11.0:3.2,12.2:5.0,13.3:5.85,14.4:6.75,16.1:9.6');
+    put(br, { x: 240, y: 30, rotationY: -14, rotationX: 6, scale: 0.8, z: 0 });
+    tl.fromTo(br, { x: 1200, rotationY: -40 }, { x: 240, rotationY: -14, duration: 0.9, ease: 'power4.out' }, T.C);
+    tl.to(br, { rotationY: -6, x: 180, duration: 5, ease: 'sine.inOut' }, T.C + 0.9);
+    const c = pill(s.ui, 'O céu muda com a hora de quem procura você.', 'left:110px;top:930px;font-size:32px', true);
+    popIn(c, 11.4); fadeOut(c, 15.3);
+    tl.to(br, { rotationY: -95, x: -900, opacity: 0, duration: 0.7, ease: 'power3.in' }, 15.6);
+  } else {
+    const ph = phone(s.world, 'M2', '9.8:0.5,10.6:1.8,11.8:3.3,12.9:3.95,13.9:4.4,15.0:4.95');
+    put(ph, { x: 0, y: 60, scale: 1.12, rotationY: 10 });
+    tl.fromTo(ph, { x: 900, rotationY: 40 }, { x: 0, rotationY: 10, duration: 0.8, ease: 'power4.out' }, T.C);
+    tl.to(ph, { rotationY: -8, duration: 4.5, ease: 'sine.inOut' }, T.C + 0.8);
+    const c = pill(s.ui, 'Todos vão pegar o celular.', 'left:50%;top:1700px;font-size:36px;transform:translateX(-50%)', true);
+    popIn(c, 10.6); fadeOut(c, 14.2);
+    tl.to(ph, { rotationY: -95, x: -700, opacity: 0, duration: 0.6, ease: 'power3.in' }, 14.5);
+  }
+  hide(s, T.D + 0.4);
+}
+
+// D · Projetos: carrossel 3D de celulares com os sites reais
+{
+  const s = scene('#0f0b08');
+  el(s.bg, `<div class="glow" style="left:50%;top:55%;width:1200px;height:900px;margin:-450px 0 0 -600px;background:rgba(251,204,47,.18)"></div>`);
+  show(s, T.D);
+  tl.fromTo(s.root, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: 'none' }, T.D);
+  const head = lines(s.ui, ['Sites de verdade.', '<span style="color:#FBCC2F">No ar.</span>'], R ? 'left:0;right:0;top:170px;text-align:center;font-size:104px' : 'left:0;right:0;top:70px;text-align:center;font-size:96px', 'title');
+  reveal(head, T.D + 0.25, 0.12);
+  const ring = el(s.world, `<div class="obj" style="width:10px;height:10px"></div>`);
+  put(ring, { y: R ? 180 : 120, z: R ? -380 : -420 });
+  const ids = ['Pburger', 'Psupra', 'Pmitte', 'Pbolsa'];
+  const pmap = `${T.D}:0.3,${T.D + 6}:6.3`;
+  ids.forEach((id, i) => {
+    // pivô no centro do anel: gira primeiro, depois empurra o celular para fora (órbita de verdade)
+    const pivot = el(ring, `<div class="obj" style="left:5px;top:5px;width:0;height:0"></div>`);
+    gsap.set(pivot, { rotationY: i * 90 });
+    const ph = phone(pivot, id, pmap);
+    ph.style.left = '0'; ph.style.top = '0';
+    gsap.set(ph, { xPercent: -50, yPercent: -50, z: R ? 470 : 560, scale: R ? 0.95 : 0.82 });
+  });
+  tl.fromTo(ring, { rotationY: 60 }, { rotationY: -200, duration: R ? 4.4 : 3.6, ease: 'power2.inOut' }, T.D + 0.1);
+  if (!R) {
+    tl.to(ring, { y: -1200, rotationX: 35, duration: 0.8, ease: 'power3.in' }, 19.3);
+    tl.to(inner(head), { yPercent: -115, duration: 0.5, ease: 'power3.in' }, 19.3);
+    const br = browser(s.world, 'D3', '19.4:1.9,22.0:7.9');
+    put(br, { x: 0, y: 1100, rotationX: 28, scale: 0.84 });
+    tl.to(br, { y: 40, rotationX: 6, duration: 1.0, ease: 'power4.out' }, 19.5);
+    tl.to(br, { rotationX: 0, rotationY: 4, duration: 1.6, ease: 'sine.inOut' }, 20.5);
+    const c = pill(s.ui, 'Projetos no ar, rodando de verdade.', 'left:50%;top:960px;font-size:32px;transform:translateX(-50%)', true);
+    popIn(c, 20.3); fadeOut(c, 21.6);
+  } else {
+    const names = el(s.ui, `<p style="position:absolute;left:0;right:0;top:1640px;margin:0;text-align:center;font-size:34px;font-weight:700;color:#b5a898">Hamburgueria do Gui · Supra Bar · Mitte · Bolsa &amp; Verso</p>`);
+    tl.fromTo(names, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, T.D + 1.0);
+  }
+  hide(s, T.E + 0.7);
+}
+
+// E · Calculadora: máscara em círculo e zoom no prejuízo
+{
+  const s = scene('#15100c');
+  show(s, T.E);
+  tl.fromTo(s.root, { clipPath: 'circle(0% at 50% 50%)' }, { clipPath: 'circle(150% at 50% 50%)', duration: 0.7, ease: 'power3.inOut' }, T.E);
+  if (!R) {
+    const br = browser(s.world, 'D4', '22.2:0.2,27.2:6.2');
+    put(br, { x: 0, y: 30, rotationY: 16, rotationX: 6, scale: 0.8 });
+    tl.to(br, { rotationY: 0, rotationX: 0, scale: 1, y: 0, duration: 0.9 }, 22.6);
+    const P = { x: 960 + (889 - 640), y: 540 + (263 - 420) };
+    tl.to(s.cam, { scale: 1.9, x: -1.9 * (P.x - 960), y: -1.9 * (P.y - 540), duration: 1.0 }, 23.2);
+    const Q = { x: 960 + (889 - 640), y: 540 + (535 - 420) };
+    tl.to(s.cam, { scale: 1.7, x: -1.7 * (Q.x - 960), y: -1.7 * (Q.y - 540), duration: 1.0 }, 25.2);
+    const lbl = pill(s.ui, 'Simulador de faturamento perdido', 'left:110px;top:940px;font-size:32px', true);
+    popIn(lbl, 23.6); fadeOut(lbl, 26.8);
+    tl.to(s.cam, { scale: 0.85, x: 0, y: 0, duration: 0.6, ease: 'power3.in' }, 26.9);
+  } else {
+    const head = lines(s.ui, ['Quanto custa', 'ficar apagado?'], 'left:0;right:0;top:150px;text-align:center;font-size:96px', 'title');
+    reveal(head, T.E + 0.3, 0.12);
+    const ph = phone(s.world, 'M4', '19.8:0.3,24.2:6.6');
+    put(ph, { x: 0, y: 190, scale: 1.08, rotationY: -12, rotationX: 6 });
+    tl.fromTo(ph, { y: 1300 }, { y: 190, duration: 0.9, ease: 'power4.out' }, T.E + 0.2);
+    tl.to(ph, { rotationY: 10, duration: 4, ease: 'sine.inOut' }, T.E + 0.9);
+    const lbl = pill(s.ui, 'Faturamento perdido, com os números dele.', 'left:50%;top:1720px;font-size:32px;transform:translateX(-50%)', true);
+    popIn(lbl, 21.2); fadeOut(lbl, 23.8);
+  }
+  hide(s, T.F + 0.7);
+}
+
+// F · Contratado + conversa (desktop) / só conversa (reels)
+{
+  const s = scene(R ? '#0d3326' : '#2146c7');
+  show(s, T.F);
+  tl.fromTo(s.root, { yPercent: 100 }, { yPercent: 0, duration: 0.7, ease: 'power4.inOut' }, T.F - 0.1);
+  if (!R) {
+    const head = lines(s.ui, ['<span style="font-size:.42em;letter-spacing:-.03em">Contrate alguém que</span>', '<span style="color:#FBCC2F">nunca tira folga.</span>'], 'left:110px;top:70px;font-size:112px', 'title');
+    reveal(head, T.F + 0.45, 0.1);
+    const br = browser(s.world, 'D5', '27.6:0.2,32.4:7.2');
+    put(br, { x: -250, y: 150, rotationY: 20, rotationX: 6, scale: 0.64 });
+    tl.fromTo(br, { x: -1200 }, { x: -250, duration: 1.0, ease: 'power4.out' }, T.F + 0.3);
+    const ph = phone(s.world, 'M3', '27.6:1.4,32.4:10.2');
+    put(ph, { x: 560, y: 60, z: 120, rotationY: -16, scale: 0.8 });
+    tl.fromTo(ph, { y: 1100 }, { y: 60, duration: 1.0, ease: 'power4.out' }, T.F + 0.5);
+    const c = pill(s.ui, 'Atende de madrugada, no domingo e no feriado.', 'left:110px;top:960px;font-size:30px', true);
+    popIn(c, 29.6); fadeOut(c, 32.0);
+  } else {
+    const head = lines(s.ui, ['Tudo pelo', '<span style="color:#b9f5cf">WhatsApp.</span>'], 'left:0;right:0;top:150px;text-align:center;font-size:104px', 'title');
+    reveal(head, T.F + 0.4, 0.12);
+    const ph = phone(s.world, 'M3', '24.3:1.4,29.0:10.2');
+    put(ph, { x: 0, y: 210, scale: 1.08, rotationY: 12, rotationX: 5 });
+    tl.fromTo(ph, { y: 1300 }, { y: 210, duration: 0.9, ease: 'power4.out' }, T.F + 0.3);
+    tl.to(ph, { rotationY: -8, duration: 4, ease: 'sine.inOut' }, T.F + 1);
+    const c = pill(s.ui, 'Você conta, eu construo, você aprova.', 'left:50%;top:1730px;font-size:34px;transform:translateX(-50%)', true);
+    popIn(c, 25.6); fadeOut(c, 28.6);
+  }
+  tl.to(s.root, { scale: 0.86, opacity: 0, duration: 0.6, ease: 'power3.in' }, T.G - 0.1);
+  hide(s, T.G + 0.6);
+}
+
+// G · Encerramento
+{
+  const s = scene('#0f0b08');
+  show(s, T.G);
+  tl.fromTo(s.root, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: 'none' }, T.G);
+  if (!R) {
+    const br = browser(s.world, 'D6', '32.4:0.3,38.2:5.5');
+    put(br, { scale: 1.3, y: 20, opacity: 0.16, filter: 'blur(16px)' });
+    tl.fromTo(br, { scale: 1.45 }, { scale: 1.25, duration: 5.6, ease: 'none' }, T.G);
+  } else {
+    const ph = phone(s.world, 'M1', `${T.G}:4.2,${T.END}:4.2`);
+    put(ph, { scale: 1.9, y: 200, opacity: 0.14, filter: 'blur(16px)' });
+  }
+  el(s.bg, `<div class="glow" style="left:50%;top:78%;width:1400px;height:700px;margin:-350px 0 0 -700px;background:rgba(251,204,47,.28)"></div>`);
+  const mark = el(s.ui, `<div style="position:absolute;left:50%;top:${R ? 560 : 170}px;width:${R ? 150 : 110}px;height:${R ? 150 : 110}px;margin-left:-${R ? 75 : 55}px">${LOGO}</div>`);
+  const head = lines(s.ui, R ? ['Deixa a', 'luz acesa.'] : ['Deixa a luz acesa.'], R ? 'left:0;right:0;top:780px;text-align:center;font-size:150px' : 'left:0;right:0;top:330px;text-align:center;font-size:150px', 'title');
+  const sub = el(s.ui, `<p style="position:absolute;left:0;right:0;top:${R ? 1120 : 520}px;margin:0;text-align:center;font-size:${R ? 40 : 32}px;font-weight:600;color:#b5a898">Origem Digital · sites para o comércio de bairro</p>`);
+  const url = el(s.ui, `<div style="position:absolute;left:50%;top:${R ? 1250 : 610}px;padding:22px 36px;border-radius:999px;background:#FBCC2F;color:#16100b;font-size:${R ? 40 : 36}px;font-weight:800;white-space:nowrap;box-shadow:0 24px 60px -16px rgba(251,204,47,.6)">meu-site-v1-sigma.vercel.app</div>`);
+  gsap.set(url, { xPercent: -50 });
+  const contact = el(s.ui, `<p style="position:absolute;left:0;right:0;top:${R ? 1400 : 740}px;margin:0;text-align:center;font-size:${R ? 36 : 28}px;font-weight:700;color:#f6ecdf">WhatsApp (11) 93765-4207 · @gmelo97s</p>`);
+  tl.fromTo(mark, { scale: 0.5, opacity: 0, rotation: -12 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.8, ease: 'back.out(1.8)' }, T.G + 0.3);
+  reveal(head, T.G + 0.55, 0.12);
+  tl.fromTo(sub, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, T.G + 1.1);
+  tl.fromTo(url, { opacity: 0, scale: 0.85 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(2)' }, T.G + 1.4);
+  tl.fromTo(contact, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, T.G + 1.7);
+  tl.set({}, {}, T.END);
+}
+
+el(stage, `<div class="grain"></div>`);
+el(stage, `<div class="vignette"></div>`);
+
+// ---------- tempo do clipe dentro da composição ----------
+document.querySelectorAll('img.seq').forEach((img) => {
+  img._map = img.dataset.map.split(',').map((p) => p.split(':').map(Number));
+});
+function localTime(map, t) {
+  if (t <= map[0][0]) return map[0][1];
+  for (let i = 1; i < map.length; i++) {
+    const [t0, l0] = map[i - 1], [t1, l1] = map[i];
+    if (t <= t1) return l0 + (l1 - l0) * ((t - t0) / (t1 - t0));
+  }
+  return map[map.length - 1][1];
+}
+window.DURATION = T.END;
+window.renderAt = async (t) => {
+  tl.seek(t, false);
+  const waits = [];
+  document.querySelectorAll('img.seq').forEach((img) => {
+    const sc = img.closest('.scene');
+    if (sc && getComputedStyle(sc).visibility === 'hidden') return;
+    const n = window.CLIPCOUNT[img.dataset.clip];
+    const f = Math.min(n, Math.max(1, Math.round(localTime(img._map, t) * 30) + 1));
+    const src = `clips/${img.dataset.clip}/${String(f).padStart(4, '0')}.jpg`;
+    if (img.getAttribute('src') !== src) { img.setAttribute('src', src); waits.push(img.decode().catch(() => {})); }
+  });
+  await Promise.all(waits);
+  await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+};
+window.ready = Promise.all([document.fonts.ready, ...[...document.images].map((i) => (i.complete ? 1 : i.decode().catch(() => {})))]);
+</script>
+</body>
+</html>
