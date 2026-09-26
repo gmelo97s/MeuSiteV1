@@ -17,10 +17,10 @@ const RESULTS = [
   { name: 'Cantina da Praça', kind: 'Restaurante', rate: '4,9', n: '742', dist: '1,1 km', close: 'Fecha às 23h', photos: [488, 292, 493], site: true },
 ];
 
-const stars = (r = 5) => `<span class="ms__stars" aria-hidden="true">${'★'.repeat(r)}</span>`;
-const PIN = '<svg viewBox="0 0 24 32" class="ms__pinsvg"><path d="M12 31s10-11.3 10-19A10 10 0 0 0 2 12c0 7.7 10 19 10 19Z"/><circle cx="12" cy="12" r="4.2" fill="#fff"/></svg>';
+export const stars = (r = 5) => `<span class="ms__stars" aria-hidden="true">${'★'.repeat(r)}</span>`;
+export const PIN = '<svg viewBox="0 0 24 32" class="ms__pinsvg"><path d="M12 31s10-11.3 10-19A10 10 0 0 0 2 12c0 7.7 10 19 10 19Z"/><circle cx="12" cy="12" r="4.2" fill="#fff"/></svg>';
 
-function mapSVG() {
+export function mapSVG() {
   // bairro estilizado: quadras, parque, rio e uma avenida
   const minor = [];
   for (let i = -2; i < 12; i++) minor.push(`M${-40 + i * 58} -40 L${120 + i * 58} 900`);

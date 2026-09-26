@@ -72,6 +72,7 @@ A montagem (cenas, tempos, textos) fica em `scripts/video/compose.html`. Para co
 - `src/main.js`: liga tudo.
 - `src/js/splash.js`: abertura institucional (o logo pousa no menu).
 - `src/js/hero.js`: hero no modelo Linktree: no computador, torre de cards de vídeo que trocam acelerando e ficam 4 s no centro; no celular, carrossel 3D que obedece ao dedo. Mais o campo "nome do seu negócio".
+- `src/js/search.js`: simulação de busca no hero: com o nome digitado, mostra concorrentes fictícios do mesmo ramo com site e o negócio da pessoa "não aparece" (nomes dos concorrentes em `searchFor`, no `data.js`).
 - `src/js/facade.js`: "passam o dedo": a rua, a mão com o celular e a busca no mapa rodando na tela, com cards em 3D.
 - `src/js/day.js`: o celular fixo com o céu mudando de cor.
 - `src/js/work.js`: projetos com vídeo.

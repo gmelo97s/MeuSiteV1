@@ -2,9 +2,10 @@
 // Computador: texto à esquerda, torre de cards de vídeo subindo à direita.
 // Celular: carrossel 3D (o card do centro na frente, os vizinhos inclinados), que troca sozinho,
 // obedece ao dedo e tem o indicador de páginas do iOS.
-// Nos dois, quando a pessoa digita o nome do negócio, o projeto mais parecido vem para o centro.
+// Nos dois, quando a pessoa digita o nome do negócio, o carrossel para e a simulação de busca
+// (search.js) aparece por cima.
 import { gsap, reduced } from './motion.js';
-import { PROJECTS, projectForName } from './data.js';
+import { PROJECTS } from './data.js';
 import { store, waLink } from './store.js';
 
 const COPIES = 3;
@@ -139,8 +140,7 @@ function tower({ stage, track, onFocus }) {
   onFocus.current = (p) => {
     const was = focused;
     focused = Boolean(p);
-    if (p) focusOn(p.id);
-    else if (was) { stop(); start(); }
+    if (p) { if (p.id) focusOn(p.id); else stop(); } else if (was) { stop(); start(); }
   };
 
   introCards = (tl) => tl.from(cards, { y: 90, opacity: 0, duration: 1.2, ease: 'power4.out', stagger: 0.07, clearProps: 'opacity' }, '-=1');
@@ -273,7 +273,8 @@ function deck({ stage, track, onFocus }) {
 
   onFocus.current = (p) => {
     focused = Boolean(p);
-    if (p) go(PROJECTS.findIndex((x) => x.id === p.id));
+    if (p && p.id) go(PROJECTS.findIndex((x) => x.id === p.id));
+    else if (p) clearTimeout(timer);
     else schedule();
   };
 
@@ -307,12 +308,12 @@ export function initHero() {
     ctx.conditions.mob ? deck({ stage, track, onFocus }) : tower({ stage, track, onFocus })
   ));
 
-  let lastId = null;
+  // com o nome digitado, a simulação de busca cobre o palco: o carrossel para
+  let searching = false;
   store.on((d) => {
-    const p = projectForName(d.nm);
-    const id = p ? p.id : null;
-    if (id !== lastId) onFocus.current?.(p);
-    lastId = id;
+    const on = d.nm.length >= 2;
+    if (on !== searching) onFocus.current?.(on ? { id: null } : null);
+    searching = on;
   });
 
   input.addEventListener('input', () => store.set({ name: input.value.slice(0, 32) }));

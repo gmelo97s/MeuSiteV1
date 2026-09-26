@@ -16,6 +16,7 @@ import { initHire, initPortrait, initChalk, initFaq, initFinal } from './js/extr
 import { initExit } from './js/exit.js';
 import { initSheets } from './js/sheets.js';
 import { initDock } from './js/dock.js';
+import { initSearchSim } from './js/search.js';
 
 window.__odReady = true;
 if (import.meta.env.DEV) window.__ST = ScrollTrigger;
@@ -27,6 +28,7 @@ initAnchors(lenis);
 initButtons();
 initNav();
 initHero();
+initSearchSim();
 initDay({ lenis });
 initFacade();
 initWork();

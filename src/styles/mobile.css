@@ -11,7 +11,7 @@
   .hero__title { order: 1; text-align: left; font-size: clamp(42px, 11.8vw, 66px); line-height: .9; letter-spacing: -.055em; }
   .hero__lede { order: 2; margin: 14px 0 0; max-width: 32ch; text-align: left; font-size: 16.5px; line-height: 1.45; }
 
-  .hero__stage { order: 3; height: calc(min(68vw, 360px) * 1.149 + 30px); min-height: 0; margin: 20px calc(-1 * var(--gutter)) 0; touch-action: pan-y; }
+  .hero__stage { order: 4; height: calc(min(68vw, 360px) * 1.149 + 30px); min-height: 0; margin: 14px calc(-1 * var(--gutter)) 0; touch-action: pan-y; }
   .hero__stage.is-deck .tower { overflow: visible; -webkit-mask-image: none; mask-image: none; perspective: 900px; }
   .hero__stage.is-deck .tower__track { position: absolute; inset: 0; display: block; transform-style: preserve-3d; }
   .hero__stage.is-deck .pcard {
@@ -24,12 +24,13 @@
   .hero__stage.is-deck .pcard__cap { opacity: 0; transition: opacity .4s; }
   .hero__stage.is-deck .pcard.is-active .pcard__cap { opacity: 1; }
 
-  .deck-dots { order: 4; display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+  .deck-dots { order: 5; display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
   .deck-dots i { width: 7px; height: 7px; border-radius: 999px; background: rgba(22, 16, 11, .22); transition: width .6s var(--ease), background-color .6s; }
   .deck-dots i.is-on { width: 24px; background: var(--ink); }
 
   /* campo do nome como a barra do iMessage */
-  .claim { order: 5; margin: 20px 0 0; max-width: none; gap: 10px; }
+  /* a barra fica logo abaixo do texto, como num app de busca; resultados e vídeos aparecem embaixo */
+  .claim { order: 3; margin: 20px 0 0; max-width: none; gap: 10px; }
   .claim__row {
     flex-direction: row; gap: 6px; padding: 6px; border-radius: 999px;
     background: rgba(255, 255, 255, .92);
@@ -120,4 +121,25 @@
 /* o rodapé não fica escondido atrás da barra inferior */
 @media (max-width: 900px) {
   .foot { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+}
+
+/* simulação de busca no celular: entra no lugar do carrossel, compacta */
+@media (max-width: 900px) {
+  .hero.is-searching .hero__stage { height: auto; min-height: calc(min(68vw, 360px) * 1.149 + 30px); }
+  .hero.is-searching .tower { opacity: 0; filter: none; transform: none; }
+  .hero.is-searching .deck-dots { opacity: 0; }
+  .deck-dots { transition: opacity .4s; }
+  .gsr { position: relative; inset: auto; padding: 0 var(--gutter); }
+  .gsr__tag { margin-bottom: 10px; font-size: 11.5px; }
+  .gsr__card { width: 100%; padding: 10px 10px 12px; border-radius: 22px; }
+  .gsr__bar { height: 42px; font-size: 15px; }
+  .gsr__tabs { gap: 14px; padding-top: 10px; font-size: 12px; }
+  .gsr__tabs span { padding-bottom: 7px; }
+  .gsr__body { padding-top: 10px; }
+  .gsr__map { height: 70px; margin: 8px 0 2px; }
+  .gsr__res { padding: 8px 2px; gap: 10px; }
+  .gsr__chips { margin-top: 3px; }
+  .gsr__chips i { padding: 2px 8px; font-size: 10.5px; }
+  .gsr__cta { margin-top: 10px; min-height: 46px; }
+  .gsr__skel { top: 110px; }
 }

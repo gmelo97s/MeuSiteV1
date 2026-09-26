@@ -44,6 +44,7 @@ const MESSAGES = {
     ? `Oi, ${CONTACT.person}! Vim pelo site da ${CONTACT.brand}. Meu negócio se chama ${nm} e quero um site pra ser encontrado.`
     : `Oi, ${CONTACT.person}! Vim pelo site da ${CONTACT.brand} e quero um site pra ser encontrado.`,
   price: (nm) => `Oi, ${CONTACT.person}! Quanto custa um site pro meu negócio${nm ? ` (${nm})` : ''}?`,
+  search: (nm) => `Oi, ${CONTACT.person}! Vi a simulação de busca no seu site${nm ? ` com o nome ${nm}` : ''}. Quero aparecer quando me procurarem.`,
   preview: (nm) => `Oi, ${CONTACT.person}! Quero uma prévia grátis do site ${nm ? `da ${nm}` : 'do meu negócio'}.`,
 };
 MESSAGES.lit = MESSAGES.default;

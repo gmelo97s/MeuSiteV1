@@ -80,6 +80,56 @@ export function detectKind(name) {
   return null;
 }
 
+// Simulação de busca do hero: como o negócio é chamado no plural ("mostrando barbearias perto de você")
+// e três concorrentes fictícios do mesmo ramo.
+const CATEGORY = [
+  [/barbear/, 'barbearias'], [/salao|cabele/, 'salões de beleza'], [/estetica|sobrancelha|manicure|unha|nail/, 'estúdios de beleza'],
+  [/padaria|panific/, 'padarias'], [/confeit|doceria|doces|bolo/, 'docerias'], [/pizz/, 'pizzarias'], [/hamburg|burger/, 'hamburguerias'],
+  [/lanch/, 'lanchonetes'], [/\bbar\b|boteco|buteco|chopp|adega/, 'bares'], [/cafeteria|\bcafe\b/, 'cafeterias'], [/acai|sorvet/, 'açaiterias'],
+  [/restaur|cantina|bistr|comida|marmit/, 'restaurantes'], [/odonto|dent/, 'dentistas'], [/clinic|consult|saude|medic/, 'clínicas'],
+  [/fisio/, 'fisioterapeutas'], [/psic/, 'psicólogos'], [/nutri/, 'nutricionistas'], [/veterin|\bpet/, 'pet shops e veterinários'],
+  [/advoc|advog|juridic/, 'escritórios de advocacia'], [/contab|contador/, 'contadores'], [/imobili|corretor/, 'imobiliárias'],
+  [/arquitet/, 'arquitetos'], [/academia|crossfit|fitness/, 'academias'], [/personal/, 'personal trainers'], [/pilates|yoga/, 'estúdios de pilates'],
+  [/oficina|mecanic|auto ?center|funilar/, 'oficinas'], [/eletric/, 'eletricistas'], [/encanad/, 'encanadores'], [/reforma|pedreiro|pintor|constru/, 'empresas de reforma'],
+  [/escola|colegio|ensino/, 'escolas'], [/curso|aula|professor|idioma|ingles/, 'cursos'], [/otica/, 'óticas'], [/farmac/, 'farmácias'],
+  [/floric/, 'floriculturas'], [/mercad|empori/, 'mercados'], [/loja|store|moda|boutique|roupa|shop/, 'lojas'],
+];
+const KIND_PLURAL = {
+  saude: 'clínicas', escritorio: 'escritórios', beleza: 'salões e barbearias', treino: 'academias e estúdios', comida: 'restaurantes',
+  servicos: 'prestadores de serviço', loja: 'lojas', aulas: 'escolas e cursos', outro: 'negócios parecidos',
+};
+const RIVAL_NAMES = {
+  saude: ['Clínica Sorriso Vivo', 'OdontoCenter Plus', 'Espaço Bem-Estar'],
+  escritorio: ['Almeida & Rocha Advogados', 'Contábil Prime', 'Martins Consultoria'],
+  beleza: ['Barbearia Central', 'Studio Navalha', 'Espaço Bella'],
+  treino: ['Move Studio', 'Fit Center 24h', 'Pilates Equilíbrio'],
+  comida: ['Cantina da Praça', 'Burger House', 'Forno a Lenha'],
+  servicos: ['Reforma Já', 'Elétrica Rápida', 'Casa & Conserto'],
+  loja: ['Loja Aurora', 'Empório Central', 'Ateliê Norte'],
+  aulas: ['Escola Horizonte', 'Inglês Já', 'Instituto Saber'],
+  outro: ['Concorrente com site', 'Outro concorrente', 'Mais um concorrente'],
+};
+const RIVAL_BY_WORD = [
+  [/\bbar\b|boteco|buteco|chopp|adega/, ['Bar do Centro', 'Boteco da Esquina', 'Choperia Real']],
+  [/pizz/, ['Pizzaria Bella Napoli', 'Forno a Lenha', 'Pizza da Vila']],
+  [/padaria|panific/, ['Padaria Estrela', 'Pão Quente', 'Panificadora Central']],
+  [/\bpet|veterin/, ['Pet Feliz', 'Clínica Vet Amigo', 'Mundo Pet']],
+  [/oficina|mecanic|auto ?center/, ['Auto Center Silva', 'Oficina do Bairro', 'Mecânica Rápida']],
+];
+const RIVAL_META = [
+  { rate: '4,9', n: '1,2 mil', tags: ['Site', 'WhatsApp', 'Rota'], open: 'Aberto agora' },
+  { rate: '4,8', n: '318', tags: ['Site', 'Fotos', 'Preços'], open: 'Aberto agora' },
+  { rate: '4,7', n: '96', tags: ['Site', 'Agendar'], open: 'Fecha às 22h' },
+];
+
+export function searchFor(name) {
+  const s = norm(name);
+  const kind = detectKind(name) || 'outro';
+  const plural = (CATEGORY.find(([re]) => re.test(s)) || [])[1] || KIND_PLURAL[kind];
+  const names = (RIVAL_BY_WORD.find(([re]) => re.test(s)) || [])[1] || RIVAL_NAMES[kind];
+  return { plural, rivals: names.map((nm, i) => ({ name: nm, ...RIVAL_META[i] })) };
+}
+
 export const slugify = (s) => norm(s).replace(/[^a-z0-9]+/g, '').slice(0, 28);
 
 // Um dia comum na vida do próximo cliente.
@@ -110,37 +160,25 @@ export const MOMENTS = [
 // hero: foto real do projeto no card (Linktree), com o celular rodando o site por cima.
 //   fit "cover" = foto preenchendo o card; "contain" = produto sobre a cor de fundo (bg).
 //   cut = imagem recortada (ganha sombra); tone "light" = fundo claro (legenda escura).
-//   match = palavras do nome digitado que trazem este card para o centro.
 export const PROJECTS = [
   {
     id: 'echofi', name: 'Echofi', type: 'Landing page de app de música',
     url: 'https://echofi-bp.webflow.io/', accent: '#FF4A1C',
     hero: { photo: '/img/hero/echofi.webp', fit: 'cover', pos: '50% 22%', bg: '#1a0905', caption: 'Echofi. Landing page de app de música.' },
-    match: /music|musica|\bapp\b|aplicativo|startup|tecnolog|software|saas|digital|produtora|estudio|podcast|\bdj\b|banda|streaming|plataforma|evento/,
   },
   {
     id: 'burger', name: 'Hamburgueria do Gui', type: 'Cardápio com pedido pra retirada e delivery',
     url: 'https://testeburguerking.lovable.app/', accent: '#E4432D',
     hero: { photo: '/img/hero/burger.webp', fit: 'contain', cut: true, pos: '50% 38%', bg: '#E4432D', caption: 'Hamburgueria do Gui. Pedido na retirada e no delivery.' },
-    match: /hamburg|burger|lanch|restaur|pizz|comida|cozinha|marmit|pastel|churras|sushi|espeto|acai|sorvet|padaria|confeit|doce|bolo|cafe/,
   },
   {
     id: 'mitte', name: 'Mitte', type: 'Agenda de aniversários para bar',
     url: 'https://mittebar.vercel.app/', accent: '#FF3EA5',
     hero: { photo: '/img/hero/mitte.webp', fit: 'cover', pos: '50% 50%', bg: '#10202a', caption: 'Mitte. Agenda de aniversários do bar.' },
-    match: /\bbar\b|boteco|buteco|chopp|adega|cervej|drink|pub\b|choperia|festa|aniversar|balada|buffet|casa de show|boate/,
   },
   {
     id: 'bolsa', name: 'Bolsa & Verso', type: 'Loja de bolsas com pedido pelo WhatsApp',
     url: 'https://bolsaeverso.lovable.app/', accent: '#C9A27A',
     hero: { photo: '/img/hero/bolsa.webp', fit: 'contain', tone: 'light', pos: '50% 45%', bg: '#EFE4D6', caption: 'Bolsa & Verso. Loja de bolsas com pedido no WhatsApp.' },
-    match: /loja|bolsa|moda|roupa|boutique|calcad|sapat|acessor|joia|otica|presente|brecho|perfum|cosmet|store|shop/,
   },
 ];
-
-// Qual projeto do hero combina com o nome digitado (ou null).
-export function projectForName(name) {
-  const s = String(name || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-  if (!s.trim()) return null;
-  return PROJECTS.find((p) => p.match.test(s)) || null;
-}
