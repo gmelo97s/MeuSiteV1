@@ -101,7 +101,25 @@ export function initDay({ lenis }) {
   }, (ctx) => {
     if (ctx.conditions.list) {
       section.classList.add('day--list');
-      return () => section.classList.remove('day--list');
+      // celular: os horários passam de lado; os botões de horário mostram onde a pessoa está
+      const nearest = () => {
+        const mid = wrap.scrollLeft + wrap.clientWidth / 2;
+        let best = 0; let dist = Infinity;
+        moments.forEach((m, j) => { const d = Math.abs(m.offsetLeft + m.offsetWidth / 2 - mid); if (d < dist) { dist = d; best = j; } });
+        dots.forEach((b, j) => b.setAttribute('aria-current', String(j === best)));
+      };
+      const onDotList = (e) => {
+        const m = moments[Number(e.currentTarget.dataset.i)];
+        wrap.scrollTo({ left: m.offsetLeft - (wrap.clientWidth - m.offsetWidth) / 2, behavior: 'smooth' });
+      };
+      wrap.addEventListener('scroll', nearest, { passive: true });
+      dots.forEach((b) => b.addEventListener('click', onDotList));
+      nearest();
+      return () => {
+        wrap.removeEventListener('scroll', nearest);
+        dots.forEach((b) => { b.removeEventListener('click', onDotList); b.removeAttribute('aria-current'); });
+        section.classList.remove('day--list');
+      };
     }
 
     current = -2;
@@ -113,7 +131,7 @@ export function initDay({ lenis }) {
       scrollTrigger: {
         trigger: pin,
         start: 'top top',
-        end: () => `+=${Math.round(window.innerHeight * 4.2)}`,
+        end: () => `+=${Math.round(window.innerHeight * 3)}`,
         pin: true,
         scrub: 0.6,
         anticipatePin: 1,

@@ -23,8 +23,9 @@ Cada push no GitHub publica sozinho na Vercel.
 | Projetos (nome, legenda, link), horários do "dia comum", ramos de negócio, contatos | `src/js/data.js` |
 | Mensagens que vão pro WhatsApp | `src/js/store.js` |
 | Cores, fontes, espaçamentos | `src/styles/base.css` (tokens no topo) |
+| Logo (o pião, como o totem do filme A Origem) | símbolo `#logo-mark` no `index.html` e `public/favicon.svg` |
 | Visual de cada seção | `src/styles/sections.css` |
-| Versão celular (cara de app: hero em carrossel 3D, seções em camadas, barra inferior) | `src/styles/mobile.css` |
+| Versão celular (cara de app: hero em carrossel 3D, seções em camadas, horários em carrossel) | `src/styles/mobile.css` |
 | Foto do "Quem sou" | `public/img/guilherme.webp` e `.jpg` |
 
 ## Vídeos do portfólio
@@ -79,7 +80,6 @@ A montagem (cenas, tempos, textos) fica em `scripts/video/compose.html`. Para co
 - `src/js/calc.js`: simulador de faturamento perdido (valores, barrinhas e extrato).
 - `src/js/chat.js`, `extras.js`, `exit.js`: conversa, crachá do "Contratado", busca do final ("E não achou você.") e pop-up de saída.
 - `src/js/sheets.js`: no celular, cada seção desliza por cima da anterior como as folhas do iOS (a de trás encolhe e escurece).
-- `src/js/dock.js`: no celular, a barra inferior de vidro com as seções e o WhatsApp.
 - `src/js/motion.js`: rolagem suave (Lenis), revelar ao rolar e efeitos compartilhados (GSAP).
 
 ## Créditos das fotos

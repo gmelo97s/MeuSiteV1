@@ -63,48 +63,30 @@
   /* medições: as folhas voltam ao fluxo normal por um instante */
   .sheets-off main > .sheet { position: relative !important; top: auto !important; transform: none !important; clip-path: none !important; }
 
-  /* horários do "dia comum" empilhados como cartões */
-  .day--list .moments { gap: 18px; }
-  .day--list .moment {
-    position: sticky; top: calc(var(--nav-h) + 30px + var(--i, 0) * 14px);
-    min-height: 330px; transform-origin: 50% 0%;
-    box-shadow: 0 -16px 36px -14px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .25);
+  /* horários do "dia comum": carrossel lateral, com os horários como seletor (estilo iOS) */
+  .day--list .day__pin { display: flex; flex-direction: column; padding-bottom: 60px; }
+  .day--list .day__head { order: 1; margin-bottom: 22px; }
+  .day--list .moments { order: 3; }
+  .day--list .day__dots { order: 2; display: flex; flex-wrap: nowrap; gap: 4px; width: max-content; margin: 0 auto 16px; padding: 4px; border-radius: 999px; background: rgba(246, 236, 223, .08); }
+  .day--list .day__dots button { padding: 7px 12px; font-size: 12.5px; background: transparent; color: var(--muted); }
+  .day--list .day__dots button[aria-current="true"] { background: var(--cream); color: var(--ink); box-shadow: 0 4px 12px rgba(0, 0, 0, .35); }
+  .day--list .moments {
+    position: relative; display: flex; gap: 12px;
+    margin: 0 calc(-1 * var(--gutter)); padding: 4px var(--gutter) 12px;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    scrollbar-width: none;
   }
-  .sheets-off .day--list .moment { position: relative !important; top: auto !important; transform: none !important; }
+  .day--list .moments::-webkit-scrollbar { display: none; }
+  .day--list .moment { flex: 0 0 86%; scroll-snap-align: center; box-shadow: inset 0 0 0 1px rgba(246, 236, 223, .1), 0 20px 40px -20px rgba(0, 0, 0, .6); }
 }
 
-/* ----- Barra inferior de vidro (só no celular) ----- */
-.dock { display: none; }
+/* ----- Menu de cima e toques (só no celular) ----- */
 @media (max-width: 900px) {
-  .wa-float { display: none; }
-  .dock {
-    position: fixed; z-index: 95; left: 50%; bottom: max(14px, env(safe-area-inset-bottom));
-    display: flex; align-items: center; gap: 2px; padding: 6px;
-    border-radius: 999px;
-    background: rgba(30, 23, 17, .55);
-    -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
-    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12), inset 0 1px 0 rgba(255, 255, 255, .2), 0 20px 44px -12px rgba(0, 0, 0, .65);
-    transform: translate(-50%, 160%); transition: transform .7s var(--ease-back);
-  }
-  .dock.is-on { transform: translate(-50%, 0); }
-  .dock a {
-    position: relative; z-index: 1; display: grid; justify-items: center; gap: 1px;
-    min-width: 62px; padding: 7px 8px 6px; border-radius: 999px;
-    font-size: 10.5px; font-weight: 700; letter-spacing: .01em; color: rgba(246, 236, 223, .62);
-    transition: color .35s, transform .25s var(--ease);
-  }
-  .dock a .ico { width: 21px; height: 21px; }
-  .dock a.is-active { color: var(--cream); }
-  .dock a:active { transform: scale(.88); }
-  .dock__pill { position: absolute; z-index: 0; top: 6px; bottom: 6px; left: 0; width: 62px; border-radius: 999px; background: rgba(255, 255, 255, .15); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18); transition: transform .55s var(--ease-back), width .45s var(--ease); }
-  .dock .dock__wa { width: 52px; height: 52px; min-width: 0; margin-left: 4px; padding: 0; place-items: center; background: #25d366; color: #fff; box-shadow: 0 10px 22px -8px rgba(37, 211, 102, .8), inset 0 1px 0 rgba(255, 255, 255, .35); }
-  .dock .dock__wa .ico { width: 25px; height: 25px; }
-
   /* menu de cima vira uma pílula compacta, como a Dynamic Island */
   .nav { width: auto; max-width: none; height: 46px; gap: 0; padding: 0 16px 0 8px; top: max(10px, env(safe-area-inset-top)); background: rgba(8, 6, 4, .8); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 10px 30px -10px rgba(0, 0, 0, .6); }
   .nav > .btn { display: none; }
-  .nav .brand__mark { width: 28px; height: 28px; }
-  .nav .brand__name { font-size: 15px; }
+  .nav .brand__mark { width: 32px; height: 32px; }
+  .nav .brand__name { font-size: 16px; }
   .nav.is-scrolled { background: rgba(8, 6, 4, .88); }
   :root { --nav-h: 46px; }
 
@@ -116,11 +98,6 @@
   .claim__field input { padding-left: 14px; }
   .claim__field input::placeholder { font-size: 15px; }
   .claim .btn, .claim__row .btn { padding: 0 16px; }
-}
-
-/* o rodapé não fica escondido atrás da barra inferior */
-@media (max-width: 900px) {
-  .foot { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
 }
 
 /* simulação de busca no celular: entra no lugar do carrossel, compacta */

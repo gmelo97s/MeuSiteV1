@@ -231,7 +231,7 @@
 /* =========================================================
    3. A FACHADA (rua → mão com o celular → busca no mapa)
    ========================================================= */
-.facade { position: relative; height: 380vh; background: #0b0806; color: var(--cream); }
+.facade { position: relative; height: 290vh; background: #0b0806; color: var(--cream); }
 .facade__pin {
   position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
   perspective: 1700px; perspective-origin: 72% 50%;
@@ -719,7 +719,7 @@
 
 /* fachada no celular: título em cima, mão com o celular embaixo */
 @media (max-width: 899px) {
-  .facade { height: 340vh; }
+  .facade { height: 250vh; }
   .facade__pin { perspective-origin: 50% 62%; }
   .facade__street::after { background: linear-gradient(180deg, rgba(11, 8, 6, .88) 0%, rgba(11, 8, 6, .35) 48%, rgba(11, 8, 6, .82) 100%); }
   .facade__title, .facade__punch {

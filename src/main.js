@@ -15,10 +15,11 @@ import { initChat } from './js/chat.js';
 import { initHire, initPortrait, initChalk, initFaq, initFinal } from './js/extras.js';
 import { initExit } from './js/exit.js';
 import { initSheets } from './js/sheets.js';
-import { initDock } from './js/dock.js';
 import { initSearchSim } from './js/search.js';
 
 window.__odReady = true;
+// quem pediu menos movimento vê o pião parado (o brilho que gira é animação do próprio SVG)
+if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.querySelectorAll('#logo-mark animateTransform').forEach((a) => a.remove());
 if (import.meta.env.DEV) window.__ST = ScrollTrigger;
 
 const lenis = initLenis();
@@ -43,7 +44,6 @@ initFinal();
 initTilt();
 initExit({ lenis });
 initSheets();
-initDock();
 
 runSplash({ lenis }).then(() => {
   heroIntro();

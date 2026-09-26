@@ -1,6 +1,5 @@
 // Celular: cada seção é uma "folha" que desliza por cima da anterior, como os cartões do iOS.
 // A de trás fica parada (sticky), encolhe um pouco, arredonda os cantos e escurece.
-// Os horários do "dia comum" fazem o mesmo, empilhados dentro da seção.
 import { gsap, ScrollTrigger, reduced } from './motion.js';
 
 const MQ = '(max-width: 900px)';
@@ -59,16 +58,6 @@ export function initSheets() {
         .fromTo(dim, { opacity: 0 }, { opacity: 0.6, duration: 1 }, 0.001);
     });
 
-    // os horários do "dia comum" empilham como cartões
-    const moments = [...document.querySelectorAll('.day--list .moment')];
-    moments.forEach((m, i) => m.style.setProperty('--i', i));
-    moments.slice(0, -1).forEach((m, i) => {
-      gsap.fromTo(m, { scale: 1, filter: 'brightness(1)' }, {
-        scale: 0.92, filter: 'brightness(.7)', ease: 'none', transformOrigin: '50% 0%',
-        scrollTrigger: { trigger: moments[i + 1], start: 'top bottom', end: 'top 130px', scrub: true },
-      });
-    });
-
     const ro = new ResizeObserver(() => { layout(); });
     sheets.forEach((s) => ro.observe(s));
     window.addEventListener('resize', layout);
@@ -80,7 +69,6 @@ export function initSheets() {
       root.classList.remove('has-sheets');
       extras.forEach((x) => x.remove());
       sheets.forEach((s) => { s.classList.remove('sheet'); s.style.zIndex = ''; s.style.top = ''; });
-      moments.forEach((m) => m.style.removeProperty('--i'));
     };
   });
 }
