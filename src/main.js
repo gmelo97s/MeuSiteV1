@@ -1,6 +1,7 @@
 import 'lenis/dist/lenis.css';
 import './styles/base.css';
 import './styles/sections.css';
+import './styles/mobile.css';
 
 import { initLenis, initAnchors, initReveals, initButtons, initTilt, initNav, ScrollTrigger } from './js/motion.js';
 import { bindDom } from './js/store.js';
@@ -13,8 +14,11 @@ import { initCalc } from './js/calc.js';
 import { initChat } from './js/chat.js';
 import { initHire, initPortrait, initChalk, initFaq, initFinal } from './js/extras.js';
 import { initExit } from './js/exit.js';
+import { initSheets } from './js/sheets.js';
+import { initDock } from './js/dock.js';
 
 window.__odReady = true;
+if (import.meta.env.DEV) window.__ST = ScrollTrigger;
 
 const lenis = initLenis();
 
@@ -36,6 +40,8 @@ initChalk();
 initFinal();
 initTilt();
 initExit({ lenis });
+initSheets();
+initDock();
 
 runSplash({ lenis }).then(() => {
   heroIntro();

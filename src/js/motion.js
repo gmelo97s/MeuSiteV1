@@ -17,6 +17,17 @@ export function initLenis() {
   return lenis;
 }
 
+// Posição do elemento na página. No celular as seções ficam presas (folhas), então
+// a medida é feita com elas de volta ao fluxo normal.
+export function docTop(el) {
+  const root = document.documentElement;
+  const sheets = root.classList.contains('has-sheets');
+  if (sheets) root.classList.add('sheets-off');
+  const y = el.getBoundingClientRect().top + window.scrollY;
+  if (sheets) root.classList.remove('sheets-off');
+  return y;
+}
+
 export function scrollToTarget(lenis, target, offset = -84) {
   const el = typeof target === 'string' ? document.querySelector(target) : target;
   if (typeof target === 'number') {
@@ -25,8 +36,9 @@ export function scrollToTarget(lenis, target, offset = -84) {
     return;
   }
   if (!el) return;
-  if (lenis) lenis.scrollTo(el, { offset, duration: 1.4 });
-  else window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY + offset, behavior: reduced ? 'auto' : 'smooth' });
+  const top = Math.max(0, docTop(el) + offset);
+  if (lenis) lenis.scrollTo(top, { duration: 1.4 });
+  else window.scrollTo({ top, behavior: reduced ? 'auto' : 'smooth' });
 }
 
 export function initAnchors(lenis) {

@@ -24,6 +24,7 @@ Cada push no GitHub publica sozinho na Vercel.
 | Mensagens que vão pro WhatsApp | `src/js/store.js` |
 | Cores, fontes, espaçamentos | `src/styles/base.css` (tokens no topo) |
 | Visual de cada seção | `src/styles/sections.css` |
+| Versão celular (cara de app: hero em carrossel 3D, seções em camadas, barra inferior) | `src/styles/mobile.css` |
 | Foto do "Quem sou" | `public/img/guilherme.webp` e `.jpg` |
 
 ## Vídeos do portfólio
@@ -70,12 +71,14 @@ A montagem (cenas, tempos, textos) fica em `scripts/video/compose.html`. Para co
 
 - `src/main.js`: liga tudo.
 - `src/js/splash.js`: abertura institucional (o logo pousa no menu).
-- `src/js/hero.js`: hero no modelo Linktree: cards de vídeo que trocam acelerando e ficam 4 s no centro, e o campo "nome do seu negócio".
+- `src/js/hero.js`: hero no modelo Linktree: no computador, torre de cards de vídeo que trocam acelerando e ficam 4 s no centro; no celular, carrossel 3D que obedece ao dedo. Mais o campo "nome do seu negócio".
 - `src/js/facade.js`: "passam o dedo": a rua, a mão com o celular e a busca no mapa rodando na tela, com cards em 3D.
 - `src/js/day.js`: o celular fixo com o céu mudando de cor.
 - `src/js/work.js`: projetos com vídeo.
 - `src/js/calc.js`: simulador de faturamento perdido (valores, barrinhas e extrato).
 - `src/js/chat.js`, `extras.js`, `exit.js`: conversa, crachá do "Contratado", busca do final ("E não achou você.") e pop-up de saída.
+- `src/js/sheets.js`: no celular, cada seção desliza por cima da anterior como as folhas do iOS (a de trás encolhe e escurece).
+- `src/js/dock.js`: no celular, a barra inferior de vidro com as seções e o WhatsApp.
 - `src/js/motion.js`: rolagem suave (Lenis), revelar ao rolar e efeitos compartilhados (GSAP).
 
 ## Créditos das fotos

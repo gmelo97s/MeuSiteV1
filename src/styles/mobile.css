@@ -1,0 +1,123 @@
+/* =========================================================
+   CELULAR: cara de app (estilo iOS)
+   Tudo aqui vale só até 900px e vem por último, por cima das outras regras.
+   ========================================================= */
+
+/* ----- Hero: título grande, carrossel 3D de vídeos e barra de mensagem ----- */
+@media (max-width: 900px) {
+  .hero { min-height: 0; padding: calc(var(--nav-h) + 38px) 0 34px; }
+  .hero__grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .hero__copy { display: contents; }
+  .hero__title { order: 1; text-align: left; font-size: clamp(42px, 11.8vw, 66px); line-height: .9; letter-spacing: -.055em; }
+  .hero__lede { order: 2; margin: 14px 0 0; max-width: 32ch; text-align: left; font-size: 16.5px; line-height: 1.45; }
+
+  .hero__stage { order: 3; height: calc(min(68vw, 360px) * 1.149 + 30px); min-height: 0; margin: 20px calc(-1 * var(--gutter)) 0; touch-action: pan-y; }
+  .hero__stage.is-deck .tower { overflow: visible; -webkit-mask-image: none; mask-image: none; perspective: 900px; }
+  .hero__stage.is-deck .tower__track { position: absolute; inset: 0; display: block; transform-style: preserve-3d; }
+  .hero__stage.is-deck .pcard {
+    position: absolute; left: 50%; top: 50%;
+    width: min(68vw, 360px); border-radius: 28px;
+    box-shadow: 0 34px 60px -24px rgba(70, 30, 0, .55), 0 0 0 1px rgba(22, 16, 11, .06);
+    will-change: transform, opacity; -webkit-user-select: none; user-select: none;
+  }
+  .hero__stage.is-deck .pcard__video { will-change: transform; }
+  .hero__stage.is-deck .pcard__cap { opacity: 0; transition: opacity .4s; }
+  .hero__stage.is-deck .pcard.is-active .pcard__cap { opacity: 1; }
+
+  .deck-dots { order: 4; display: flex; justify-content: center; gap: 6px; margin-top: 16px; }
+  .deck-dots i { width: 7px; height: 7px; border-radius: 999px; background: rgba(22, 16, 11, .22); transition: width .6s var(--ease), background-color .6s; }
+  .deck-dots i.is-on { width: 24px; background: var(--ink); }
+
+  /* campo do nome como a barra do iMessage */
+  .claim { order: 5; margin: 20px 0 0; max-width: none; gap: 10px; }
+  .claim__row {
+    flex-direction: row; gap: 6px; padding: 6px; border-radius: 999px;
+    background: rgba(255, 255, 255, .92);
+    box-shadow: 0 20px 40px -20px rgba(70, 30, 0, .5), inset 0 0 0 1px rgba(22, 16, 11, .07);
+    transition: box-shadow .3s;
+  }
+  .claim__row:focus-within { box-shadow: 0 20px 40px -20px rgba(70, 30, 0, .5), 0 0 0 3px var(--ink); }
+  .claim__field input { height: 50px; padding: 0 8px 0 16px; border-radius: 999px; background: transparent; box-shadow: none; font-size: 16px; }
+  .claim__field input:focus { outline: none; }
+  .claim .btn, .claim__row .btn { width: auto; min-height: 50px; padding: 0 18px; border-radius: 999px; font-size: 15px; white-space: nowrap; }
+  .claim__url { justify-content: center; font-size: 12.5px; }
+}
+
+/* ----- Seções em camadas: cada uma é uma folha que desliza por cima da anterior ----- */
+@media (max-width: 900px) {
+  .has-sheets main > .sheet {
+    position: sticky;
+    margin-top: -30px;
+    border-radius: 30px 30px 0 0;
+    box-shadow: 0 -22px 44px -18px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .09);
+    will-change: transform;
+  }
+  .has-sheets main > .sheet:first-child { margin-top: 0; border-radius: 0; box-shadow: none; }
+  .has-sheets .hero.sheet { padding-bottom: 64px; }
+  /* alça do topo, como nas folhas do iOS */
+  .sheet__grab { position: absolute; z-index: 6; top: 10px; left: 50%; width: 38px; height: 5px; margin-left: -19px; border-radius: 3px; background: currentColor; opacity: .28; pointer-events: none; }
+  .board .sheet__grab, .hero .sheet__grab { background: var(--ink); }
+  /* escurece a folha que ficou para trás */
+  .sheet__dim { position: absolute; inset: 0; z-index: 60; background: #000; opacity: 0; pointer-events: none; border-radius: inherit; }
+  /* medições: as folhas voltam ao fluxo normal por um instante */
+  .sheets-off main > .sheet { position: relative !important; top: auto !important; transform: none !important; clip-path: none !important; }
+
+  /* horários do "dia comum" empilhados como cartões */
+  .day--list .moments { gap: 18px; }
+  .day--list .moment {
+    position: sticky; top: calc(var(--nav-h) + 30px + var(--i, 0) * 14px);
+    min-height: 330px; transform-origin: 50% 0%;
+    box-shadow: 0 -16px 36px -14px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .25);
+  }
+  .sheets-off .day--list .moment { position: relative !important; top: auto !important; transform: none !important; }
+}
+
+/* ----- Barra inferior de vidro (só no celular) ----- */
+.dock { display: none; }
+@media (max-width: 900px) {
+  .wa-float { display: none; }
+  .dock {
+    position: fixed; z-index: 95; left: 50%; bottom: max(14px, env(safe-area-inset-bottom));
+    display: flex; align-items: center; gap: 2px; padding: 6px;
+    border-radius: 999px;
+    background: rgba(30, 23, 17, .55);
+    -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12), inset 0 1px 0 rgba(255, 255, 255, .2), 0 20px 44px -12px rgba(0, 0, 0, .65);
+    transform: translate(-50%, 160%); transition: transform .7s var(--ease-back);
+  }
+  .dock.is-on { transform: translate(-50%, 0); }
+  .dock a {
+    position: relative; z-index: 1; display: grid; justify-items: center; gap: 1px;
+    min-width: 62px; padding: 7px 8px 6px; border-radius: 999px;
+    font-size: 10.5px; font-weight: 700; letter-spacing: .01em; color: rgba(246, 236, 223, .62);
+    transition: color .35s, transform .25s var(--ease);
+  }
+  .dock a .ico { width: 21px; height: 21px; }
+  .dock a.is-active { color: var(--cream); }
+  .dock a:active { transform: scale(.88); }
+  .dock__pill { position: absolute; z-index: 0; top: 6px; bottom: 6px; left: 0; width: 62px; border-radius: 999px; background: rgba(255, 255, 255, .15); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .18); transition: transform .55s var(--ease-back), width .45s var(--ease); }
+  .dock .dock__wa { width: 52px; height: 52px; min-width: 0; margin-left: 4px; padding: 0; place-items: center; background: #25d366; color: #fff; box-shadow: 0 10px 22px -8px rgba(37, 211, 102, .8), inset 0 1px 0 rgba(255, 255, 255, .35); }
+  .dock .dock__wa .ico { width: 25px; height: 25px; }
+
+  /* menu de cima vira uma pílula compacta, como a Dynamic Island */
+  .nav { width: auto; max-width: none; height: 46px; gap: 0; padding: 0 16px 0 8px; top: max(10px, env(safe-area-inset-top)); background: rgba(8, 6, 4, .8); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 10px 30px -10px rgba(0, 0, 0, .6); }
+  .nav > .btn { display: none; }
+  .nav .brand__mark { width: 28px; height: 28px; }
+  .nav .brand__name { font-size: 15px; }
+  .nav.is-scrolled { background: rgba(8, 6, 4, .88); }
+  :root { --nav-h: 46px; }
+
+  /* toque com resposta, como nos apps */
+  .btn, .wtab, .qa button, .sim__step, .stat, .fres { transition: transform .25s var(--ease), background-color .3s, box-shadow .3s, color .3s; }
+  .btn:active, .wtab:active, .qa button:active, .sim__step:active { transform: scale(.95); }
+
+  /* o placeholder cabe inteiro na barra do hero */
+  .claim__field input { padding-left: 14px; }
+  .claim__field input::placeholder { font-size: 15px; }
+  .claim .btn, .claim__row .btn { padding: 0 16px; }
+}
+
+/* o rodapé não fica escondido atrás da barra inferior */
+@media (max-width: 900px) {
+  .foot { padding-bottom: calc(96px + env(safe-area-inset-bottom)); }
+}
