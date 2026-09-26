@@ -7,3 +7,7 @@ scripts/video/clips
 scripts/video/raw
 scripts/video/frames-*
 scripts/video/test-*
+scripts/cards/seq
+scripts/cards/raw
+scripts/cards/cframes-*
+scripts/cards/ctest-*

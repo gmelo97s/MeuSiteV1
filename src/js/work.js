@@ -19,14 +19,13 @@ export function initWork() {
     <button class="wtab" type="button" role="tab" id="wtab-${p.id}" aria-controls="wpanel-${p.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" style="--acc:${p.accent}">
       <span class="wtab__name"><i aria-hidden="true"></i>${p.name}</span>
       <span class="wtab__type">${p.type}</span>
-      <span class="wtab__domain">${p.domain}</span>
       <span class="wtab__bar" aria-hidden="true"><i></i></span>
     </button>`).join('');
 
   stage.innerHTML = PROJECTS.map((p, i) => `
     <div class="wscreen${i === 0 ? ' is-active' : ''}" role="tabpanel" id="wpanel-${p.id}" aria-labelledby="wtab-${p.id}">
       <div class="browser">
-        <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url"><svg class="ico" aria-hidden="true"><use href="#i-lock"/></svg>${p.domain}</span></div>
+        <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url" aria-hidden="true"></span></div>
         ${videoTag(p.id, 'd')}
       </div>
       <div class="phone"><span class="phone__island"></span><div class="phone__screen">${videoTag(p.id, 'm')}</div></div>

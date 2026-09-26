@@ -110,7 +110,7 @@ const T = R
 {
   const s = scene('#FBCC2F');
   show(s, T.B);
-  const photos = [['supra', 'cover', ''], ['burger', 'contain', '#E4432D'], ['mitte', 'cover', ''], ['bolsa', 'contain', '#EFE4D6']];
+  const photos = [['echofi', 'cover', ''], ['burger', 'contain', '#E4432D'], ['mitte', 'cover', ''], ['bolsa', 'contain', '#EFE4D6']];
   const layer = photos.map(([id, fit, bg], i) => el(s.world, `<div class="obj"><div class="photo ${fit === 'contain' ? 'contain' : ''}" style="--pb:${bg}"><img src="../../public/img/hero/${id}.webp"></div></div>`));
   const pos = R
     ? [{ x: -310, y: -200, z: -500 }, { x: 330, y: -20, z: -650 }, { x: -330, y: 480, z: -420 }, { x: 320, y: 720, z: -700 }]
@@ -223,7 +223,7 @@ const T = R
   reveal(head, T.D + 0.25, 0.12);
   const ring = el(s.world, `<div class="obj" style="width:10px;height:10px"></div>`);
   put(ring, { y: R ? 180 : 120, z: R ? -380 : -420 });
-  const ids = ['Pburger', 'Psupra', 'Pmitte', 'Pbolsa'];
+  const ids = ['Pburger', 'Pechofi', 'Pmitte', 'Pbolsa'];
   const pmap = `${T.D}:0.3,${T.D + 6}:6.3`;
   ids.forEach((id, i) => {
     // pivô no centro do anel: gira primeiro, depois empurra o celular para fora (órbita de verdade)
@@ -244,7 +244,7 @@ const T = R
     const c = pill(s.ui, 'Projetos no ar, rodando de verdade.', 'left:50%;top:960px;font-size:32px;transform:translateX(-50%)', true);
     popIn(c, 20.3); fadeOut(c, 21.6);
   } else {
-    const names = el(s.ui, `<p style="position:absolute;left:0;right:0;top:1640px;margin:0;text-align:center;font-size:34px;font-weight:700;color:#b5a898">Hamburgueria do Gui · Supra Bar · Mitte · Bolsa &amp; Verso</p>`);
+    const names = el(s.ui, `<p style="position:absolute;left:0;right:0;top:1640px;margin:0;text-align:center;font-size:34px;font-weight:700;color:#b5a898">Hamburgueria do Gui · Echofi · Mitte · Bolsa &amp; Verso</p>`);
     tl.fromTo(names, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, T.D + 1.0);
   }
   hide(s, T.E + 0.7);

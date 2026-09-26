@@ -1,9 +1,8 @@
 // "Um dia comum": o celular fica fixo, o céu muda de cor e a tela mostra a busca de cada horário.
 import { gsap, ScrollTrigger, scrollToTarget } from './motion.js';
-import { MOMENTS, kindById } from './data.js';
+import { MOMENTS, kindById, coverOf } from './data.js';
 import { store } from './store.js';
 
-const awning = (k) => k.stripes || `repeating-linear-gradient(90deg,${k.a} 0 12px,${k.b} 12px 24px)`;
 
 function momentHTML(m, i) {
   return `<div class="moment" data-i="${i}" style="--m-bg:${m.bg};--m-ink:${m.ink}">
@@ -24,7 +23,7 @@ function screenHTML(m) {
     <div class="dscreen__status"><span>${m.clock}</span><span class="dscreen__icons"><i></i><i></i><i></i><b></b></span></div>
     <div class="dscreen__search"><svg class="ico"><use href="#i-search"/></svg><span class="dscreen__q"></span></div>
     <p class="dscreen__label">Perto de você</p>
-    <div class="dres dres--top" style="--a:${k.a};--b:${k.b};--aw:${awning(k)}">
+    <div class="dres dres--top" style="--a:${k.a};--b:${k.b};--aw:${coverOf(k)}">
       <div class="dres__aw"></div>
       <div class="dres__in">
         <span class="dres__tag">Tem site</span>

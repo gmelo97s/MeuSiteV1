@@ -1,6 +1,7 @@
 // Conversa simulada de WhatsApp: toca sozinha quando aparece na tela.
 import { reduced } from './motion.js';
 import { store } from './store.js';
+import { coverOf } from './data.js';
 
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -8,17 +9,17 @@ const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>'
 function script(d) {
   const first = d.hasName
     ? `Oi! Vi o site e quero um desses. Meu negócio se chama ${d.nm}. Como funciona?`
-    : 'Oi! Vi o site e quero um desses pra minha loja. Como funciona?';
-  const aw = d.k.stripes || `repeating-linear-gradient(90deg,${d.k.a} 0 12px,${d.k.b} 12px 24px)`;
+    : 'Oi! Vi o site e quero um desses pro meu negócio. Como funciona?';
+  const aw = coverOf(d.k);
   return [
     { who: 'me', html: esc(first), time: '09:12' },
-    { who: 'them', html: 'Oi! É simples: me conta o que você vende, seu horário e onde fica. Pode ser por áudio mesmo.', time: '09:14', typing: 1200 },
+    { who: 'them', html: 'Oi! É simples: me conta o que você faz, como atende e onde fica. Pode ser por áudio mesmo.', time: '09:14', typing: 1200 },
     { who: 'me', audio: '0:47', time: '09:15', typing: 900 },
     { who: 'them', html: 'Anotado! Em poucos dias te mando o link pra você ver funcionando. Aí você decide.', time: '09:16', typing: 1100 },
     { divider: 'alguns dias depois' },
     {
       who: 'them', time: '18:30', typing: 900,
-      html: `<span class="lk" style="--a:${d.k.a};--aw:${aw}"><span class="lk__aw" style="display:block"></span><span class="lk__in" style="display:block"><span class="lk__name" style="display:block">${esc(d.signName)}</span><span class="lk__url">${esc(d.slug)}.com.br</span></span></span>Tá aqui a sua vitrine. Olha com calma.`,
+      html: `<span class="lk" style="--a:${d.k.a};--aw:${aw}"><span class="lk__aw" style="display:block"></span><span class="lk__in" style="display:block"><span class="lk__name" style="display:block">${esc(d.signName)}</span><span class="lk__url">${esc(d.slug)}.com.br</span></span></span>Tá aqui o seu site. Olha com calma.`,
       link: true,
     },
     { who: 'me', html: 'Gente!! Ficou a nossa cara.', time: '18:41', typing: 800 },

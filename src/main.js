@@ -24,7 +24,7 @@ initButtons();
 initNav();
 initHero();
 initDay({ lenis });
-initFacade({ lenis });
+initFacade();
 initWork();
 initCalc();
 initChat();

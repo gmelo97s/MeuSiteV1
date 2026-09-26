@@ -119,7 +119,7 @@ const CLIPS = {
   }
   await b.close();
   // vídeos do portfólio (celular) viram sequências para o carrossel
-  for (const id of ['burger', 'supra', 'mitte', 'bolsa']) {
+  for (const id of ['burger', 'echofi', 'mitte', 'bolsa']) {
     const name = 'P' + id;
     if (only.length && !only.includes(name)) continue;
     const out = path.join('clips', name);

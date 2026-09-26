@@ -1,6 +1,6 @@
 # MeuSiteV1 · Origem Digital
 
-Site de vendas da Origem Digital: sites para o comércio de bairro.
+Site de vendas da Origem Digital: sites para negócios e profissionais que estão perdendo clientes por não aparecer.
 
 - No ar: https://meu-site-v1-sigma.vercel.app/
 - Referências e planejamento: [`docs/01-analise-referencias.md`](docs/01-analise-referencias.md) e [`docs/02-briefing-e-mapa-do-site.md`](docs/02-briefing-e-mapa-do-site.md)
@@ -20,7 +20,7 @@ Cada push no GitHub publica sozinho na Vercel.
 | Quero mudar… | Arquivo |
 |---|---|
 | Textos fixos (títulos, parágrafos, FAQ, rodapé) | `index.html` |
-| Projetos do hero (foto, legenda, cor), horários do "dia comum", contatos | `src/js/data.js` |
+| Projetos (nome, legenda, link), horários do "dia comum", ramos de negócio, contatos | `src/js/data.js` |
 | Mensagens que vão pro WhatsApp | `src/js/store.js` |
 | Cores, fontes, espaçamentos | `src/styles/base.css` (tokens no topo) |
 | Visual de cada seção | `src/styles/sections.css` |
@@ -38,7 +38,18 @@ scripts/converter-demo.sh meuprojeto-m 480
 scripts/converter-demo.sh meuprojeto-d 1280
 ```
 
-Depois é só acrescentar o projeto em `PROJECTS`, no `src/js/data.js`, com uma foto em `public/img/hero/`. Ele entra sozinho no hero e na seção de projetos.
+Depois é só acrescentar o projeto em `PROJECTS`, no `src/js/data.js`. Ele entra sozinho no hero e na seção de projetos.
+
+## Vídeos dos cards do hero
+
+Cada card do hero é um vídeo de 8 s em loop (`public/videos/card-<id>.webm/.mp4`, capa `.webp`): o tour real do site no celular, com o computador em 3D atrás, zoom da câmera em cada toque e recortes da tela saltando em camadas.
+
+```bash
+node scripts/cards/rec.cjs              # grava os tours com interação (o roteiro de cada site fica no próprio arquivo)
+node scripts/cards/crender.cjs burger   # monta e gera card-burger.webm/.mp4/.webp
+```
+
+A montagem (zooms, recortes, cores) fica em `scripts/cards/card.html`, no objeto `CFG`.
 
 ## Vídeo de apresentação
 
@@ -59,9 +70,14 @@ A montagem (cenas, tempos, textos) fica em `scripts/video/compose.html`. Para co
 
 - `src/main.js`: liga tudo.
 - `src/js/splash.js`: abertura institucional (o logo pousa no menu).
-- `src/js/hero.js`: hero no modelo Linktree, com a torre de projetos reais e o campo "nome do seu negócio".
+- `src/js/hero.js`: hero no modelo Linktree: cards de vídeo que trocam acelerando e ficam 4 s no centro, e o campo "nome do seu negócio".
+- `src/js/facade.js`: "passam o dedo": a rua, a mão com o celular e a busca no mapa rodando na tela, com cards em 3D.
 - `src/js/day.js`: o celular fixo com o céu mudando de cor.
 - `src/js/work.js`: projetos com vídeo.
 - `src/js/calc.js`: simulador de faturamento perdido (valores, barrinhas e extrato).
-- `src/js/chat.js`, `extras.js`, `exit.js`: conversa, crachá do "Contratado", detalhes e pop-up de saída.
+- `src/js/chat.js`, `extras.js`, `exit.js`: conversa, crachá do "Contratado", busca do final ("E não achou você.") e pop-up de saída.
 - `src/js/motion.js`: rolagem suave (Lenis), revelar ao rolar e efeitos compartilhados (GSAP).
+
+## Créditos das fotos
+
+Fotos da seção "passam o dedo" (`public/img/fachada/`): Unsplash, via Picsum, com licença livre para uso comercial. Rua: David Marcu. Mão com o celular: Jordan McQueen. As fotos dos negócios fictícios da busca também são do Unsplash.

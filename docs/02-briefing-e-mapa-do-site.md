@@ -1,5 +1,7 @@
 # Briefing e mapa do site
 
+> **Atualização:** o público passou de "comércio de bairro" para **negócios e profissionais** que perdem clientes por não ter site. A metáfora da luz (vitrine acesa/apagada) saiu do site. A copy continua provocativa na dor, com menos texto e mais visual. Hero: "Te procuraram. Acharam outro."; final: "E não achou você."
+
 Fontes:
 - **Copy**: canvas "Vitrine Acesa — o site que vende sites" (marca padrão *Origem Digital*, atendente *Guilherme*, WhatsApp `55 11 93765-4207`, Santo André/SP).
 - **Ideias de movimento**: board do Miro "Product Roadmap".

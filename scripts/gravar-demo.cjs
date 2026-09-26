@@ -33,11 +33,11 @@ const dsf = mob ? 1.5 : 1;
   });
   page.on('requestfailed', r => failed.push(r.url().slice(0, 100)));
   try { await page.goto(url, { waitUntil: 'networkidle', timeout: 60000 }); } catch (e) { console.log('goto timeout (seguindo)'); }
-  // esconde o selo do Lovable e barras de rolagem
-  await page.addStyleTag({ content: `#lovable-badge,[id*="lovable-badge"],a[href*="lovable.dev"][style*="fixed"]{display:none!important} ::-webkit-scrollbar{display:none} html{scrollbar-width:none}` });
+  // esconde os selos do Lovable e do Webflow e as barras de rolagem
+  await page.addStyleTag({ content: `#lovable-badge,[id*="lovable-badge"],a[href*="lovable.dev"][style*="fixed"],.w-webflow-badge{display:none!important} ::-webkit-scrollbar{display:none} html{scrollbar-width:none}` });
   await page.evaluate(() => {
     for (const el of document.querySelectorAll('a,div,button')) {
-      if (/Edit with|Made with/i.test(el.textContent || '') && getComputedStyle(el).position === 'fixed') el.style.display = 'none';
+      if (/Edit with|Made with|Made in Webflow/i.test(el.textContent || '') && getComputedStyle(el).position === 'fixed') el.style.display = 'none';
     }
   });
   // força carregar imagens lazy percorrendo a página

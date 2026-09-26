@@ -19,8 +19,7 @@ function derive() {
     signName: nm || 'Seu Negócio',
     slug: slugify(nm) || 'seunegocio',
     siteName: nm ? `Site ${nm}` : 'O site do seu negócio',
-    openLine: `${nm || 'Seu negócio'} agora atende até de madrugada.`,
-    finalLine: knowsKind ? `Hoje à noite, alguém vai procurar “${k.search}”.` : 'Hoje à noite, alguém vai procurar o que você vende.',
+    searchLine: knowsKind ? k.search : 'aberto agora perto de mim',
     kindShow: k.show,
     kindVerb: k.verb,
   };
@@ -42,8 +41,8 @@ export const store = {
 
 const MESSAGES = {
   default: (nm) => nm
-    ? `Oi, ${CONTACT.person}! Vim pelo site da ${CONTACT.brand}. Meu negócio se chama ${nm} e quero acender a minha vitrine.`
-    : `Oi, ${CONTACT.person}! Vim pelo site da ${CONTACT.brand} e quero acender a minha vitrine.`,
+    ? `Oi, ${CONTACT.person}! Vim pelo site da ${CONTACT.brand}. Meu negócio se chama ${nm} e quero um site pra ser encontrado.`
+    : `Oi, ${CONTACT.person}! Vim pelo site da ${CONTACT.brand} e quero um site pra ser encontrado.`,
   price: (nm) => `Oi, ${CONTACT.person}! Quanto custa um site pro meu negócio${nm ? ` (${nm})` : ''}?`,
   preview: (nm) => `Oi, ${CONTACT.person}! Quero uma prévia grátis do site ${nm ? `da ${nm}` : 'do meu negócio'}.`,
 };

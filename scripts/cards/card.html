@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Card do hero</title>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="seq/meta.js"></script>
+<style>
+  html, body { margin: 0; background: #000; }
+  #stage { position: relative; width: 470px; height: 540px; overflow: hidden; background: var(--bg0); }
+  .bgphoto { position: absolute; inset: -12%; background-size: cover; background-position: var(--pos, 50% 40%); filter: blur(26px) saturate(1.15); opacity: .55; transform: scale(1.1); }
+  .bgglow { position: absolute; inset: 0; background: radial-gradient(70% 60% at 70% 30%, var(--glow), transparent 70%), radial-gradient(90% 70% at 10% 100%, rgba(0,0,0,.55), transparent 70%); }
+  .cam { position: absolute; inset: 0; transform-origin: 0 0; }
+  .world { position: absolute; inset: 0; perspective: 1100px; perspective-origin: 60% 45%; transform-style: preserve-3d; }
+  .obj { position: absolute; left: 0; top: 0; transform-style: preserve-3d; }
+  .browser { width: 380px; border-radius: 12px; overflow: hidden; background: #16110d; box-shadow: 0 40px 80px -20px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.08); }
+  .browser .bar { height: 22px; display: flex; align-items: center; gap: 5px; padding: 0 10px; background: #1d1712; }
+  .browser .bar i { width: 7px; height: 7px; border-radius: 50%; background: #ff5f57; }
+  .browser .bar i:nth-child(2) { background: #febc2e; } .browser .bar i:nth-child(3) { background: #28c840; }
+  .browser .bar b { flex: 1; height: 11px; margin: 0 60px 0 30px; border-radius: 6px; background: rgba(255,255,255,.07); }
+  .browser img { display: block; width: 380px; height: 237px; object-fit: cover; object-position: top; }
+  .phone { position: relative; width: 204px; height: 440px; padding: 7px; box-sizing: border-box; border-radius: 38px; background: linear-gradient(150deg,#3a3431,#0b0908 45%,#262120); box-shadow: inset 0 0 0 1.2px rgba(255,255,255,.14), 0 50px 90px -24px rgba(0,0,0,.7); }
+  .phone .scr { position: relative; width: 190px; height: 426px; border-radius: 31px; overflow: hidden; background: #000; }
+  .phone .scr img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+  .phone .isl { position: absolute; z-index: 3; top: 8px; left: 50%; width: 58px; height: 17px; margin-left: -29px; border-radius: 12px; background: #050403; }
+  .tap { position: absolute; z-index: 4; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; background: rgba(255,255,255,.55); border: 1.5px solid rgba(0,0,0,.25); box-shadow: 0 0 0 6px rgba(255,255,255,.22); opacity: 0; }
+  .mark { position: absolute; width: 1px; height: 1px; }
+  .cut { position: absolute; border-radius: 12px; background-repeat: no-repeat; box-shadow: 0 26px 50px -12px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.35); opacity: 0; }
+  .photo { width: 150px; height: 180px; border-radius: 18px; background-size: cover; background-position: var(--pos, 50% 40%); box-shadow: 0 30px 60px -20px rgba(0,0,0,.6); }
+  .photo.contain { background-size: 82% auto; background-repeat: no-repeat; background-color: var(--pb); }
+  .grain { position: absolute; inset: -50%; opacity: .07; mix-blend-mode: overlay; pointer-events: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+  .vig { position: absolute; inset: 0; pointer-events: none; background: radial-gradient(110% 90% at 50% 45%, transparent 60%, rgba(0,0,0,.35)); }
+</style>
+</head>
+<body>
+<div id="stage"></div>
+<script>
+const ID = new URLSearchParams(location.search).get('id') || 'burger';
+const HERO = '../../public/img/hero/';
+const CFG = {
+  burger: { bg0: '#3a0d07', glow: 'rgba(255,120,60,.55)', photo: 'burger.webp', fit: 'contain', pb: '#E4432D', pos: '50% 40%',
+    zooms: [{ from: 2.55, to: 4.55, tap: [0, 1], s: 1.75 }, { from: 5.0, to: 6.9, pt: [196, 520], s: 1.45 }], cuts: [{ at: 4.5, box: [8, 40, 374, 110], z: 150, pos: [-150, -150] }, { at: 6.0, box: [8, 740, 374, 60], z: 190, pos: [-165, 160] }] },
+  mitte: { bg0: '#07161d', glow: 'rgba(255,62,165,.45)', photo: 'mitte.webp', fit: 'cover', pos: '50% 50%',
+    zooms: [{ from: 1.45, to: 2.5, tap: [0], s: 1.6 }, { from: 2.75, to: 4.3, pt: [195, 520], s: 1.55 }, { from: 5.55, to: 6.9, tap: [4], s: 1.6 }], cuts: [{ at: 3.2, box: [20, 380, 350, 230], z: 160, pos: [-150, -130] }, { at: 6.2, box: [30, 440, 330, 120], z: 190, pos: [-160, 150] }] },
+  bolsa: { bg0: '#2b2016', glow: 'rgba(233,210,180,.55)', photo: 'bolsa.webp', fit: 'contain', pb: '#EFE4D6', pos: '50% 45%',
+    zooms: [{ from: 2.9, to: 4.3, tap: [0], s: 1.55 }, { from: 4.45, to: 6.3, tap: [1], s: 1.6 }], cuts: [{ at: 3.9, box: [30, 160, 330, 260], z: 170, pos: [-160, -140] }, { at: 5.6, box: [8, 770, 374, 60], z: 200, pos: [-160, 165] }] },
+  echofi: { bg0: '#1a0703', glow: 'rgba(255,74,28,.6)', photo: 'echofi.webp', fit: 'cover', pos: '50% 22%',
+    zooms: [{ from: 1.35, to: 3.4, pt: [300, 170], s: 1.7 }, { from: 5.2, to: 6.9, pt: [195, 330], s: 1.35 }], cuts: [{ at: 2.3, box: [210, 60, 170, 270], z: 170, pos: [-150, -120] }, { at: 5.9, frameAt: 0.4, box: [16, 330, 358, 250], z: 180, pos: [-165, 120] }] },
+};
+const C = CFG[ID];
+const DUR = 8;
+const stage = document.getElementById('stage');
+stage.style.setProperty('--bg0', C.bg0); stage.style.setProperty('--glow', C.glow); stage.style.setProperty('--pos', C.pos);
+const el = (parent, html) => { const t = document.createElement('template'); t.innerHTML = html.trim(); const n = t.content.firstElementChild; parent.appendChild(n); return n; };
+
+let META, NM, ND;
+async function boot() {
+  META = window.META_ALL[ID];
+  NM = META.frames; ND = window.DFRAMES[ID];
+  const K = (NM / 30) / DUR; // tempo do clipe por segundo de vídeo
+  const T = (clipT) => clipT / K;
+
+  el(stage, `<div class="bgphoto" style="background-image:url(${HERO + C.photo})"></div>`);
+  el(stage, `<div class="bgglow"></div>`);
+  const cam = el(stage, `<div class="cam"><div class="world"></div></div>`);
+  const world = cam.querySelector('.world');
+  const photo = el(world, `<div class="obj"><div class="photo ${C.fit === 'contain' ? 'contain' : ''}" style="background-image:url(${HERO + C.photo});--pb:${C.pb || '#222'}"></div></div>`);
+  const br = el(world, `<div class="obj"><div class="browser"><div class="bar"><i></i><i></i><i></i><b></b></div><img id="dimg" alt=""></div></div>`);
+  const ph = el(world, `<div class="obj"><div class="phone"><div class="scr"><span class="isl"></span><img id="mimg" alt=""><img id="mfirst" alt="" style="opacity:0"></div></div></div>`);
+  const scr = ph.querySelector('.scr');
+  const s = 190 / 390; // escala do celular gravado para a tela do mock
+  META.taps.forEach((tp, i) => {
+    el(scr, `<span class="tap" data-i="${i}" style="left:${tp.x * s}px;top:${tp.y * s}px"></span>`);
+    el(scr, `<span class="mark" data-m="t${i}" style="left:${tp.x * s}px;top:${tp.y * s}px"></span>`);
+  });
+  C.zooms.forEach((z, i) => { if (z.pt) el(scr, `<span class="mark" data-m="z${i}" style="left:${z.pt[0] * s}px;top:${z.pt[1] * s}px"></span>`); });
+  document.getElementById('mfirst').src = `seq/${ID}/0001.jpg`;
+
+  // pose base (a mesma no começo e no fim, para o loop fechar)
+  const BASE = {
+    photo: { x: -30, y: 300, z: -330, rotationY: 24, rotationZ: -6 },
+    br: { x: -10, y: 60, z: -240, rotationY: 30, rotationX: 6 },
+    ph: { x: 200, y: 60, z: 40, rotationY: -16, rotationX: 4, rotationZ: 2 },
+  };
+  gsap.set(photo, BASE.photo); gsap.set(br, BASE.br); gsap.set(ph, BASE.ph);
+  await Promise.all([...document.images].map((i) => (i.complete ? 1 : i.decode().catch(() => {}))));
+  // onde cada ponto cai na tela com a câmera parada
+  const sr = stage.getBoundingClientRect();
+  const P = {};
+  scr.querySelectorAll('.mark').forEach((m) => { const r = m.getBoundingClientRect(); P[m.dataset.m] = { x: r.left - sr.left, y: r.top - sr.top }; });
+
+  const tl = gsap.timeline({ paused: true, defaults: { ease: 'power3.inOut' } });
+  // respiração das camadas (parallax) fora dos zooms
+  tl.to(br, { x: -30, y: 50, rotationY: 34, duration: DUR / 2, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 0);
+  tl.to(photo, { y: 0, rotationZ: 9, duration: DUR / 2, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 0);
+  tl.to(ph, { y: 48, rotationY: -10, duration: DUR / 2, ease: 'sine.inOut', yoyo: true, repeat: 1 }, 0);
+
+  // zooms da câmera nos toques
+  C.zooms.forEach((z, i) => {
+    const pts = z.tap ? z.tap.map((k) => P['t' + k]) : [P['z' + i]];
+    const pt = { x: pts.reduce((a, p) => a + p.x, 0) / pts.length, y: pts.reduce((a, p) => a + p.y, 0) / pts.length };
+    const sc = z.s;
+    const tx = 235 - pt.x * sc, ty = 262 - pt.y * sc;
+    const a = z.from, b = z.to;
+    tl.to(cam, { scale: sc, x: tx, y: ty, duration: 0.7, ease: 'power3.inOut' }, a);
+    tl.to(cam, { scale: 1, x: 0, y: 0, duration: 0.7, ease: 'power3.inOut' }, b - 0.7 < a + 0.7 ? a + 0.7 : b - 0.7);
+  });
+
+  // bolinha de toque
+  scr.querySelectorAll('.tap').forEach((t) => {
+    const at = T(META.taps[t.dataset.i].t);
+    if (at > DUR - 0.6) return;
+    tl.fromTo(t, { opacity: 0, scale: 1.6 }, { opacity: 1, scale: 0.8, duration: 0.16, ease: 'power2.out' }, at - 0.12);
+    tl.to(t, { opacity: 0, scale: 1.4, duration: 0.35, ease: 'power2.out' }, at + 0.1);
+  });
+
+  // recortes da tela que saltam para frente (camadas)
+  C.cuts.forEach((c) => {
+    const f = Math.min(NM, Math.round((c.frameAt ?? c.at) * K * 30) + 1);
+    const [bx, by, bw, bh] = c.box;
+    const k = 0.62; // tamanho do recorte em relação à gravação
+    const cut = el(world, `<div class="obj"><div class="cut" style="width:${bw * k}px;height:${bh * k}px;background-image:url(seq/${ID}/${String(f).padStart(4, '0')}.jpg);background-size:${390 * k}px auto;background-position:${-bx * k}px ${-by * k}px"></div></div>`);
+    const inner = cut.firstElementChild;
+    const ppos = { x: BASE.ph.x + 190 * 0.5 + c.pos[0] * 0.2, y: BASE.ph.y + 213 + c.pos[1] * 0.2 };
+    gsap.set(cut, { x: ppos.x - bw * k / 2, y: ppos.y - bh * k / 2, z: 60, rotationY: -12 });
+    tl.fromTo(inner, { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(1.8)' }, c.at);
+    tl.fromTo(cut, { z: 60, x: ppos.x - bw * k / 2, y: ppos.y - bh * k / 2 }, { z: c.z, x: ppos.x - bw * k / 2 + c.pos[0] * 0.55, y: ppos.y - bh * k / 2 + c.pos[1] * 0.55, duration: 0.8, ease: 'power3.out' }, c.at);
+    tl.to(inner, { opacity: 0, scale: 0.85, duration: 0.45, ease: 'power2.in' }, c.at + 1.35);
+  });
+
+  // fecha o loop: a tela volta ao primeiro quadro
+  tl.to('#mfirst', { opacity: 1, duration: 0.45, ease: 'none' }, DUR - 0.5);
+  tl.set({}, {}, DUR);
+
+  const mimg = document.getElementById('mimg'), dimg = document.getElementById('dimg');
+  window.renderAt = async (t) => {
+    tl.seek(t, false);
+    const fm = Math.min(NM, Math.max(1, Math.round(t * K * 30) + 1));
+    const fd = Math.min(ND, Math.max(1, Math.round((t / DUR) * ND) + 1));
+    const w = [];
+    const sm = `seq/${ID}/${String(fm).padStart(4, '0')}.jpg`, sd = `seq/${ID}-d/${String(fd).padStart(4, '0')}.jpg`;
+    if (mimg.getAttribute('src') !== sm) { mimg.setAttribute('src', sm); w.push(mimg.decode().catch(() => {})); }
+    if (dimg.getAttribute('src') !== sd) { dimg.setAttribute('src', sd); w.push(dimg.decode().catch(() => {})); }
+    await Promise.all(w);
+    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+  };
+  window.DURATION = DUR;
+}
+window.ready = boot().then(() => { el(stage, `<div class="grain"></div>`); el(stage, `<div class="vig"></div>`); });
+</script>
+</body>
+</html>
