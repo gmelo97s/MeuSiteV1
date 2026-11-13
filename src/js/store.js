@@ -1,15 +1,14 @@
 // Estado da personalização: o nome digitado no hero passa a aparecer no site inteiro.
 import { CONTACT, kindById, detectKind, slugify } from './data.js';
 
-const state = { name: '', pick: null, lit: false };
+const state = { name: '' };
 const subs = new Set();
 
 function derive() {
   const nm = state.name.replace(/\s+/g, ' ').trim();
   const detected = detectKind(nm);
-  const kindId = state.pick || detected || 'outro';
+  const kindId = detected || 'outro';
   const k = kindById(kindId);
-  const knowsKind = Boolean(state.pick || detected) && kindId !== 'outro';
   return {
     ...state,
     nm,
@@ -18,10 +17,10 @@ function derive() {
     k,
     signName: nm || 'Seu Negócio',
     slug: slugify(nm) || 'seunegocio',
-    siteName: nm ? `Site ${nm}` : 'O site do seu negócio',
-    searchLine: knowsKind ? k.search : 'aberto agora perto de mim',
+    searchLine: detected ? k.search : 'aberto agora perto de mim',
     kindShow: k.show,
-    kindVerb: k.verb,
+    phone: CONTACT.phoneLabel,
+    igLabel: `@${CONTACT.instagram}`,
   };
 }
 
@@ -39,15 +38,16 @@ export const store = {
   },
 };
 
+const hi = `Oi, ${CONTACT.person}!`;
 const MESSAGES = {
-  default: (nm) => nm
-    ? `Oi, ${CONTACT.person}! Vim pelo site da ${CONTACT.brand}. Meu negócio se chama ${nm} e quero um site pra ser encontrado.`
-    : `Oi, ${CONTACT.person}! Vim pelo site da ${CONTACT.brand} e quero um site pra ser encontrado.`,
-  price: (nm) => `Oi, ${CONTACT.person}! Quanto custa um site pro meu negócio${nm ? ` (${nm})` : ''}?`,
-  search: (nm) => `Oi, ${CONTACT.person}! Vi a simulação de busca no seu site${nm ? ` com o nome ${nm}` : ''}. Quero aparecer quando me procurarem.`,
-  preview: (nm) => `Oi, ${CONTACT.person}! Quero uma prévia grátis do site ${nm ? `da ${nm}` : 'do meu negócio'}.`,
+  default: (nm) => (nm
+    ? `${hi} Vim pelo site da ${CONTACT.brand}. Meu negócio se chama ${nm} e quero um site.`
+    : `${hi} Vim pelo site da ${CONTACT.brand} e quero um site pro meu negócio.`),
+  price: (nm) => `${hi} Quanto custa um site pro meu negócio${nm ? ` (${nm})` : ''}?`,
+  search: (nm) => `${hi} Fiz a simulação de busca no site da ${CONTACT.brand}${nm ? ` com o nome ${nm}` : ''}. Quero aparecer quando me procurarem.`,
+  preview: (nm) => `${hi} Quero uma prévia grátis do site ${nm ? `da ${nm}` : 'do meu negócio'}.`,
+  video: (nm) => `${hi} Vi o vídeo da ${CONTACT.brand} e quero vídeos assim pro meu negócio${nm ? ` (${nm})` : ''}.`,
 };
-MESSAGES.lit = MESSAGES.default;
 MESSAGES.final = MESSAGES.default;
 
 export function waLink(kind = 'default', nm = store.get().nm) {
@@ -55,11 +55,12 @@ export function waLink(kind = 'default', nm = store.get().nm) {
   return `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent(msg)}`;
 }
 
-// Liga [data-bind] e [data-wa] ao estado.
+// Liga [data-bind], [data-wa] e [data-ig] ao estado.
 export function bindDom() {
   const today = new Date();
   document.querySelectorAll('[data-bind="today"]').forEach((el) => { el.textContent = today.toLocaleDateString('pt-BR'); });
   document.querySelectorAll('[data-bind="year"]').forEach((el) => { el.textContent = String(today.getFullYear()); });
+  document.querySelectorAll('[data-ig]').forEach((a) => { a.href = `https://instagram.com/${CONTACT.instagram}`; });
 
   const binds = [...document.querySelectorAll('[data-bind]')].filter((el) => !['today', 'year'].includes(el.dataset.bind));
   const links = [...document.querySelectorAll('[data-wa]')];

@@ -1,47 +1,50 @@
 /* =========================================================
-   CELULAR: cara de app (estilo iOS)
+   CELULAR: cara de app
    Tudo aqui vale só até 900px e vem por último, por cima das outras regras.
    ========================================================= */
 
-/* ----- Hero: título grande, carrossel 3D de vídeos e barra de mensagem ----- */
+/* ----- Hero: título grande, barra de busca, carrossel 3D de vídeos ----- */
 @media (max-width: 900px) {
-  .hero { min-height: 0; padding: calc(var(--nav-h) + 38px) 0 34px; }
-  .hero__grid { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .hero { min-height: 0; padding: calc(var(--nav-h) + 44px) 0 0; }
+  .hero__grid { grid-template-columns: minmax(0, 1fr); gap: 0; padding-bottom: 22px; }
   .hero__copy { display: contents; }
-  .hero__title { order: 1; text-align: left; font-size: clamp(42px, 11.8vw, 66px); line-height: .9; letter-spacing: -.055em; }
-  .hero__lede { order: 2; margin: 14px 0 0; max-width: 32ch; text-align: left; font-size: 16.5px; line-height: 1.45; }
+  .hero__eyebrow { order: 0; margin-bottom: 18px; font-size: 13px; }
+  .hero__title { order: 1; font-size: clamp(44px, 12.4vw, 70px); line-height: .9; letter-spacing: -.06em; }
+  .hero__lede { order: 2; margin: 18px 0 0; max-width: 34ch; font-size: 16.5px; line-height: 1.45; }
 
-  .hero__stage { order: 4; height: calc(min(68vw, 360px) * 1.149 + 30px); min-height: 0; margin: 14px calc(-1 * var(--gutter)) 0; touch-action: pan-y; }
+  .hero__stage { order: 4; height: calc(min(68vw, 360px) * 1.149 + 30px); min-height: 0; margin: 18px calc(-1 * var(--gutter)) 0; touch-action: pan-y; }
   .hero__stage.is-deck .tower { overflow: visible; -webkit-mask-image: none; mask-image: none; perspective: 900px; }
   .hero__stage.is-deck .tower__track { position: absolute; inset: 0; display: block; transform-style: preserve-3d; }
   .hero__stage.is-deck .pcard {
     position: absolute; left: 50%; top: 50%;
     width: min(68vw, 360px); border-radius: 28px;
-    box-shadow: 0 34px 60px -24px rgba(70, 30, 0, .55), 0 0 0 1px rgba(22, 16, 11, .06);
+    box-shadow: 0 34px 60px -24px rgba(0, 0, 0, .8), 0 0 0 1px rgba(244, 244, 241, .06);
     will-change: transform, opacity; -webkit-user-select: none; user-select: none;
   }
   .hero__stage.is-deck .pcard__video { will-change: transform; }
   .hero__stage.is-deck .pcard__cap { opacity: 0; transition: opacity .4s; }
   .hero__stage.is-deck .pcard.is-active .pcard__cap { opacity: 1; }
 
-  .deck-dots { order: 5; display: flex; justify-content: center; gap: 6px; margin-top: 14px; }
-  .deck-dots i { width: 7px; height: 7px; border-radius: 999px; background: rgba(22, 16, 11, .22); transition: width .6s var(--ease), background-color .6s; }
-  .deck-dots i.is-on { width: 24px; background: var(--ink); }
+  .deck-dots { order: 5; display: flex; justify-content: center; gap: 6px; margin-top: 14px; transition: opacity .4s; }
+  .deck-dots i { width: 7px; height: 7px; border-radius: 999px; background: rgba(244, 244, 241, .25); transition: width .6s var(--ease), background-color .6s; }
+  .deck-dots i.is-on { width: 24px; background: var(--lime); }
 
-  /* campo do nome como a barra do iMessage */
-  /* a barra fica logo abaixo do texto, como num app de busca; resultados e vídeos aparecem embaixo */
-  .claim { order: 3; margin: 20px 0 0; max-width: none; gap: 10px; }
-  .claim__row {
-    flex-direction: row; gap: 6px; padding: 6px; border-radius: 999px;
-    background: rgba(255, 255, 255, .92);
-    box-shadow: 0 20px 40px -20px rgba(70, 30, 0, .5), inset 0 0 0 1px rgba(22, 16, 11, .07);
-    transition: box-shadow .3s;
-  }
-  .claim__row:focus-within { box-shadow: 0 20px 40px -20px rgba(70, 30, 0, .5), 0 0 0 3px var(--ink); }
-  .claim__field input { height: 50px; padding: 0 8px 0 16px; border-radius: 999px; background: transparent; box-shadow: none; font-size: 16px; }
-  .claim__field input:focus { outline: none; }
-  .claim .btn, .claim__row .btn { width: auto; min-height: 50px; padding: 0 18px; border-radius: 999px; font-size: 15px; white-space: nowrap; }
-  .claim__url { justify-content: center; font-size: 12.5px; }
+  /* campo do nome como uma barra de busca de app */
+  .claim { order: 3; margin: 22px 0 0; max-width: none; gap: 10px; }
+  .claim__row { flex-direction: row; gap: 6px; padding: 6px; border-radius: 999px; background: var(--black-2); box-shadow: inset 0 0 0 1px rgba(244, 244, 241, .14); transition: box-shadow .3s; }
+  .claim__row:focus-within { box-shadow: inset 0 0 0 2px var(--lime); }
+  .claim__field .ico { left: 14px; width: 18px; height: 18px; margin-top: -9px; }
+  .claim__field input { height: 50px; padding: 0 6px 0 40px; border-radius: 999px; background: transparent; box-shadow: none; font-size: 16px; }
+  .claim__field input:focus { box-shadow: none; }
+  .claim .btn, .claim__row .btn { width: auto; min-height: 50px; padding: 0 18px; font-size: 15px; white-space: nowrap; }
+  .claim__url { font-size: 12.5px; }
+
+  .ticker { margin-top: 4px; }
+}
+@media (max-width: 560px) {
+  .claim .btn .ico { display: none; }
+  .claim .btn, .claim__row .btn { padding: 0 16px; }
+  .claim__field input { padding-right: 2px; }
 }
 
 /* ----- Seções em camadas: cada uma é uma folha que desliza por cima da anterior ----- */
@@ -50,54 +53,27 @@
     position: sticky;
     margin-top: -30px;
     border-radius: 30px 30px 0 0;
-    box-shadow: 0 -22px 44px -18px rgba(0, 0, 0, .55), inset 0 1px 0 rgba(255, 255, 255, .09);
+    box-shadow: 0 -22px 44px -18px rgba(0, 0, 0, .55);
     will-change: transform;
   }
   .has-sheets main > .sheet:first-child { margin-top: 0; border-radius: 0; box-shadow: none; }
-  .has-sheets .hero.sheet { padding-bottom: 64px; }
-  /* alça do topo, como nas folhas do iOS */
+  .has-sheets .hero.sheet { padding-bottom: 30px; }
   .sheet__grab { position: absolute; z-index: 6; top: 10px; left: 50%; width: 38px; height: 5px; margin-left: -19px; border-radius: 3px; background: currentColor; opacity: .28; pointer-events: none; }
-  .board .sheet__grab, .hero .sheet__grab { background: var(--ink); }
-  /* escurece a folha que ficou para trás */
   .sheet__dim { position: absolute; inset: 0; z-index: 60; background: #000; opacity: 0; pointer-events: none; border-radius: inherit; }
-  /* medições: as folhas voltam ao fluxo normal por um instante */
   .sheets-off main > .sheet { position: relative !important; top: auto !important; transform: none !important; clip-path: none !important; }
-
-  /* horários do "dia comum": carrossel lateral, com os horários como seletor (estilo iOS) */
-  .day--list .day__pin { display: flex; flex-direction: column; padding-bottom: 60px; }
-  .day--list .day__head { order: 1; margin-bottom: 22px; }
-  .day--list .moments { order: 3; }
-  .day--list .day__dots { order: 2; display: flex; flex-wrap: nowrap; gap: 4px; width: max-content; margin: 0 auto 16px; padding: 4px; border-radius: 999px; background: rgba(246, 236, 223, .08); }
-  .day--list .day__dots button { padding: 7px 12px; font-size: 12.5px; background: transparent; color: var(--muted); }
-  .day--list .day__dots button[aria-current="true"] { background: var(--cream); color: var(--ink); box-shadow: 0 4px 12px rgba(0, 0, 0, .35); }
-  .day--list .moments {
-    position: relative; display: flex; gap: 12px;
-    margin: 0 calc(-1 * var(--gutter)); padding: 4px var(--gutter) 12px;
-    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
-    scrollbar-width: none;
-  }
-  .day--list .moments::-webkit-scrollbar { display: none; }
-  .day--list .moment { flex: 0 0 86%; scroll-snap-align: center; box-shadow: inset 0 0 0 1px rgba(246, 236, 223, .1), 0 20px 40px -20px rgba(0, 0, 0, .6); }
 }
 
 /* ----- Menu de cima e toques (só no celular) ----- */
 @media (max-width: 900px) {
-  /* menu de cima vira uma pílula compacta, como a Dynamic Island */
-  .nav { width: auto; max-width: none; height: 46px; gap: 0; padding: 0 16px 0 8px; top: max(10px, env(safe-area-inset-top)); background: rgba(8, 6, 4, .8); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .08), 0 10px 30px -10px rgba(0, 0, 0, .6); }
-  .nav > .btn { display: none; }
-  .nav .brand__mark { width: 32px; height: 32px; }
-  .nav .brand__name { font-size: 16px; }
-  .nav.is-scrolled { background: rgba(8, 6, 4, .88); }
-  :root { --nav-h: 46px; }
+  :root { --nav-h: 50px; }
+  .nav { width: auto; max-width: none; left: var(--gutter); right: var(--gutter); transform: none; height: 50px; padding: 0 6px 0 14px; top: max(10px, env(safe-area-inset-top)); background: var(--nav-bg); -webkit-backdrop-filter: blur(18px) saturate(140%); backdrop-filter: blur(18px) saturate(140%); box-shadow: inset 0 0 0 1px var(--nav-line); }
+  .nav.is-hidden { transform: translateY(-150%); }
+  .nav .brand__mark { width: 26px; height: 26px; }
+  .nav .brand__word { width: 92px; }
+  .nav__cta { min-height: 38px; padding: 8px 14px; font-size: 14px; }
 
-  /* toque com resposta, como nos apps */
-  .btn, .wtab, .qa button, .sim__step, .stat, .fres { transition: transform .25s var(--ease), background-color .3s, box-shadow .3s, color .3s; }
-  .btn:active, .wtab:active, .qa button:active, .sim__step:active { transform: scale(.95); }
-
-  /* o placeholder cabe inteiro na barra do hero */
-  .claim__field input { padding-left: 14px; }
-  .claim__field input::placeholder { font-size: 15px; }
-  .claim .btn, .claim__row .btn { padding: 0 16px; }
+  .btn, .wtab, .qa button, .sim__step, .look__btn { transition: transform .25s var(--ease), background-color .3s, box-shadow .3s, color .3s; }
+  .btn:active, .wtab:active, .qa button:active, .sim__step:active, .look__btn:active { transform: scale(.96); }
 }
 
 /* simulação de busca no celular: entra no lugar do carrossel, compacta */
@@ -105,7 +81,6 @@
   .hero.is-searching .hero__stage { height: auto; min-height: calc(min(68vw, 360px) * 1.149 + 30px); }
   .hero.is-searching .tower { opacity: 0; filter: none; transform: none; }
   .hero.is-searching .deck-dots { opacity: 0; }
-  .deck-dots { transition: opacity .4s; }
   .gsr { position: relative; inset: auto; padding: 0 var(--gutter); }
   .gsr__tag { margin-bottom: 10px; font-size: 11.5px; }
   .gsr__card { width: 100%; padding: 10px 10px 12px; border-radius: 22px; }

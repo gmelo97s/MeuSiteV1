@@ -1,4 +1,5 @@
 // Projetos no ar: lista à esquerda, vídeo em loop à direita (computador + celular).
+// Troca sozinho a cada 7 s (a barrinha mostra o tempo); para quando o mouse está em cima.
 import { gsap, reduced } from './motion.js';
 import { PROJECTS } from './data.js';
 
@@ -9,6 +10,8 @@ const videoTag = (id, kind) => `<video muted playsinline loop preload="none" dat
   <source data-src="/videos/${id}-${kind}.mp4" type="video/mp4" />
 </video>`;
 
+const host = (url) => { try { return new URL(url).host; } catch { return url; } };
+
 export function initWork() {
   const root = document.getElementById('work');
   const list = document.getElementById('work-list');
@@ -17,19 +20,20 @@ export function initWork() {
 
   list.innerHTML = PROJECTS.map((p, i) => `
     <button class="wtab" type="button" role="tab" id="wtab-${p.id}" aria-controls="wpanel-${p.id}" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" style="--acc:${p.accent}">
+      <span class="wtab__num">${String(i + 1).padStart(2, '0')}</span>
       <span class="wtab__name"><i aria-hidden="true"></i>${p.name}</span>
       <span class="wtab__type">${p.type}</span>
       <span class="wtab__bar" aria-hidden="true"><i></i></span>
     </button>`).join('');
 
   stage.innerHTML = PROJECTS.map((p, i) => `
-    <div class="wscreen${i === 0 ? ' is-active' : ''}" role="tabpanel" id="wpanel-${p.id}" aria-labelledby="wtab-${p.id}">
+    <div class="wscreen${i === 0 ? ' is-active' : ''}" role="tabpanel" id="wpanel-${p.id}" aria-labelledby="wtab-${p.id}" style="--acc:${p.accent}">
       <div class="browser">
-        <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url" aria-hidden="true"></span></div>
+        <div class="browser__bar"><i></i><i></i><i></i><span class="browser__url" aria-hidden="true">${host(p.url)}</span></div>
         ${videoTag(p.id, 'd')}
       </div>
       <div class="phone"><span class="phone__island"></span><div class="phone__screen">${videoTag(p.id, 'm')}</div></div>
-      <a class="btn btn--ghost btn--sm wscreen__open" href="${p.url}" target="_blank" rel="noopener">Abrir o site no ar <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      <a class="btn btn--lime btn--sm wscreen__open" href="${p.url}" target="_blank" rel="noopener">Abrir o site no ar <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
     </div>`).join('');
 
   const tabs = [...list.children];
@@ -48,7 +52,7 @@ export function initWork() {
         v.load();
         v.dataset.loaded = '1';
       }
-      if (!reduced) v.play().catch(() => {});
+      v.play().catch(() => {});
     });
   };
   const pause = (panel) => panel.querySelectorAll('video').forEach((v) => v.pause());

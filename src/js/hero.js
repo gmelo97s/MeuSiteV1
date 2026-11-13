@@ -1,7 +1,8 @@
-// Hero no modelo Linktree.
-// Computador: texto à esquerda, torre de cards de vídeo subindo à direita.
+// Hero.
+// Computador: texto à esquerda, torre de cards de vídeo subindo à direita (troca acelerando,
+// fica uns segundos no centro andando devagar).
 // Celular: carrossel 3D (o card do centro na frente, os vizinhos inclinados), que troca sozinho,
-// obedece ao dedo e tem o indicador de páginas do iOS.
+// obedece ao dedo e tem o indicador de páginas.
 // Nos dois, quando a pessoa digita o nome do negócio, o carrossel para e a simulação de busca
 // (search.js) aparece por cima.
 import { gsap, reduced } from './motion.js';
@@ -9,8 +10,6 @@ import { PROJECTS } from './data.js';
 import { store, waLink } from './store.js';
 
 const COPIES = 3;
-// Ritmo do Linktree: o card entra e sai acelerando forte e, no meio, fica parado
-// quase o tempo todo, andando bem devagar.
 const MOVE = 1.1; // s da troca de card
 const DWELL = 4; // s com o card no centro
 const DRIFT = 22; // px que ele anda devagar durante a pausa
@@ -19,13 +18,13 @@ const EASE = 'expo.inOut';
 // Cada card é um vídeo de 8 s em loop: o tour do site em 3D, com zoom nas interações.
 function cardHTML(p, copy) {
   const hidden = copy > 0 ? ' aria-hidden="true"' : '';
-  return `<article class="pcard" data-id="${p.id}" style="--bg:${p.hero.bg}" aria-label="${p.name}: ${p.type}"${hidden}>
+  return `<article class="pcard" data-id="${p.id}" aria-label="${p.name}: ${p.type}"${hidden}>
     <video class="pcard__video" muted playsinline loop preload="none" poster="/videos/card-${p.id}.webp" aria-hidden="true">
       <source data-src="/videos/card-${p.id}.webm" type="video/webm" />
       <source data-src="/videos/card-${p.id}.mp4" type="video/mp4" />
     </video>
     <span class="pcard__shade"></span>
-    <p class="pcard__cap">${p.hero.caption}</p>
+    <p class="pcard__cap">${p.caption}</p>
   </article>`;
 }
 
@@ -40,12 +39,18 @@ const loadAndPlay = (v) => {
   v.play().catch(() => {});
 };
 
+const openProject = (id) => {
+  const p = PROJECTS.find((x) => x.id === id);
+  if (p) window.open(p.url, '_blank', 'noopener');
+};
+
 let introCards = null;
 export function heroIntro() {
   if (reduced) return;
   const tl = gsap.timeline({ delay: 0.05 })
-    .from('.hero__title .mask__in', { yPercent: 112, duration: 1.1, ease: 'power4.out', stagger: 0.1 })
-    .from('.hero__lede, .claim, .deck-dots', { y: 26, opacity: 0, duration: 0.9, ease: 'power4.out', stagger: 0.08, clearProps: 'transform,opacity' }, '-=0.8');
+    .from('.hero__title .mask__in', { yPercent: 112, duration: 1.15, ease: 'power4.out', stagger: 0.09 })
+    .from('.hero__eyebrow, .hero__lede, .claim, .deck-dots', { y: 26, opacity: 0, duration: 0.9, ease: 'power4.out', stagger: 0.08, clearProps: 'transform,opacity' }, '-=0.85')
+    .from('.ticker', { opacity: 0, duration: 1, ease: 'power2.out', clearProps: 'opacity' }, '-=0.6');
   introCards?.(tl);
 }
 
@@ -71,7 +76,6 @@ function tower({ stage, track, onFocus }) {
     while (y <= -2 * setH) y += setH;
     while (y > -setH + 1) y -= setH;
   };
-  // posição que deixa o card no centro do palco
   const centerOf = (c) => stage.clientHeight / 2 - (c.offsetTop + c.offsetHeight / 2);
 
   // Só o card do centro toca o vídeo; os outros ficam na capa.
@@ -95,7 +99,6 @@ function tower({ stage, track, onFocus }) {
     });
   };
 
-  // pausa lenta no card atual e depois troca pelo próximo
   const dwell = () => {
     if (focused || !visible) return;
     go(y - DRIFT, DWELL, 'none', next);
@@ -106,7 +109,6 @@ function tower({ stage, track, onFocus }) {
   };
   const start = () => {
     if (reduced || focused || !visible || tween) return;
-    // encaixa no card mais perto do centro e começa a pausa dele
     const c = cards.reduce((b, c) => (Math.abs(centerOf(c) - y) < Math.abs(centerOf(b) - y) ? c : b));
     go(centerOf(c) + DRIFT / 2, 0.6, 'power3.out', dwell);
   };
@@ -125,6 +127,12 @@ function tower({ stage, track, onFocus }) {
     start();
   });
   io.observe(stage);
+
+  const onClick = (e) => {
+    const c = e.target.closest('.pcard');
+    if (c && !stage.closest('.is-searching')) openProject(c.dataset.id);
+  };
+  track.addEventListener('click', onClick);
 
   const focusOn = (id) => {
     let best = null;
@@ -150,6 +158,7 @@ function tower({ stage, track, onFocus }) {
   document.fonts?.ready.then(remeasure);
   return () => {
     stop(); io.disconnect(); window.removeEventListener('resize', remeasure);
+    track.removeEventListener('click', onClick);
     current?.querySelector('video')?.pause();
     track.style.transform = '';
   };
@@ -158,7 +167,6 @@ function tower({ stage, track, onFocus }) {
 // ---------- celular: carrossel 3D ----------
 function deck({ stage, track, onFocus }) {
   stage.classList.add('is-deck');
-  // na barra estreita do celular o texto do campo precisa caber inteiro
   const input = document.getElementById('negocio');
   const ph = input.placeholder;
   if (window.innerWidth < 400) input.placeholder = 'Nome do negócio';
@@ -173,7 +181,7 @@ function deck({ stage, track, onFocus }) {
   const dotEls = [...dots.children];
 
   let active = 0;
-  let drag = 0; // arrasto em fração de card
+  let drag = 0;
   let focused = false;
   let visible = true;
   let timer = null;
@@ -209,7 +217,6 @@ function deck({ stage, track, onFocus }) {
   const play = () => {
     cards.forEach((c, i) => { if (i !== active) c.querySelector('video').pause(); });
     if (visible) loadAndPlay(cards[active].querySelector('video'));
-    // o card da frente anda devagar enquanto espera (o "respiro" do Linktree)
     drift?.kill();
     if (!reduced) drift = gsap.fromTo(cards[active].querySelector('.pcard__video'), { scale: 1 }, { scale: 1.05, duration: DWELL + MOVE, ease: 'none' });
   };
@@ -230,11 +237,10 @@ function deck({ stage, track, onFocus }) {
   play();
   schedule();
 
-  // arrastar com o dedo (a rolagem vertical continua livre)
-  let sx = 0; let sy = 0; let dragging = false; let decided = false;
+  let sx = 0; let sy = 0; let dragging = false; let decided = false; let moved = false;
   const w = () => cards[0].offsetWidth || 300;
   const down = (e) => {
-    sx = e.clientX; sy = e.clientY; dragging = true; decided = false;
+    sx = e.clientX; sy = e.clientY; dragging = true; decided = false; moved = false;
     clearTimeout(timer);
   };
   const move = (e) => {
@@ -245,6 +251,7 @@ function deck({ stage, track, onFocus }) {
       decided = true;
       if (Math.abs(dy) > Math.abs(dx)) { dragging = false; schedule(); return; }
     }
+    moved = true;
     drag = -dx / (w() * 0.74);
     drag = Math.max(-1.2, Math.min(1.2, drag));
     cards.forEach((c, i) => gsap.set(c, pose(relOf(i) - drag)));
@@ -262,7 +269,11 @@ function deck({ stage, track, onFocus }) {
   window.addEventListener('pointermove', move, { passive: true });
   window.addEventListener('pointerup', up);
   window.addEventListener('pointercancel', up);
-  cards.forEach((c, i) => c.addEventListener('click', () => { if (relOf(i) !== 0) go(i); }));
+  cards.forEach((c, i) => c.addEventListener('click', () => {
+    if (moved) return;
+    if (relOf(i) !== 0) go(i);
+    else openProject(c.dataset.id);
+  }));
 
   const io = new IntersectionObserver(([e]) => {
     visible = e.isIntersecting;

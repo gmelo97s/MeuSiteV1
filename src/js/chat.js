@@ -8,8 +8,8 @@ const esc = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>'
 
 function script(d) {
   const first = d.hasName
-    ? `Oi! Vi o site e quero um desses. Meu negócio se chama ${d.nm}. Como funciona?`
-    : 'Oi! Vi o site e quero um desses pro meu negócio. Como funciona?';
+    ? `Oi! Vi o site da CODEM e quero um desses. Meu negócio se chama ${d.nm}. Como funciona?`
+    : 'Oi! Vi o site da CODEM e quero um desses pro meu negócio. Como funciona?';
   const aw = coverOf(d.k);
   return [
     { who: 'me', html: esc(first), time: '09:12' },

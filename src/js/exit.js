@@ -1,7 +1,7 @@
 // Pop-up de saída: oferece uma prévia grátis antes da pessoa ir embora. Aparece no máximo uma vez por visita.
 import { store, waLink } from './store.js';
 
-const KEY = 'od-exit-shown';
+const KEY = 'codem-exit-shown';
 const seen = () => { try { return sessionStorage.getItem(KEY) === '1'; } catch { return false; } };
 const markSeen = () => { try { sessionStorage.setItem(KEY, '1'); } catch { /* sem armazenamento, segue a vida */ } };
 

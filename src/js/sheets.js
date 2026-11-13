@@ -40,12 +40,10 @@ export function initSheets() {
     const layout = () => sheets.forEach((s) => { s.style.top = `${Math.min(0, window.innerHeight - s.offsetHeight)}px`; });
     layout();
 
-    const vis = (s) => Math.max(0, s.offsetHeight - window.innerHeight); // parte da folha acima da tela quando presa
+    const vis = (s) => Math.max(0, s.offsetHeight - window.innerHeight);
     sheets.slice(0, -1).forEach((s, i) => {
       const next = sheets[i + 1];
       const dim = s.querySelector(':scope > .sheet__dim');
-      // o recorte (cantos redondos na parte visível) só entra quando a folha já está presa,
-      // senão esconderia o topo dela enquanto ainda sobe pela tela
       gsap.timeline({
         defaults: { ease: 'none' },
         scrollTrigger: { trigger: next, start: 'top bottom', end: 'top top', scrub: true, invalidateOnRefresh: true },
