@@ -5,11 +5,30 @@
 import { gsap, reduced } from './motion.js';
 import { searchFor } from './data.js';
 import { store, waLink } from './store.js';
-import { mapSVG, PIN, stars } from './facade.js';
 
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const MIN = 2;
 const WAIT = 450; // ms depois da última tecla para "pesquisar"
+
+const stars = (r = 5) => `<span class="gsr__stars" aria-hidden="true">${'★'.repeat(r)}</span>`;
+const PIN = '<svg viewBox="0 0 24 32" class="gsr__pinsvg"><path d="M12 31s10-11.3 10-19A10 10 0 0 0 2 12c0 7.7 10 19 10 19Z"/><circle cx="12" cy="12" r="4.2" fill="#fff"/></svg>';
+
+// bairro estilizado: quadras, parque, rio e uma avenida
+function mapSVG() {
+  const minor = [];
+  for (let i = -2; i < 12; i++) minor.push(`M${-40 + i * 58} -40 L${120 + i * 58} 900`);
+  for (let j = -2; j < 16; j++) minor.push(`M-60 ${j * 64} L560 ${j * 64 - 140}`);
+  return `<svg class="gsr__mapsvg" viewBox="0 0 480 820" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <rect width="480" height="820" fill="#f1efe9"/>
+    <path d="M300 120 l120 -30 l40 130 l-130 40z" fill="#cfe6c4"/>
+    <path d="M40 520 l110 -20 l30 90 l-120 28z" fill="#cfe6c4"/>
+    <path d="M-20 700 C120 640 200 700 300 640 S470 560 520 600 L520 690 C440 660 380 720 300 730 S120 760 -20 790z" fill="#a9d3f2"/>
+    <g stroke="#e3dfd6" stroke-width="10" fill="none">${minor.map((d) => `<path d="${d}"/>`).join('')}</g>
+    <g stroke="#ffffff" stroke-width="7" fill="none">${minor.map((d) => `<path d="${d}"/>`).join('')}</g>
+    <path d="M-30 330 C140 300 260 360 520 250" stroke="#f3c55a" stroke-width="16" fill="none"/>
+    <path d="M-30 330 C140 300 260 360 520 250" stroke="#ffe08e" stroke-width="11" fill="none"/>
+  </svg>`;
+}
 
 export function initSearchSim() {
   const hero = document.querySelector('.hero');
@@ -24,7 +43,7 @@ export function initSearchSim() {
   box.setAttribute('aria-label', 'Simulação de busca');
   box.hidden = true;
   box.innerHTML = `
-    <p class="gsr__tag"><i aria-hidden="true"></i>Simulação: sem site, é isso que o cliente vê</p>
+    <p class="gsr__tag"><i aria-hidden="true"></i>Simulação: é isso que o cliente encontra hoje</p>
     <div class="gsr__card">
       <div class="gsr__bar">
         <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
@@ -42,7 +61,7 @@ export function initSearchSim() {
           <span class="gsr__me"></span>
         </div>
         <ol class="gsr__list"></ol>
-        <a class="btn btn--green gsr__cta" data-wa="search" href="#" target="_blank" rel="noopener">Quero aparecer aqui <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn--lime gsr__cta" data-wa="search" href="#" target="_blank" rel="noopener">Quero aparecer aqui <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
       <div class="gsr__skel" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     </div>
@@ -84,7 +103,6 @@ export function initSearchSim() {
     gsap.to(box, { opacity: 0, y: 18, scale: 0.98, duration: 0.35, ease: 'power2.in', onComplete: () => { if (!open) box.hidden = true; } });
   };
 
-  // monta e anima os resultados para o nome digitado
   const run = (nm) => {
     if (nm === lastRun) return;
     lastRun = nm;
@@ -102,7 +120,7 @@ export function initSearchSim() {
       </li>`).join('') + `
       <li class="gsr__res gsr__res--you">
         <span class="gsr__n"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></span>
-        <div class="gsr__txt"><b>${esc(nm)}</b><span class="gsr__meta">Não aparece. Sem site, sem fotos, sem horário.</span></div>
+        <div class="gsr__txt"><b>${esc(nm)}</b><span class="gsr__meta">Não aparece. Só um link na bio.</span></div>
       </li>`;
     cta.href = waLink('search', nm);
     live.textContent = `Simulação: ao procurar ${nm}, aparecem três concorrentes com site e o seu negócio não aparece.`;
@@ -113,7 +131,7 @@ export function initSearchSim() {
     if (reduced) return;
     card.classList.add('is-loading');
     tl = gsap.timeline()
-      .set(['.gsr__none', '.gsr__for', '.gsr__map', cta].map((s) => (typeof s === 'string' ? box.querySelector(s) : s)), { opacity: 0, y: 10 })
+      .set([$('.gsr__none'), $('.gsr__for'), $('.gsr__map'), cta], { opacity: 0, y: 10 })
       .set(rows, { opacity: 0, y: 16 })
       .set(box.querySelectorAll('.gsr__pin'), { opacity: 0, y: -18 })
       .add(() => card.classList.remove('is-loading'), 0.38)

@@ -57,7 +57,6 @@ export function initCalc() {
       });
     }
     $('calc-lost').textContent = String(Math.round((p * 52) / 12));
-    document.querySelectorAll('[data-bind-ticket]').forEach((el) => { el.textContent = loss(t); });
 
     bars.forEach((b, i) => b.style.setProperty('--h', `${((month * (i + 1)) / max) * 100}%`));
     lastLabel.textContent = loss(year);
@@ -71,7 +70,6 @@ export function initCalc() {
   pw.addEventListener('input', update);
   tk.addEventListener('input', update);
 
-  // Botões de mais e menos
   document.querySelectorAll('.sim__step').forEach((btn) => {
     btn.addEventListener('click', () => {
       const input = $(btn.dataset.step);
@@ -82,7 +80,6 @@ export function initCalc() {
     });
   });
 
-  // Detalhe de cada barra ao passar o mouse
   plot.addEventListener('pointerover', (e) => {
     const b = e.target.closest('.bar');
     if (!b) return;
