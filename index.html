@@ -3,337 +3,174 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>CODEM · Sites que vendem</title>
-  <meta name="description" content="Tem gente pior que você levando os seus clientes. A CODEM cria o site que mostra o quanto você é bom e leva o cliente direto pro seu WhatsApp. Você vê funcionando antes de pagar." />
+  <title>CODEM · Veja como fica o site do seu negócio</title>
+  <meta name="description" content="Tem gente pior que você levando os seus clientes. Veja como fica o site do seu negócio antes de pagar: grátis, pronto em 48h, sem você fazer nada." />
   <meta name="theme-color" content="#0A0A0A" />
   <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="pt_BR" />
-  <meta property="og:title" content="CODEM · Sites que vendem" />
-  <meta property="og:description" content="Tem gente pior que você levando os seus clientes. Sites que mostram o quanto você é bom." />
+  <meta property="og:title" content="Veja como fica o site do seu negócio. Grátis." />
+  <meta property="og:description" content="Tem gente pior que você levando os seus clientes. A prévia do seu site fica pronta em 48h e você não paga nada pra ver." />
   <meta property="og:image" content="/og.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="preload" as="image" href="/videos/card-echofi.webp" />
-  <script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reduced');</script>
+  <link rel="preload" as="image" href="/videos/topo-m.webp" />
+  <script>
+    document.documentElement.classList.add('js');
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('reduced');
+    try { if (sessionStorage.getItem('codem-intro') === '1') document.documentElement.classList.add('no-intro'); } catch (e) {}
+  </script>
   <script type="module" src="/src/main.js"></script>
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <!-- Marca CODEM: o O entre parênteses e o nome -->
     <symbol id="c-icon" viewBox="0 0 160 160"><circle cx="80" cy="80" r="43" fill="none" stroke="currentColor" stroke-width="14"/><path fill="currentColor" d="M50,5.84 A80,80 0 0 0 50,154.16 L50,138.79 A66,66 0 0 1 50,21.21 Z"/><path fill="currentColor" d="M110,5.84 A80,80 0 0 1 110,154.16 L110,138.79 A66,66 0 0 0 110,21.21 Z"/></symbol>
     <symbol id="c-word" viewBox="0 0 982 100"><path d="M149,7 H58 A51,43 0 0 0 7,50 A51,43 0 0 0 58,93 H149" fill="none" stroke="currentColor" stroke-width="14"/><rect x="215" y="7" width="142" height="86" rx="51" ry="43" fill="none" stroke="currentColor" stroke-width="14"/><path d="M425,7 H514 A51,43 0 0 1 565,50 A51,43 0 0 1 514,93 H425" fill="none" stroke="currentColor" stroke-width="14"/><path fill="currentColor" d="M626 0h14v100h-14zM626 0h135v14H626zM626 43h122v14H626zM626 86h135v14H626z"/><polygon fill="currentColor" points="820,100 820,0 834,0 901,55 968,0 982,0 982,100 968,100 968,18.11 901,73.11 834,18.11 834,100"/></symbol>
-    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17 17 7M8.5 7H17v8.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14m-6-6 6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></symbol>
-    <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor"/></g></symbol>
-    <symbol id="i-lock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="5" y="11" width="14" height="10" rx="2.5"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></g></symbol>
-    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></g></symbol>
-    <symbol id="i-star" viewBox="0 0 24 24"><path fill="currentColor" d="m12 3.2 2.7 5.6 6.1.8-4.5 4.2 1.1 6-5.4-2.9-5.4 2.9 1.1-6-4.5-4.2 6.1-.8z"/></symbol>
-    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
-    <symbol id="i-search" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></g></symbol>
-    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></symbol>
-    <symbol id="i-replay" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4.5h4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
-    <symbol id="i-mute" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="m16 9.5 5 5m0-5-5 5"/></g></symbol>
-    <symbol id="i-sound" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z"/><path d="M15.5 9a4 4 0 0 1 0 6M18 6.5a7.5 7.5 0 0 1 0 11"/></g></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
-  <a class="skip" href="#conteudo">Pular para o conteúdo</a>
-
-  <!-- Abertura: o ícone aparece, o nome entra e o ícone pousa no menu -->
-  <div class="splash" id="splash" aria-hidden="true">
-    <div class="splash__center">
-      <svg class="splash__mark" viewBox="0 0 160 160"><use href="#c-icon"/></svg>
-      <span class="splash__word"><svg viewBox="0 0 982 100"><use href="#c-word"/></svg></span>
-    </div>
-    <div class="splash__foot">
-      <span class="splash__tag">Sites que vendem</span>
-      <span class="splash__line"><i></i></span>
-      <span class="splash__count"><b id="splash-count">0</b>%</span>
-    </div>
+  <!-- Abertura: só a marca, rápida -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <svg class="intro__icon" viewBox="0 0 160 160"><use href="#c-icon"/></svg>
+    <svg class="intro__word" viewBox="0 0 982 100"><use href="#c-word"/></svg>
   </div>
 
-  <div class="progress" aria-hidden="true"><i id="progress"></i></div>
+  <a class="logo" id="logo" href="#topo" aria-label="CODEM, voltar ao começo">
+    <svg class="logo__icon" viewBox="0 0 160 160" aria-hidden="true"><use href="#c-icon"/></svg>
+    <svg class="logo__word" viewBox="0 0 982 100" aria-hidden="true"><use href="#c-word"/></svg>
+  </a>
 
-  <header class="nav" id="nav">
-    <a class="brand" href="#topo" aria-label="CODEM, voltar ao topo">
-      <svg class="brand__mark" viewBox="0 0 160 160" aria-hidden="true"><use href="#c-icon"/></svg>
-      <svg class="brand__word" viewBox="0 0 982 100" aria-hidden="true"><use href="#c-word"/></svg>
-    </a>
-    <nav class="nav__links" aria-label="Seções">
-      <a href="#projetos">Projetos</a>
-      <a href="#como-funciona">Como funciona</a>
-      <a href="#preco">Preço</a>
-      <a href="#duvidas">Dúvidas</a>
-    </nav>
-    <a class="btn btn--lime btn--sm nav__cta" data-wa="default" href="https://wa.me/5511937654207" target="_blank" rel="noopener">
-      <span class="nav__cta-long">Pedir orçamento</span><span class="nav__cta-short">WhatsApp</span><svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg>
-    </a>
-  </header>
-
-  <main id="conteudo">
-    <!-- 1. HERO: a frase do anúncio, a busca pelo nome do negócio e os projetos rodando -->
+  <main>
+    <!-- 1. A frase -->
     <section class="hero" id="topo" data-theme="dark" aria-labelledby="hero-title">
-      <div class="hero__grid container">
+      <div class="wrap hero__grid">
         <div class="hero__copy">
-          <h1 class="hero__title" id="hero-title">
-            <span class="mask"><span class="mask__in">Tem gente pior</span></span>
-            <span class="mask"><span class="mask__in">que você</span></span>
-            <span class="mask"><span class="mask__in">levando os seus</span></span>
-            <span class="mask hero__serif"><span class="mask__in">clientes.</span></span>
-          </h1>
-          <p class="hero__lede">Não é preço. É o que o cliente encontra quando pesquisa o seu nome. Digite o do seu negócio e veja.</p>
+          <h1 class="h1 rv" id="hero-title">Tem gente <span class="ser c-o">pior</span><br />que você<br />levando os seus<br /><span class="mark">clientes.</span></h1>
+          <p class="lead rv">Não é o preço. É o que ele vê no celular antes de te chamar.</p>
+          <div class="cta rv">
+            <a class="btn" data-wa href="https://wa.me/5511937654207">Quero ver como fica o meu <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <p class="cta__note"><b>Grátis.</b> Pronto em 48h. Você não faz nada.</p>
+          </div>
+        </div>
+        <div class="hero__stage rv">
+          <div class="phone phone--hero">
+            <div class="phone__screen">
+              <video data-auto muted playsinline loop preload="auto" poster="/videos/topo-m.webp" aria-label="Sites feitos pela CODEM rodando no celular">
+                <source src="/videos/topo-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <form class="claim" id="claim" autocomplete="off">
-            <label class="sr-only" for="negocio">Nome do seu negócio</label>
-            <div class="claim__row">
-              <div class="claim__field">
-                <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>
-                <input id="negocio" name="negocio" type="text" maxlength="32" placeholder="Nome do seu negócio" enterkeyhint="go" />
+    <!-- 2. A busca: o cliente pesquisa e não te acha -->
+    <section class="search" id="busca" data-theme="light" aria-labelledby="search-title">
+      <div class="wrap search__grid">
+        <h2 class="h2 search__title rv" id="search-title">Antes de te chamar, ele <span class="ser c-b">pesquisa.</span></h2>
+        <div class="search__stage rv">
+          <div class="phone">
+            <div class="phone__screen">
+              <video data-auto muted playsinline loop preload="none" poster="/videos/busca-m.webp" aria-label="Simulação: a busca mostra três concorrentes com site e o seu negócio não aparece">
+                <source src="/videos/busca-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+        <div class="search__beats">
+          <p class="beat rv">Acha <b>3 concorrentes</b> com site.</p>
+          <p class="beat beat--big rv">E não acha <span class="mark mark--o">você.</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Antes e depois: sem site, site ruim e com a CODEM -->
+    <section class="ba" id="antes-depois" data-theme="dark" aria-labelledby="ba-title">
+      <div class="wrap">
+        <h2 class="h2 ba__title rv" id="ba-title">Cliente não compra o melhor. Compra o que <span class="ser c-o u">parece</span> melhor.</h2>
+        <div class="ba__grid">
+          <figure class="ba__item rv">
+            <p class="ba__tag">Sem site</p>
+            <div class="phone phone--sm"><div class="phone__screen"><img src="/img/antes-sem-site.webp" alt="Página de links da bio com cinco botões iguais" width="720" height="1557" loading="lazy" /></div></div>
+            <figcaption>“Será que é confiável?”</figcaption>
+          </figure>
+          <figure class="ba__item rv">
+            <p class="ba__tag">Site ruim</p>
+            <div class="phone phone--sm"><div class="phone__screen"><img src="/img/antes-site-ruim.webp" alt="Site antigo, com aviso de não seguro, texto miúdo e faixa de site em construção" width="720" height="1557" loading="lazy" /></div></div>
+            <figcaption>“Parece abandonado.”</figcaption>
+          </figure>
+          <figure class="ba__item ba__item--good rv">
+            <p class="ba__tag">Com a CODEM</p>
+            <div class="phone phone--good">
+              <div class="phone__screen">
+                <video data-auto muted playsinline loop preload="none" poster="/videos/burger-m.webp" aria-label="Site da Hamburgueria do Gui feito pela CODEM">
+                  <source src="/videos/burger-m.mp4" type="video/mp4" />
+                </video>
               </div>
-              <button type="submit" class="btn btn--lime btn--lg" data-magnetic>Quero meu site <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></button>
             </div>
-          </form>
-        </div>
-
-        <div class="hero__stage" data-cursor="Ver site">
-          <div class="tower" id="tower" aria-label="Projetos no ar" role="region">
-            <div class="tower__track" id="tower-track"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ticker" aria-label="Negócios que a CODEM atende">
-        <div class="ticker__track" id="ticker">
-          <span>Cafés</span><svg class="ticker__mark" aria-hidden="true"><use href="#c-icon"/></svg>
-          <em>Bares</em><svg class="ticker__mark" aria-hidden="true"><use href="#c-icon"/></svg>
-          <span>Clínicas</span><svg class="ticker__mark" aria-hidden="true"><use href="#c-icon"/></svg>
-          <em>Estúdios</em><svg class="ticker__mark" aria-hidden="true"><use href="#c-icon"/></svg>
-          <span>Restaurantes</span><svg class="ticker__mark" aria-hidden="true"><use href="#c-icon"/></svg>
-          <em>Lojas</em><svg class="ticker__mark" aria-hidden="true"><use href="#c-icon"/></svg>
-          <span>Escritórios</span><svg class="ticker__mark" aria-hidden="true"><use href="#c-icon"/></svg>
-          <em>Salões</em><svg class="ticker__mark" aria-hidden="true"><use href="#c-icon"/></svg>
-          <span>Hamburguerias</span><svg class="ticker__mark" aria-hidden="true"><use href="#c-icon"/></svg>
-          <em>Consultórios</em><svg class="ticker__mark" aria-hidden="true"><use href="#c-icon"/></svg>
+            <figcaption>“Quero fechar.”</figcaption>
+          </figure>
         </div>
       </div>
     </section>
 
-    <!-- 2. AS FRASES: o que o dono de negócio ouve toda semana e não liga ao site -->
-    <section class="truth" id="frases" data-theme="light" aria-labelledby="truth-title">
-      <div class="container">
-        <div class="sec-head">
-          <p class="label" data-reveal>Soa familiar?</p>
-          <h2 class="sec-title" id="truth-title" data-words>Você já ouviu isso <em>essa semana.</em></h2>
+    <!-- 4. A conta -->
+    <section class="calc" id="conta" data-theme="orange" aria-labelledby="calc-title">
+      <div class="wrap">
+        <h2 class="h2 rv" id="calc-title">Quanto isso te <span class="ser">custa?</span></h2>
+        <div class="calc__lines rv">
+          <p class="calc__line">Toda semana,
+            <span class="step"><button type="button" data-k="pw" data-d="-1" aria-label="Menos um cliente">−</button><output id="calc-pw" aria-live="polite">3</output><button type="button" data-k="pw" data-d="1" aria-label="Mais um cliente">+</button></span>
+            clientes procuram você e fecham com outro.</p>
+          <p class="calc__line">Cada um gastaria
+            <span class="step"><button type="button" data-k="tk" data-d="-1" aria-label="Valor menor">−</button><output id="calc-tk" aria-live="polite">R$ 50</output><button type="button" data-k="tk" data-d="1" aria-label="Valor maior">+</button></span>
+            com você.</p>
+          <p class="calc__hint">Use o − e o + pra ajustar.</p>
         </div>
-        <ul class="truth__list">
-          <li class="truth__item" data-reveal>
-            <span class="truth__line" aria-hidden="true"></span>
-            <p class="truth__q">“Quanto é?”</p>
-            <p class="truth__t">E a pessoa some. Sem entender o seu valor, ela só compara preço.</p>
-          </li>
-          <li class="truth__item" data-reveal>
-            <span class="truth__line" aria-hidden="true"></span>
-            <p class="truth__q">“Tem site?”</p>
-            <p class="truth__t">E você manda o Instagram. Na hora, seu negócio parece menor do que é.</p>
-          </li>
-          <li class="truth__item" data-reveal>
-            <span class="truth__line" aria-hidden="true"></span>
-            <p class="truth__q">“Vou pensar.”</p>
-            <p class="truth__t">E fecha com quem passou mais confiança na tela do celular.</p>
-          </li>
-        </ul>
-        <p class="truth__punch" data-words>O cliente decide pela tela, <em>antes</em> de você abrir a boca.</p>
+        <div class="calc__res rv" aria-live="polite">
+          <p class="calc__lbl">Por ano, isso vai pro caixa do concorrente:</p>
+          <p class="calc__big" id="calc-year">R$ 7.800</p>
+          <p class="calc__mo">São <b id="calc-month">R$ 650</b> todo mês.</p>
+        </div>
+        <a class="btn btn--ink calc__cta rv" data-wa href="https://wa.me/5511937654207">Ver como fica o meu, grátis <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
       </div>
     </section>
 
-    <!-- 3. QUANTO CUSTA NÃO APARECER (simulador) -->
-    <section class="calc" id="conta" data-theme="dark" aria-labelledby="calc-title">
-      <div class="container">
-        <div class="sec-head sec-head--row">
-          <div>
-            <p class="label" data-reveal>A conta</p>
-            <h2 class="sec-title" id="calc-title" data-words>Quanto isso <em>te custa?</em></h2>
-          </div>
-          <p class="sec-sub" data-reveal>A conta é com os seus números. Chute baixo.</p>
-        </div>
-
-        <div class="sim">
-          <div class="sim__inputs" data-reveal>
-            <p class="sim__title">Simule</p>
-            <div class="sim__field">
-              <label for="calc-pw">Clientes que procuram você e fecham com outro, por semana</label>
-              <div class="sim__ctrl">
-                <button type="button" class="sim__step" data-step="calc-pw" data-dir="-1" aria-label="Menos um cliente">−</button>
-                <output class="sim__val" id="calc-pw-out" for="calc-pw">3</output>
-                <button type="button" class="sim__step" data-step="calc-pw" data-dir="1" aria-label="Mais um cliente">+</button>
-              </div>
-              <input class="sim__range" type="range" id="calc-pw" min="1" max="20" step="1" value="3" />
-            </div>
-            <div class="sim__field">
-              <label for="calc-tk">Quanto cada um gastaria com você</label>
-              <div class="sim__ctrl">
-                <button type="button" class="sim__step" data-step="calc-tk" data-dir="-1" aria-label="Menos R$ 5">−</button>
-                <output class="sim__val" id="calc-tk-out" for="calc-tk">R$ 45</output>
-                <button type="button" class="sim__step" data-step="calc-tk" data-dir="1" aria-label="Mais R$ 5">+</button>
-              </div>
-              <input class="sim__range" type="range" id="calc-tk" min="10" max="300" step="5" value="45" />
-            </div>
-            <p class="sim__foot">Arraste ou toque no − e no +.</p>
-          </div>
-
-          <div class="sim__result" data-reveal>
-            <div class="sim__top">
-              <span class="sim__chip">Faturamento perdido</span>
-              <span class="sim__period">em 12 meses</span>
-            </div>
-            <p class="sim__big" id="calc-year">− R$ 7.020</p>
-            <div class="sim__kpis">
-              <div><span>por mês</span><b id="calc-month">− R$ 585</b></div>
-              <div><span>clientes perdidos no mês</span><b id="calc-lost">13</b></div>
-            </div>
-            <figure class="bars">
-              <figcaption class="bars__cap">Prejuízo acumulado, mês a mês</figcaption>
-              <div class="bars__plot" id="bars" aria-hidden="true"></div>
-              <div class="bars__axis" aria-hidden="true"><span>Mês 1</span><span>Mês 12</span></div>
-              <table class="sr-only" id="bars-table"><caption>Prejuízo acumulado por mês</caption><thead><tr><th scope="col">Mês</th><th scope="col">Acumulado</th></tr></thead><tbody></tbody></table>
-            </figure>
-            <p class="sim__else">…no caixa de outra pessoa.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 4. O QUE A GENTE ACREDITA: as palavras acendem com a rolagem -->
-    <section class="belief" data-theme="blue" aria-labelledby="belief-label">
-      <div class="belief__pin" id="belief-pin">
-        <div class="container">
-          <p class="label" id="belief-label">O motivo</p>
-          <p class="belief__text" id="belief-text">Cliente não compra o melhor. Compra o que <em>parece</em> melhor. Injusto? É. Mas ninguém testa todo mundo antes de escolher: julga pela tela do celular. Quem parece <em>caro</em>, cobra <em>caro</em>.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. O QUE A CODEM FAZ: celular fixo, quatro motivos -->
-    <section class="look" id="solucao" data-theme="dark" aria-labelledby="look-title">
-      <div class="look__pin" id="look-pin">
-        <div class="container look__grid">
-          <div class="look__copy">
-            <p class="label">O que a CODEM faz</p>
-            <h2 class="sec-title" id="look-title" data-words>Parecer profissional <em>começa aqui.</em></h2>
-            <ol class="look__list" id="look-list">
-              <li class="look__item is-active" data-video="echofi" data-glow="#D4FF3F">
-                <button type="button" class="look__btn"><span class="look__n">01</span><span class="look__h">Bonito de verdade</span></button>
-                <p class="look__p">Feito sob medida pro seu negócio. Nada de modelo pronto com a sua logo colada.</p>
-                <span class="look__bar" aria-hidden="true"><i></i></span>
-              </li>
-              <li class="look__item" data-video="burger" data-glow="#3355FF">
-                <button type="button" class="look__btn"><span class="look__n">02</span><span class="look__h">Responde antes da pergunta</span></button>
-                <p class="look__p">Preço, horário, endereço e como funciona. O cliente chega no WhatsApp já decidido.</p>
-                <span class="look__bar" aria-hidden="true"><i></i></span>
-              </li>
-              <li class="look__item" data-video="bolsa" data-glow="#FF5B1F">
-                <button type="button" class="look__btn"><span class="look__n">03</span><span class="look__h">Rápido no celular</span></button>
-                <p class="look__p">É pela tela pequena que o cliente te vê. Abre rápido e funciona perfeito nela.</p>
-                <span class="look__bar" aria-hidden="true"><i></i></span>
-              </li>
-              <li class="look__item" data-video="mitte" data-glow="#D4FF3F">
-                <button type="button" class="look__btn"><span class="look__n">04</span><span class="look__h">Um botão: chamar você</span></button>
-                <p class="look__p">WhatsApp, agenda, cardápio ou pedido: o que o seu negócio precisar pra fechar.</p>
-                <span class="look__bar" aria-hidden="true"><i></i></span>
-              </li>
-            </ol>
-          </div>
-          <div class="look__stage" aria-hidden="true">
-            <span class="look__glow" id="look-glow"></span>
-            <div class="phone look__phone" id="look-phone">
-              <span class="phone__island"></span>
-              <div class="phone__screen" id="look-screens"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. PROJETOS NO AR -->
+    <!-- 5. O contrário: sites no ar -->
     <section class="work" id="projetos" data-theme="light" aria-labelledby="work-title">
-      <div class="container">
-        <div class="sec-head sec-head--row">
-          <div>
-            <p class="label" data-reveal>Projetos no ar</p>
-            <h2 class="sec-title" id="work-title" data-words>Site de verdade, <em>funcionando agora.</em></h2>
-          </div>
-          <p class="sec-sub" data-reveal>Toque num projeto e veja rodando no computador e no celular.</p>
+      <div class="wrap work__grid">
+        <div class="work__copy">
+          <h2 class="h2 rv" id="work-title">Agora imagina o <span class="ser c-b">contrário.</span></h2>
+          <p class="lead rv">O cliente abre, entende e chama. Sites da CODEM no ar:</p>
+          <div class="work__tabs rv" id="work-tabs" role="tablist" aria-label="Projetos"></div>
         </div>
-        <div class="work__card" id="work" data-reveal>
-          <div class="work__list" role="tablist" aria-label="Projetos" id="work-list"></div>
-          <div class="work__stage" id="work-stage"></div>
+        <div class="work__stage rv">
+          <div class="phone">
+            <div class="phone__screen">
+              <video id="work-video" data-auto muted playsinline loop preload="none" poster="/videos/mitte-m.webp" aria-label="Projeto da CODEM rodando no celular">
+                <source src="/videos/mitte-m.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+          <a class="work__link" id="work-link" href="https://mittebar.vercel.app/" target="_blank" rel="noopener">Abrir o site</a>
         </div>
       </div>
     </section>
 
-    <!-- 7. PREÇO: a nota da CODEM -->
-    <section class="price" id="preco" data-theme="orange" aria-labelledby="price-title">
-      <div class="container price__grid">
-        <div class="price__copy">
-          <p class="label" data-reveal>Preço</p>
-          <h2 class="sec-title price__title" id="price-title" data-words>Quanto custa um site <em>assim?</em></h2>
-          <p class="sec-sub" data-reveal>Depende do que o seu negócio precisa. O preço é fechado na primeira conversa, por escrito, e não muda.</p>
-          <div class="price__cta" data-reveal>
-            <a class="btn btn--ink btn--lg" data-wa="price" data-magnetic href="https://wa.me/5511937654207" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Perguntar o preço no WhatsApp</a>
-            <p>Eu respondo com um número, não com uma reunião.</p>
-          </div>
-        </div>
-
-        <article class="receipt" id="receipt" data-tilt aria-label="O que vem no seu site">
-          <header class="receipt__head">
-            <svg class="receipt__logo" viewBox="0 0 982 100" aria-hidden="true"><use href="#c-word"/></svg>
-            <p><span>Nota nº 0001</span><span data-bind="today">hoje</span></p>
-          </header>
-          <p class="receipt__title">O que vem no seu site</p>
-          <ul class="receipt__list">
-            <li class="receipt__row"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Design feito sob medida</li>
-            <li class="receipt__row"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Texto que convence</li>
-            <li class="receipt__row"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Feito pro celular</li>
-            <li class="receipt__row"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Botão direto pro seu WhatsApp</li>
-            <li class="receipt__row"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Agenda, cardápio ou pedido online</li>
-            <li class="receipt__row"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Seu negócio no mapa do Google</li>
-            <li class="receipt__row"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Endereço com o seu nome</li>
-            <li class="receipt__row"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg> Ajustes por áudio</li>
-          </ul>
-          <div class="receipt__fees">
-            <p class="receipt__row"><span>Taxa de enrolação</span><i></i><b>R$ 0,00</b></p>
-            <p class="receipt__row"><span>Reunião que podia ser um áudio</span><i></i><b>R$ 0,00</b></p>
-            <p class="receipt__row"><span>Letra miúda</span><i></i><b>não tem</b></p>
-          </div>
-          <p class="receipt__total receipt__row"><span>Total</span><b>combinado antes, por escrito</b></p>
-          <footer class="receipt__foot">
-            <span class="receipt__bars" aria-hidden="true"></span>
-            <span>Você vê funcionando antes de pagar.</span>
-          </footer>
-        </article>
-      </div>
-    </section>
-
-    <!-- 8. COMO FUNCIONA -->
-    <section class="how" id="como-funciona" data-theme="light" aria-labelledby="how-title">
-      <div class="container how__grid">
-        <div class="how__copy">
-          <p class="label" data-reveal>Como funciona</p>
-          <h2 class="sec-title" id="how-title" data-words>Do jeito que você já resolve tudo: <em>pelo WhatsApp.</em></h2>
-          <p class="sec-sub" data-reveal>Sem reunião, sem formulário, sem palavra difícil.</p>
+    <!-- 6. A prévia grátis -->
+    <section class="offer" id="previa" data-theme="blue" aria-labelledby="offer-title">
+      <div class="wrap offer__grid">
+        <div class="offer__copy">
+          <h2 class="h2 rv" id="offer-title">Veja o seu site pronto. <span class="mark mark--w">Antes</span> de pagar.</h2>
           <ol class="steps">
-            <li data-reveal><span class="steps__n">01</span><div><h3>Você conta.</h3><p>O que vende, como atende e onde fica. Pode ser por áudio.</p></div></li>
-            <li data-reveal><span class="steps__n">02</span><div><h3>A gente constrói e te mostra.</h3><p>Você vê o site funcionando antes de pagar.</p></div></li>
-            <li data-reveal><span class="steps__n">03</span><div><h3>Você aprova, e ele vai pro ar.</h3><p>Com o seu nome no endereço.</p></div></li>
-            <li data-reveal><span class="steps__n">04</span><div><h3>Mudou alguma coisa?</h3><p>Manda um áudio.</p></div></li>
+            <li class="rv"><span class="steps__n">1</span><p>Você manda o <b>nome</b> do negócio e o <b>@</b> do Instagram.</p></li>
+            <li class="rv"><span class="steps__n">2</span><p>Em até <b>48h</b>, o site chega pronto no seu WhatsApp.</p></li>
+            <li class="rv"><span class="steps__n">3</span><p>Gostou? A gente fecha. Não gostou? <b>Não paga nada.</b></p></li>
           </ol>
+          <a class="btn btn--light rv" data-wa href="https://wa.me/5511937654207">Quero ver como fica o meu <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
-
-        <div class="how__phone">
+        <div class="offer__stage rv">
           <div class="phone phone--chat" id="chat-phone">
-            <span class="phone__island" aria-hidden="true"></span>
             <div class="phone__screen chat">
               <div class="chat__top">
                 <img class="chat__avatar" src="/img/guilherme.webp" alt="" width="40" height="40" loading="lazy" />
@@ -342,161 +179,63 @@
               <ol class="chat__body" id="chat-body" aria-label="Exemplo de conversa pelo WhatsApp"></ol>
             </div>
           </div>
-          <button class="chat__replay" type="button" id="chat-replay"><svg class="ico" aria-hidden="true"><use href="#i-replay"/></svg> Ver a conversa de novo</button>
         </div>
       </div>
     </section>
 
-    <!-- 9. QUEM FAZ -->
+    <!-- 7. Quem faz -->
     <section class="me" id="quem-faz" data-theme="dark" aria-labelledby="me-title">
-      <div class="container me__grid">
-        <div class="me__copy">
-          <p class="label" data-reveal>Quem faz</p>
-          <h2 class="me__title" id="me-title" data-words>Prazer, <em>Guilherme.</em></h2>
-          <p class="me__text" data-reveal>Criei a CODEM pra fazer negócio bom parecer do tamanho que ele é.</p>
-          <p class="me__text" data-reveal>Aqui não tem robô nem fila. Você fala comigo, do primeiro áudio até o site no ar. E depois também.</p>
-          <ul class="me__links" data-reveal>
-            <li><a data-wa="default" href="https://wa.me/5511937654207" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> <span data-bind="phone">(11) 93765-4207</span></a></li>
-            <li><a data-ig href="https://instagram.com/gmelo97s" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg> <span data-bind="igLabel">@gmelo97s</span></a></li>
-          </ul>
-        </div>
-        <figure class="me__photo" id="me-photo">
+      <div class="wrap me__grid">
+        <figure class="me__photo rv">
           <picture>
             <source srcset="/img/guilherme.webp" type="image/webp" />
-            <img src="/img/guilherme.jpg" alt="Retrato em preto e branco do Guilherme, de blusa preta de gola alta." width="750" height="1334" loading="lazy" />
+            <img src="/img/guilherme.jpg" alt="Retrato em preto e branco do Guilherme" width="750" height="1334" loading="lazy" />
           </picture>
-          <figcaption>Guilherme · fundador da CODEM</figcaption>
         </figure>
-      </div>
-    </section>
-
-    <!-- 10. VÍDEO: o próprio anúncio da CODEM -->
-    <section class="reel" id="video" data-theme="lime" aria-labelledby="reel-title">
-      <div class="container reel__grid">
-        <div class="reel__copy">
-          <p class="label" data-reveal>Vídeo</p>
-          <h2 class="sec-title" id="reel-title" data-words>26 segundos. Foi assim que a CODEM <em>se apresentou.</em></h2>
-          <p class="sec-sub" data-reveal>Reels e anúncios no mesmo padrão do seu site, pra parar o dedo de quem rola o feed.</p>
-          <div class="reel__cta" data-reveal>
-            <a class="btn btn--ink btn--lg" data-wa="video" data-magnetic href="https://wa.me/5511937654207" target="_blank" rel="noopener">Quero vídeos assim <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-        <div class="reel__stage">
-          <div class="phone reel__phone">
-            <span class="phone__island" aria-hidden="true"></span>
-            <div class="phone__screen">
-              <video id="reel-video" muted playsinline loop preload="none" poster="/videos/codem-reels.webp" aria-label="Vídeo de apresentação da CODEM, 26 segundos">
-                <source data-src="/videos/codem-reels.webm" type="video/webm" />
-                <source data-src="/videos/codem-reels.mp4" type="video/mp4" />
-              </video>
-            </div>
-          </div>
-          <button class="reel__sound" id="reel-sound" type="button" aria-pressed="false">
-            <svg class="ico" aria-hidden="true"><use href="#i-mute"/></svg><span>Ativar som</span>
-          </button>
+        <div class="me__copy">
+          <h2 class="h2 rv" id="me-title">Prazer, <span class="ser c-o">Guilherme.</span></h2>
+          <p class="lead rv">Sem robô e sem fila. Você fala comigo do primeiro áudio até o site no ar.</p>
         </div>
       </div>
     </section>
 
-    <!-- 11. TÁ, MAS… -->
+    <!-- 8. Dúvidas -->
     <section class="faq" id="duvidas" data-theme="light" aria-labelledby="faq-title">
-      <div class="container faq__wrap">
-        <div class="faq__side">
-          <p class="label" data-reveal>Dúvidas</p>
-          <h2 class="faq__title" id="faq-title" data-words>Tá, <em>mas…</em></h2>
-        </div>
-        <div class="faq__list" id="faq">
-          <div class="qa" data-reveal>
-            <h3><button type="button" aria-expanded="false" aria-controls="qa1" id="qa1-b">…eu já tenho Instagram.<span class="qa__icon" aria-hidden="true"></span></button></h3>
-            <div class="qa__a" id="qa1" role="region" aria-labelledby="qa1-b"><div><p>Ótimo, continua com ele. O Instagram é pra quem já te segue. O site é pra quem ainda não te conhece e te pesquisa antes de chamar.</p></div></div>
-          </div>
-          <div class="qa" data-reveal>
-            <h3><button type="button" aria-expanded="false" aria-controls="qa2" id="qa2-b">…meus clientes vêm por indicação.<span class="qa__icon" aria-hidden="true"></span></button></h3>
-            <div class="qa__a" id="qa2" role="region" aria-labelledby="qa2-b"><div><p>Indicação é ótimo. Só que quem recebe a indicação pesquisa o seu nome antes de chamar. Se não acha nada, desconfia e chama quem aparece.</p></div></div>
-          </div>
-          <div class="qa" data-reveal>
-            <h3><button type="button" aria-expanded="false" aria-controls="qa3" id="qa3-b">…eu não entendo nada de internet.<span class="qa__icon" aria-hidden="true"></span></button></h3>
-            <div class="qa__a" id="qa3" role="region" aria-labelledby="qa3-b"><div><p>Nem precisa. Você entende do seu trabalho, a gente entende de site. Você conta, a gente faz, você aprova.</p></div></div>
-          </div>
-          <div class="qa" data-reveal>
-            <h3><button type="button" aria-expanded="false" aria-controls="qa4" id="qa4-b">…já paguei alguém que sumiu.<span class="qa__icon" aria-hidden="true"></span></button></h3>
-            <div class="qa__a" id="qa4" role="region" aria-labelledby="qa4-b"><div><p>Por isso você vê o site funcionando antes de pagar. E quem te atende tem nome e WhatsApp: é o Guilherme.</p></div></div>
-          </div>
-          <div class="qa" data-reveal>
-            <h3><button type="button" aria-expanded="false" aria-controls="qa5" id="qa5-b">…meu cliente é simples, não liga pra site.<span class="qa__icon" aria-hidden="true"></span></button></h3>
-            <div class="qa__a" id="qa5" role="region" aria-labelledby="qa5-b"><div><p>Ele não liga pra site. Liga pra confiança. E é pela tela do celular que ele decide em quem confiar.</p></div></div>
-          </div>
-          <div class="qa" data-reveal>
-            <h3><button type="button" aria-expanded="false" aria-controls="qa6" id="qa6-b">…vocês fazem vídeo também?<span class="qa__icon" aria-hidden="true"></span></button></h3>
-            <div class="qa__a" id="qa6" role="region" aria-labelledby="qa6-b"><div><p>Fazemos. Reels e anúncios no mesmo padrão do site, como o vídeo aqui em cima.</p></div></div>
-          </div>
-          <div class="qa" data-reveal>
-            <h3><button type="button" aria-expanded="false" aria-controls="qa7" id="qa7-b">…e se eu quiser mudar alguma coisa depois?<span class="qa__icon" aria-hidden="true"></span></button></h3>
-            <div class="qa__a" id="qa7" role="region" aria-labelledby="qa7-b"><div><p>Manda um áudio. Horário novo, preço novo, foto nova: é só avisar.</p></div></div>
-          </div>
+      <div class="wrap faq__grid">
+        <h2 class="h2 rv" id="faq-title">Tá, <span class="ser c-b">mas…</span></h2>
+        <div class="faq__list">
+          <details class="qa rv"><summary>…eu já tenho Instagram.</summary><p>O Instagram faz te acharem. O site faz te escolherem.</p></details>
+          <details class="qa rv"><summary>…quanto custa o site?</summary><p>Você só fala de preço depois de ver a prévia, que é grátis. E o valor vem fechado, por escrito.</p></details>
+          <details class="qa rv"><summary>…não entendo nada de internet.</summary><p>Nem precisa. Você manda o nome e o @ do Instagram. O resto é com a gente.</p></details>
+          <details class="qa rv"><summary>…já paguei alguém que sumiu.</summary><p>Por isso você vê o site pronto antes de pagar. E fala direto com o Guilherme.</p></details>
+          <details class="qa rv"><summary>…meu cliente é simples.</summary><p>Ele não liga pra site. Liga pra confiança. E decide pelo celular.</p></details>
+          <details class="qa rv"><summary>…e se eu quiser mudar algo depois?</summary><p>Manda um áudio.</p></details>
         </div>
       </div>
     </section>
 
-    <!-- 12. FINAL: alguém procurou e achou outro -->
-    <section class="final" id="final" data-theme="lime" aria-labelledby="final-title">
-      <div class="container final__in">
-        <p class="final__kicker" data-reveal>Agora mesmo, alguém procurou:</p>
-        <div class="fsearch" id="fsearch" aria-hidden="true">
-          <div class="fsearch__bar"><svg class="ico"><use href="#i-search"/></svg><span class="fsearch__q" id="fsearch-q"></span><i class="fsearch__caret"></i></div>
-          <ol class="fsearch__list">
-            <li class="fres"><span class="fres__pin"><svg class="ico"><use href="#i-pin"/></svg></span><span class="fres__txt"><b>Concorrente 1</b><span><svg class="ico"><use href="#i-star"/></svg> 4,9 · Site · WhatsApp</span></span><em class="fres__tag">Escolhido</em></li>
-            <li class="fres"><span class="fres__pin"><svg class="ico"><use href="#i-pin"/></svg></span><span class="fres__txt"><b>Concorrente 2</b><span><svg class="ico"><use href="#i-star"/></svg> 4,8 · Site · Aberto agora</span></span></li>
-            <li class="fres"><span class="fres__pin"><svg class="ico"><use href="#i-pin"/></svg></span><span class="fres__txt"><b>Concorrente 3</b><span><svg class="ico"><use href="#i-star"/></svg> 4,7 · Fotos · Preços</span></span></li>
-            <li class="fres fres--you"><span class="fres__pin"><svg class="ico"><use href="#i-close"/></svg></span><span class="fres__txt"><b data-bind="signName">Seu Negócio</b><span>Só um link na bio</span></span></li>
-          </ol>
-        </div>
-        <h2 class="final__title" id="final-title"><span class="final__w">E</span> <span class="final__w">não</span> <span class="final__w">achou</span> <em class="final__w">você.</em></h2>
-        <div class="final__cta" data-reveal>
-          <a class="btn btn--ink btn--xl" data-wa="final" data-magnetic href="https://wa.me/5511937654207" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Quero ser encontrado</a>
-          <p>Prévia grátis: você vê funcionando antes de pagar. Ou chama direto: <a data-wa="default" href="https://wa.me/5511937654207" target="_blank" rel="noopener" data-bind="phone">(11) 93765-4207</a></p>
-        </div>
+    <!-- 9. Final -->
+    <section class="final" id="final" data-theme="dark" aria-labelledby="final-title">
+      <div class="wrap final__in">
+        <h2 class="h1 rv" id="final-title">Veja como fica <span class="mark">o seu.</span></h2>
+        <p class="lead rv">Grátis. Em até 48h. Sem você fazer nada.</p>
+        <a class="btn btn--xl rv" data-wa href="https://wa.me/5511937654207">Quero ver como fica o meu <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <p class="final__alt rv">Ou chama direto: <a data-wa href="https://wa.me/5511937654207">(11) 93765-4207</a></p>
       </div>
     </section>
   </main>
 
   <footer class="foot" data-theme="dark">
-    <div class="container">
-      <div class="foot__top">
-        <p class="foot__lead">Sites que vendem.<br /><em>Vídeos que param o dedo.</em></p>
-        <ul class="foot__links">
-          <li><a data-wa="default" href="https://wa.me/5511937654207" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp</a></li>
-          <li><a data-ig href="https://instagram.com/gmelo97s" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="#i-ig"/></svg> Instagram</a></li>
-          <li><a href="#topo">Voltar ao topo <svg class="ico ico--up" aria-hidden="true"><use href="#i-down"/></svg></a></li>
-        </ul>
+    <div class="wrap">
+      <svg class="foot__word" viewBox="0 0 982 100" role="img" aria-label="CODEM"><use href="#c-word"/></svg>
+      <div class="foot__row">
+        <span>© <span id="year">2026</span> CODEM</span>
+        <span><a data-wa href="https://wa.me/5511937654207">WhatsApp</a> · <a href="https://instagram.com/gmelo97s" target="_blank" rel="noopener">Instagram</a></span>
       </div>
-      <div class="foot__mark" id="foot-mark"><svg viewBox="0 0 982 100" role="img" aria-label="CODEM"><use href="#c-word"/></svg></div>
-      <div class="foot__bottom"><span>© <span data-bind="year">2026</span> CODEM</span><span>Feito pela CODEM, obviamente.</span></div>
     </div>
   </footer>
 
-  <!-- Pop-up de saída: prévia grátis -->
-  <div class="exit" id="exit" hidden>
-    <div class="exit__backdrop" data-exit-close></div>
-    <div class="exit__card" role="dialog" aria-modal="true" aria-labelledby="exit-title" aria-describedby="exit-text">
-      <button class="exit__x" type="button" data-exit-close aria-label="Fechar"><svg class="ico" aria-hidden="true"><use href="#i-close"/></svg></button>
-      <svg class="exit__mark" viewBox="0 0 160 160" aria-hidden="true"><use href="#c-icon"/></svg>
-      <p class="label">Espera. Antes de sair…</p>
-      <h2 class="exit__title" id="exit-title">Quer ver o seu site antes de decidir qualquer coisa?</h2>
-      <p class="exit__text" id="exit-text">A gente faz uma <b>prévia grátis</b> do site do seu negócio. Você vê funcionando no seu celular e só depois decide. Sem compromisso.</p>
-      <form class="exit__form" id="exit-form">
-        <label for="exit-name">Nome do seu negócio</label>
-        <input id="exit-name" type="text" maxlength="32" placeholder="Ex.: Clínica Sorriso" />
-        <button class="btn btn--lime btn--lg" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg> Quero minha prévia grátis</button>
-      </form>
-      <button class="exit__no" type="button" data-exit-close>Agora não</button>
-    </div>
-  </div>
-
-  <a class="wa-float" id="wa-float" data-wa="default" href="https://wa.me/5511937654207" target="_blank" rel="noopener" aria-label="Falar com o Guilherme no WhatsApp">
-    <svg class="ico" aria-hidden="true"><use href="#i-wa"/></svg>
-  </a>
-
-  <div class="cursor" id="cursor" aria-hidden="true"><span class="cursor__dot"></span><span class="cursor__ring"><b class="cursor__label"></b></span></div>
+  <!-- Botão fixo no celular, só enquanto a pessoa lê -->
+  <a class="dock" id="dock" data-wa href="https://wa.me/5511937654207">Ver como fica o meu <svg class="ico" aria-hidden="true"><use href="#i-arrow"/></svg></a>
 </body>
 </html>
