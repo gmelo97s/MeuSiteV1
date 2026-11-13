@@ -40,7 +40,7 @@ export const PROJECTS = [
 export const KINDS = [
   { id: 'saude', label: 'Saúde', a: '#23707A', search: 'dentista perto de mim', show: 'os tratamentos' },
   { id: 'escritorio', label: 'Escritório', a: '#27456B', search: 'advogado perto de mim', show: 'as áreas de atuação' },
-  { id: 'beleza', label: 'Beleza', a: '#B3372B', search: 'barbearia agendar online', show: 'os serviços' },
+  { id: 'beleza', label: 'Beleza', a: '#B3372B', search: 'salão de beleza agendar online', show: 'os serviços' },
   { id: 'treino', label: 'Treino', a: '#1F7A4D', search: 'personal trainer perto de mim', show: 'as modalidades' },
   { id: 'comida', label: 'Comida', a: '#C9722E', search: 'restaurante aberto agora', show: 'o cardápio' },
   { id: 'servicos', label: 'Serviços', a: '#B7791F', search: 'eletricista perto de mim', show: 'os serviços' },
@@ -54,7 +54,7 @@ export const coverOf = (k) => `linear-gradient(120deg,${k.a} 0%,color-mix(in srg
 
 const norm = (s) => String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
 
-// Descobre o ramo pelo nome digitado ("Barbearia do Zé" → beleza).
+// Descobre o ramo pelo nome digitado ("Salão da Bia" → beleza).
 export function detectKind(name) {
   const s = norm(name);
   if (!s) return null;
@@ -69,10 +69,10 @@ export function detectKind(name) {
   return null;
 }
 
-// Simulação de busca do hero: o ramo no plural ("mostrando barbearias perto de você")
+// Simulação de busca do hero: o ramo no plural ("mostrando pizzarias perto de você")
 // e três concorrentes fictícios do mesmo ramo.
 const CATEGORY = [
-  [/barbear/, 'barbearias'], [/salao|cabele/, 'salões de beleza'], [/estetica|sobrancelha|manicure|unha|nail/, 'estúdios de beleza'],
+  [/salao|cabele/, 'salões de beleza'], [/estetica|sobrancelha|manicure|unha|nail/, 'estúdios de beleza'],
   [/padaria|panific/, 'padarias'], [/confeit|doceria|doces|bolo/, 'docerias'], [/pizz/, 'pizzarias'], [/hamburg|burger/, 'hamburguerias'],
   [/lanch/, 'lanchonetes'], [/\bbar\b|boteco|buteco|chopp|adega/, 'bares'], [/cafeteria|\bcafe\b/, 'cafeterias'], [/acai|sorvet/, 'açaiterias'],
   [/restaur|cantina|bistr|comida|marmit/, 'restaurantes'], [/odonto|dent/, 'dentistas'], [/clinic|consult|saude|medic/, 'clínicas'],
@@ -84,13 +84,13 @@ const CATEGORY = [
   [/floric/, 'floriculturas'], [/mercad|empori/, 'mercados'], [/loja|store|moda|boutique|roupa|shop/, 'lojas'],
 ];
 const KIND_PLURAL = {
-  saude: 'clínicas', escritorio: 'escritórios', beleza: 'salões e barbearias', treino: 'academias e estúdios', comida: 'restaurantes',
+  saude: 'clínicas', escritorio: 'escritórios', beleza: 'salões e estúdios de beleza', treino: 'academias e estúdios', comida: 'restaurantes',
   servicos: 'prestadores de serviço', loja: 'lojas', aulas: 'escolas e cursos', outro: 'negócios parecidos',
 };
 const RIVAL_NAMES = {
   saude: ['Clínica Sorriso Vivo', 'OdontoCenter Plus', 'Espaço Bem-Estar'],
   escritorio: ['Almeida & Rocha Advogados', 'Contábil Prime', 'Martins Consultoria'],
-  beleza: ['Barbearia Central', 'Studio Navalha', 'Espaço Bella'],
+  beleza: ['Studio Bella', 'Espaço Lumi', 'Salão Aurora'],
   treino: ['Move Studio', 'Fit Center 24h', 'Pilates Equilíbrio'],
   comida: ['Cantina da Praça', 'Burger House', 'Forno a Lenha'],
   servicos: ['Reforma Já', 'Elétrica Rápida', 'Casa & Conserto'],
