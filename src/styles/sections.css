@@ -8,7 +8,6 @@
   display: flex; flex-direction: column;
 }
 .hero__grid { flex: 1; position: relative; display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: clamp(32px, 5vw, 80px); align-items: center; padding-bottom: 28px; }
-.hero__eyebrow { display: inline-flex; align-items: center; gap: 10px; margin-bottom: 26px; font-size: 14px; font-weight: 550; color: var(--t-muted); }
 .hero__title { font-weight: 700; font-size: clamp(48px, 6.2vw, 108px); line-height: .9; letter-spacing: -.055em; }
 .mask { display: block; overflow: hidden; padding-bottom: .08em; margin-bottom: -.04em; }
 .mask__in { display: inline-block; will-change: transform; }
@@ -30,10 +29,6 @@
 .claim__field input::placeholder { color: #8a8a85; font-weight: 500; }
 .claim__field input:focus { outline: none; box-shadow: inset 0 0 0 2px var(--lime); }
 .claim .btn { min-height: 60px; padding: 0 28px; }
-.claim__url { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--t-muted); }
-.claim__url b { color: var(--t-fg); font-weight: 700; }
-.claim__url .ico { width: 15px; height: 15px; color: var(--lime); }
-.claim__sep { opacity: .45; }
 
 .hero__stage { position: relative; height: min(700px, calc(100svh - var(--nav-h) - 180px)); min-height: 500px; }
 .tower {
@@ -65,7 +60,6 @@
 .gsr[hidden] { display: none; }
 .gsr > * { pointer-events: auto; }
 .gsr__tag { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 12px; padding: 7px 14px; border-radius: 999px; background: var(--lime); color: var(--black); font-size: 12.5px; font-weight: 700; }
-.gsr__tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--black); animation: live 2s infinite; }
 .gsr__card { position: relative; width: min(100%, 460px); padding: 14px 14px 16px; border-radius: 26px; overflow: hidden; background: #fff; color: #202124; line-height: 1.3; box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .8); }
 .gsr__bar { display: flex; align-items: center; gap: 10px; height: 46px; padding: 0 6px 0 16px; border-radius: 999px; box-shadow: 0 1px 6px rgba(32, 33, 36, .28); font-size: 16px; }
 .gsr__bar > .ico { flex: none; width: 18px; height: 18px; color: #5f6368; }
@@ -130,11 +124,8 @@
 .truth__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 44px); }
 .truth__item { position: relative; display: grid; align-content: start; gap: 14px; padding-top: 26px; }
 .truth__line { position: absolute; left: 0; right: 0; top: 0; height: 1.5px; background: var(--t-fg); transform-origin: left; }
-.truth__n { display: flex; align-items: baseline; font-weight: 700; letter-spacing: -.065em; line-height: .82; font-variant-numeric: tabular-nums; }
-.truth__n b { font-size: clamp(76px, 10.4vw, 176px); font-weight: 700; }
-.truth__n span { font-size: clamp(34px, 4vw, 64px); margin-left: .06em; letter-spacing: -.03em; }
+.truth__q { font-family: var(--f-serif); font-style: italic; font-weight: 400; font-size: clamp(56px, 6.2vw, 104px); line-height: .95; letter-spacing: -.02em; }
 .truth__t { font-size: clamp(17px, 1.4vw, 20px); line-height: 1.45; max-width: 30ch; }
-.truth__src { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--t-muted); }
 .truth__punch { margin-top: clamp(64px, 8vw, 120px); max-width: 18ch; font-weight: 700; font-size: clamp(36px, 4.6vw, 76px); line-height: .98; letter-spacing: -.045em; }
 
 /* =========================================================
@@ -161,10 +152,6 @@
 .look__phone { position: relative; z-index: 2; width: auto; height: min(620px, 70svh); will-change: transform; }
 .look__screen { position: absolute; inset: 0; visibility: hidden; }
 .look__screen.is-active { visibility: visible; }
-.look__stage .chip--a { left: 2%; top: 18%; transform: rotate(-6deg); }
-.look__stage .chip--b { right: 0; top: 46%; transform: rotate(5deg); background: var(--lime); }
-.look__stage .chip--c { left: 6%; bottom: 14%; transform: rotate(3deg); }
-.look__stage .chip--c b { font-weight: 800; }
 
 /* =========================================================
    4. PROJETOS NO AR
@@ -205,9 +192,6 @@
 .reel__stage { position: relative; display: grid; place-items: center; min-height: 640px; }
 .reel__phone { width: min(320px, 72vw); aspect-ratio: 9 / 18.6; will-change: transform; }
 .reel__phone .phone__screen { background: #000; }
-.reel__badge { position: absolute; z-index: 3; left: 0; top: 6%; width: clamp(130px, 13vw, 180px); height: auto; color: var(--black); }
-.reel__badge text { font-size: 15.5px; font-weight: 700; letter-spacing: .18em; fill: currentColor; }
-.reel__badge use { color: var(--black); }
 .reel__sound {
   position: absolute; z-index: 4; left: 50%; bottom: 2%; transform: translateX(-50%);
   display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 10px 18px; border-radius: 999px;
@@ -253,7 +237,6 @@
 .sim__result { display: grid; gap: 22px; align-content: start; padding: clamp(24px, 3vw, 40px); border-radius: 32px; background: var(--black-2); color: var(--white); box-shadow: inset 0 0 0 1px rgba(244, 244, 241, .08); }
 .sim__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 .sim__chip { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(255, 91, 31, .14); color: #ffb08f; font-size: 13px; font-weight: 700; }
-.sim__chipdot { width: 8px; height: 8px; border-radius: 50%; background: var(--loss); }
 .sim__period { font-size: 13px; font-weight: 600; color: var(--gray); }
 .sim__big { font-weight: 700; font-size: clamp(52px, 6.6vw, 108px); line-height: .95; letter-spacing: -.055em; color: var(--loss); font-variant-numeric: tabular-nums; }
 .sim__kpis { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
@@ -453,7 +436,6 @@
    RESPONSIVO
    ========================================================= */
 @media (max-width: 1180px) {
-  .look__stage .chip { display: none; }
 }
 
 @media (max-width: 1080px) {
@@ -499,5 +481,5 @@
   .work__card { padding: 10px; border-radius: 30px; }
   .work__stage { min-height: 540px; }
   .receipt { padding: 24px 20px 34px; font-size: 13.5px; }
-  .truth__n b { font-size: 96px; }
+  .truth__q { font-size: 64px; }
 }

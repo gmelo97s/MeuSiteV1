@@ -49,7 +49,7 @@ export function heroIntro() {
   if (reduced) return;
   const tl = gsap.timeline({ delay: 0.05 })
     .from('.hero__title .mask__in', { yPercent: 112, duration: 1.15, ease: 'power4.out', stagger: 0.09 })
-    .from('.hero__eyebrow, .hero__lede, .claim, .deck-dots', { y: 26, opacity: 0, duration: 0.9, ease: 'power4.out', stagger: 0.08, clearProps: 'transform,opacity' }, '-=0.85')
+    .from('.hero__lede, .claim, .deck-dots', { y: 26, opacity: 0, duration: 0.9, ease: 'power4.out', stagger: 0.08, clearProps: 'transform,opacity' }, '-=0.85')
     .from('.ticker', { opacity: 0, duration: 1, ease: 'power2.out', clearProps: 'opacity' }, '-=0.6');
   introCards?.(tl);
 }

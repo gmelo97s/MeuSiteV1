@@ -43,7 +43,7 @@ export function initSearchSim() {
   box.setAttribute('aria-label', 'Simulação de busca');
   box.hidden = true;
   box.innerHTML = `
-    <p class="gsr__tag"><i aria-hidden="true"></i>Simulação: é isso que o cliente encontra hoje</p>
+    <p class="gsr__tag">Simulação: é isso que o cliente encontra hoje</p>
     <div class="gsr__card">
       <div class="gsr__bar">
         <svg class="ico" aria-hidden="true"><use href="#i-search"/></svg>

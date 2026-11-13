@@ -8,7 +8,6 @@
   .hero { min-height: 0; padding: calc(var(--nav-h) + 44px) 0 0; }
   .hero__grid { grid-template-columns: minmax(0, 1fr); gap: 0; padding-bottom: 22px; }
   .hero__copy { display: contents; }
-  .hero__eyebrow { order: 0; margin-bottom: 18px; font-size: 13px; }
   .hero__title { order: 1; font-size: clamp(44px, 12.4vw, 70px); line-height: .9; letter-spacing: -.06em; }
   .hero__lede { order: 2; margin: 18px 0 0; max-width: 34ch; font-size: 16.5px; line-height: 1.45; }
 
@@ -37,7 +36,6 @@
   .claim__field input { height: 50px; padding: 0 6px 0 40px; border-radius: 999px; background: transparent; box-shadow: none; font-size: 16px; }
   .claim__field input:focus { box-shadow: none; }
   .claim .btn, .claim__row .btn { width: auto; min-height: 50px; padding: 0 18px; font-size: 15px; white-space: nowrap; }
-  .claim__url { font-size: 12.5px; }
 
   .ticker { margin-top: 4px; }
 }

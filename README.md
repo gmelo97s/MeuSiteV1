@@ -69,7 +69,15 @@ Depois é só acrescentar o projeto em `PROJECTS`, no `src/js/data.js`.
 - `src/js/chat.js`, `extras.js`, `exit.js`: conversa no WhatsApp, nota do preço, dúvidas, busca do final e pop-up de saída.
 - `src/js/sheets.js`: no celular, cada seção desliza por cima da anterior.
 
-## Fontes dos números
+## Ordem da página
 
-- 0,05 s pra formar a primeira impressão de um site: Lindgaard e outros, 2006 (*Behaviour & Information Technology*).
-- 53% das visitas no celular abandonadas quando a página leva mais de 3 s: Google, 2016.
+A página leva quem ainda não sabe que tem um problema até o WhatsApp, um degrau por seção:
+
+1. Topo: o título e a busca simulada com o nome do negócio.
+2. As frases que o dono ouve toda semana ("Quanto é?", "Tem site?", "Vou pensar.").
+3. A conta: quanto isso custa, com os números da própria pessoa.
+4. O motivo: cliente compra o que parece melhor.
+5. O que a CODEM faz, projetos no ar, preço, como funciona, quem faz e vídeo.
+6. Dúvidas e o final ("E não achou você.").
+
+Sem etiquetas com bolinha, ícones decorativos ou selos: o visual fica limpo de propósito.

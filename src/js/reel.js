@@ -38,10 +38,6 @@ export function initReel() {
   });
 
   if (reduced) return;
-  gsap.to('.reel__badge', {
-    rotate: 360, ease: 'none',
-    scrollTrigger: { trigger: '.reel', start: 'top bottom', end: 'bottom top', scrub: 0.5 },
-  });
   gsap.fromTo('.reel__phone', { rotate: -9, yPercent: 10, scale: 0.9 }, {
     rotate: 4, yPercent: -6, scale: 1, ease: 'none',
     scrollTrigger: { trigger: '.reel', start: 'top bottom', end: 'bottom top', scrub: true },

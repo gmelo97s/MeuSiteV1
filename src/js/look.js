@@ -118,11 +118,6 @@ export function initLook({ lenis } = {}) {
           bars.forEach((b, j) => gsap.set(b, { scaleX: Math.max(0, Math.min(1, p - j)) }));
         },
       });
-      // o celular sobe devagar e as etiquetas flutuam em profundidades diferentes
-      const tl = gsap.timeline({ scrollTrigger: { trigger: pin, start: 'top top', end: () => `+=${window.innerHeight * 0.8 * n}`, scrub: 0.6 } });
-      tl.fromTo('.look__stage .chip--a', { y: 40 }, { y: -90, ease: 'none' }, 0)
-        .fromTo('.look__stage .chip--b', { y: 90 }, { y: -40, ease: 'none' }, 0)
-        .fromTo('.look__stage .chip--c', { y: 20 }, { y: -140, ease: 'none' }, 0);
       return () => { st = null; mode = 'auto'; };
     }
     mode = 'auto';
