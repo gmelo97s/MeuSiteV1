@@ -1,6 +1,6 @@
-# CODEM · Sites que vendem
+# CODEM · Sites com estética de agência, entregues em 24 horas
 
-Página de vendas da CODEM. Leva o dono de qualquer negócio de "nem sei que tenho um problema" até "quero ver como fica o meu", com a prévia grátis como convite.
+Página de vendas da CODEM. Mostra ao dono do negócio como fica um site com cara de aplicativo, prova com sites reais no ar e leva para a prévia grátis pelo WhatsApp. Ele só paga depois de ver o site pronto e no ar.
 
 ## Rodar
 
@@ -10,35 +10,44 @@ npm run dev      # desenvolvimento
 npm run build    # gera dist/ (é o que a Vercel publica)
 ```
 
-A Vercel publica o projeto origemdigitalv1 a partir da branch `main`.
+A Vercel publica a partir da branch `main`.
 
 ## A página, seção por seção
 
-1. Topo: "Tem gente pior que você levando os seus clientes." e o botão da prévia grátis.
-2. A busca: vídeo de uma busca em que três concorrentes aparecem e o negócio da pessoa não.
-3. Antes e depois: sem site, site ruim e com a CODEM, lado a lado.
-4. A conta: quanto a pessoa perde por ano, com os números dela.
-5. Projetos no ar.
-6. A prévia grátis: três passos e uma conversa de WhatsApp de exemplo.
-7. Quem faz, dúvidas e o convite final.
+1. Topo: a promessa, o botão "Quero ver como fica o meu" e um celular em 3D navegando por sites reais (embaixo, só o segmento de cada um).
+2. Pense na última vez que você escolheu um lugar novo: dois celulares lado a lado, o concorrente com site e você com link e PDF.
+3. Cliente não compra o melhor, compra o que parece melhor: antes e depois de uma hamburgueria, um bar, uma loja de bolsas e uma adega.
+4. Quanto custa ficar apagado: a pessoa ajusta clientes por semana e ticket e vê quanto vai para o concorrente.
+5. Criamos tudo aquilo que você já imaginou: os recursos giram em órbita e cada um abre um vídeo num carrossel.
+6. Sites que já estão no ar: portfólio por segmento, com notebook e celular.
+7. Agência cobra antes e mostra depois: a comparação com a CODEM.
+8. Como funciona: quatro passos e uma conversa de WhatsApp de exemplo.
+9. Prazer, Guilherme.
+10. Oferta: tudo o que um site premium tem, somado, e o preço da CODEM.
+11. Dúvidas e rodapé com a marca.
+
+O botão "Quero ver como fica o meu" abre um formulário de três perguntas, uma por vez, que monta a mensagem e envia pelo WhatsApp.
 
 ## Onde mexer
 
-| Quero mudar… | Arquivo |
+Tudo fica em `index.html`: textos, estilos (variáveis de cor no topo do `<style>`) e o script no fim do arquivo.
+
+| Quero mudar… | Onde |
 |---|---|
-| Textos | `index.html` |
-| Cores, fontes e espaçamentos | `src/styles/main.css` (variáveis no topo) |
-| WhatsApp, mensagem pronta, projetos, conversa de exemplo e valores da conta | `src/main.js` |
-| Vídeo do topo | `public/videos/topo-m.mp4` e capa `.webp` |
-| Vídeo da busca | `public/videos/busca-m.mp4` e capa `.webp` |
-| Telas de "sem site" e "site ruim" | `public/img/antes-sem-site.webp` e `antes-site-ruim.webp` |
+| Número do WhatsApp | `const PHONE` no script e os links `wa.me/5511937654207` |
+| Recursos do carrossel | lista `const F` no script |
+| Antes e depois | lista `const CASES` no script |
+| Projetos do portfólio | lista `const P` no script |
+| Sites que passam no celular do topo | vídeos `.hero-vid` logo depois do menu |
+| Vídeos e imagens | `public/media/` |
+| Imagem que aparece ao compartilhar o link | `public/og.jpg` (1200 × 630) |
 
 ## Identidade
 
-- Preto `#0A0A0A`, off-white `#F4F4F1`, azul `#3355FF` e laranja `#FF5B1F`.
-- Inter nos textos e Instrument Serif itálica nas palavras de destaque.
-- Sem etiquetas acima dos títulos, sem ícones decorativos e sem menu: a página respira.
+- Branco como cor principal e preto como segunda cor. Laranja `#FF5B1F` e azul `#3355FF` só quando precisam chamar atenção.
+- Unbounded nos títulos, Geist nos textos e Instrument Serif itálica nos destaques.
+- Formas arredondadas que mudam de forma ligam uma seção à outra.
 
-## Leveza no celular
+## Bibliotecas
 
-Nada de rolagem forçada nem seção presa na tela. As entradas são só transições de CSS, os vídeos tocam apenas quando aparecem e a abertura dura cerca de 1 segundo, só na primeira visita.
+GSAP com ScrollTrigger, Lenis (rolagem suave no computador) e Three.js (celular em 3D), carregadas por CDN. O CSS sai sem minificação de propósito, para o site publicado ficar idêntico ao que foi testado.
