@@ -12,7 +12,7 @@
 <meta property="og:locale" content="pt_BR">
 <meta property="og:site_name" content="CODEM">
 <meta property="og:title" content="Criamos à mão o site sob medida que não deixa venda escapar">
-<meta property="og:description" content="Pronto em 24 horas. Você não paga para ver: só paga depois de aprovar o site no ar.">
+<meta property="og:description" content="O site mais bonito, rápido e calculado para vender, seja qual for o seu negócio. Pronto em 24 horas.">
 <meta property="og:image" content="/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&family=Geist:wght@400..700&family=Unbounded:wght@500..700&display=swap">
-<link rel="preload" as="image" href="/media/f-carrinho.jpg">
+<link rel="preload" as="image" href="/media/hamb-m.jpg">
 <style>
 :root{
   --bg:#fff;--paper:#f5f5f7;--line:#e4e4e7;
@@ -119,7 +119,7 @@ input{font:inherit}
 .alt__s.is-on{opacity:1;visibility:visible}
 .alt em{font-style:normal;color:var(--accent)}
 .alt .w,.cap__t .w{display:inline-block;will-change:transform,opacity,filter}
-.intro__sub{max-width:27em;color:#b4b4ba;font-size:clamp(1rem,.95rem + .3vw,1.2rem);line-height:1.5;text-wrap:balance}
+.intro__sub{max-width:32em;color:#b4b4ba;font-size:clamp(1rem,.95rem + .3vw,1.2rem);line-height:1.5;text-wrap:balance}
 .intro__cta{display:grid;justify-items:center;gap:10px}
 .intro .micro{color:#8e8e93}
 .intro__peek{position:relative;z-index:1;flex:1 0 auto;width:100%;min-height:16svh}
@@ -357,29 +357,6 @@ input{font:inherit}
 }
 
 /* ===== onde você está perdendo vendas: a conta no próprio texto ===== */
-.loss{position:relative;padding:clamp(56px,7vw,110px) 0 clamp(120px,13vw,190px);background:var(--accent);color:var(--ink)}
-.loss__t{max-width:13em;font-family:var(--display);font-weight:600;font-size:clamp(2rem,1rem + 3.6vw,4.4rem);line-height:1;letter-spacing:-.06em;text-wrap:balance}
-.loss__hint{margin-top:16px;font-weight:600;color:rgba(11,11,12,.72)}
-.cases{display:flex;flex-wrap:wrap;gap:10px;max-width:980px;margin-top:16px}
-.cases button{min-height:46px;padding:0 18px;border-radius:999px;box-shadow:inset 0 0 0 2px var(--ink);font-weight:600;font-size:.96rem;color:var(--ink);transition:background .25s,color .25s,transform .2s}
-.cases button:hover{background:rgba(11,11,12,.08)}
-.cases button:active{transform:scale(.96)}
-.cases button[aria-checked="true"]{background:var(--ink);color:#fff}
-.calc{max-width:31em;margin-top:clamp(26px,3.4vw,46px);font-family:var(--display);font-weight:500;font-size:clamp(1.3rem,.85rem + 1.55vw,2.4rem);line-height:1.7;letter-spacing:-.035em;text-wrap:pretty}
-.nf{display:inline-flex;align-items:center;gap:.06em;height:1.6em;padding:0 .14em;border-radius:999px;background:#fff;vertical-align:.04em;line-height:1;white-space:nowrap;box-shadow:0 12px 26px -14px rgba(0,0,0,.5)}
-.nf output{min-width:1.7em;padding:0 .14em;text-align:center;font-weight:700;font-variant-numeric:tabular-nums}
-.nf--money output{min-width:3.9em}
-.nf button{display:grid;place-items:center;width:1.25em;height:1.25em;border-radius:50%;background:var(--ink);color:#fff;transition:transform .2s,background .2s}
-.nf button:hover{background:#2a2a2e}
-.nf button:active{transform:scale(.88)}
-.nf button svg{width:.6em;height:.6em}
-.why{padding:.06em .32em;border-radius:.28em;background:var(--ink);color:#fff;-webkit-box-decoration-break:clone;box-decoration-break:clone}
-.why #why-t{display:inline}
-.loss__n{display:flex;align-items:baseline;flex-wrap:wrap;gap:.1em .35em;margin-top:clamp(16px,2vw,26px);font-family:var(--display);font-weight:700;letter-spacing:-.065em;line-height:.95}
-.loss__n b{font-size:clamp(3.2rem,1.3rem + 7.2vw,9.2rem);font-variant-numeric:tabular-nums}
-.loss__n span{font-size:clamp(1.2rem,.9rem + 1vw,2rem);font-weight:600;letter-spacing:-.04em}
-.loss__sub{margin-top:14px;font-weight:600;font-size:clamp(1rem,.95rem + .3vw,1.2rem)}
-.loss .btn{margin-top:clamp(26px,3vw,40px)}
 @media (max-width:560px){.cases{gap:8px}.cases button{min-height:40px;padding:0 14px;font-size:.86rem}.calc{line-height:1.85}.nf{height:1.75em}.nf button{width:1.4em;height:1.4em}.loss .btn{width:100%}}
 
 /* ===== sites que já estão vendendo ===== */
@@ -751,6 +728,203 @@ input{font:inherit}
 .loader__logo{position:relative;width:min(560px,72vw);height:auto;overflow:visible;color:#fff}
 .loader__logo g{opacity:0}
 
+/* ===== simulador de perdas, com cara de app de banco ===== */
+.loss{position:relative;padding:clamp(56px,7vw,100px) 0 clamp(120px,13vw,190px);background:#000;color:#fff}
+.loss::before{content:"";position:absolute;right:0;bottom:0;width:min(820px,90vw);height:min(820px,90vw);background:radial-gradient(closest-side,rgba(255,91,31,.14),rgba(255,91,31,0));pointer-events:none}
+.loss__grid{position:relative;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(32px,5vw,88px);align-items:start}
+.loss__t{max-width:10em;font-family:var(--display);font-weight:600;font-size:clamp(2rem,1rem + 3vw,3.9rem);line-height:1.02;letter-spacing:-.055em;text-wrap:balance}
+.loss__lead{max-width:26em;margin-top:18px;color:#8e8e93;font-size:clamp(1rem,.95rem + .25vw,1.15rem)}
+.loss__lbl{margin-top:clamp(28px,3.4vw,44px);color:#8e8e93;font-size:.9rem;font-weight:500}
+.cases{display:grid;margin-top:10px;border-top:1px solid #1c1c1e}
+.cases button{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:0 4px;border-bottom:1px solid #1c1c1e;text-align:left;font-size:1.02rem;font-weight:500;color:#aeaeb2;transition:color .25s,background .25s}
+.cases button i{position:relative;flex:none;width:22px;height:22px;border-radius:50%;box-shadow:inset 0 0 0 2px #3a3a3c;transition:box-shadow .25s}
+.cases button i::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--accent);transform:scale(0);transition:transform .35s var(--ease)}
+.cases button:hover{color:#fff}
+.cases button[aria-checked="true"]{color:#fff}
+.cases button[aria-checked="true"] i{box-shadow:inset 0 0 0 2px var(--accent)}
+.cases button[aria-checked="true"] i::after{transform:scale(1)}
+.cases button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:10px}
+.sim{position:relative;border-radius:28px;background:#0c0c0d;box-shadow:inset 0 0 0 1px #1f1f22,0 50px 90px -50px rgba(0,0,0,.9)}
+.sim__in{display:grid;gap:clamp(18px,2vw,24px);padding:clamp(22px,2.4vw,30px)}
+.sim__f{display:grid;gap:12px}
+.sim__row{display:flex;align-items:baseline;justify-content:space-between;gap:16px;color:#8e8e93;font-size:.95rem;font-weight:500}
+.sim__row output{flex:none;color:#fff;font-size:clamp(1.25rem,1.1rem + .5vw,1.6rem);font-weight:600;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.sim__range{--p:0%;-webkit-appearance:none;appearance:none;display:block;width:100%;height:28px;margin:0;background:transparent;cursor:pointer}
+.sim__range::-webkit-slider-runnable-track{height:6px;border-radius:6px;background:linear-gradient(90deg,var(--accent) var(--p),#2c2c2e var(--p))}
+.sim__range::-moz-range-track{height:6px;border-radius:6px;background:#2c2c2e}
+.sim__range::-moz-range-progress{height:6px;border-radius:6px;background:var(--accent)}
+.sim__range::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:26px;height:26px;margin-top:-10px;border:0;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.55);transition:box-shadow .2s,transform .2s}
+.sim__range::-moz-range-thumb{width:26px;height:26px;border:0;border-radius:50%;background:#fff;box-shadow:0 2px 10px rgba(0,0,0,.55)}
+.sim__range:active::-webkit-slider-thumb{transform:scale(1.08);box-shadow:0 2px 10px rgba(0,0,0,.55),0 0 0 8px rgba(255,91,31,.22)}
+.sim__range:focus{outline:none}
+.sim__range:focus-visible::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(255,91,31,.6)}
+.sim__range:focus-visible::-moz-range-thumb{box-shadow:0 0 0 4px rgba(255,91,31,.6)}
+.sim__out{display:grid;gap:14px;padding:clamp(22px,2.4vw,30px);border-top:1px solid #1f1f22}
+.sim__k{color:#8e8e93;font-size:.95rem;font-weight:500}
+.sim__n{display:flex;align-items:baseline;gap:.2em;margin-top:-6px;line-height:1;font-variant-numeric:tabular-nums}
+.sim__n small{font-size:clamp(1.3rem,1rem + 1vw,2rem);font-weight:500;color:#8e8e93;letter-spacing:-.02em}
+.sim__n b{font-size:clamp(3rem,1.6rem + 4.2vw,5rem);font-weight:600;letter-spacing:-.05em}
+.sim__list{display:grid;border-radius:18px;background:#141416}
+.sim__list div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 18px}
+.sim__list div + div{border-top:1px solid #1f1f22}
+.sim__list dt{color:#8e8e93;font-size:.95rem}
+.sim__list dd{font-size:1.1rem;font-weight:600;letter-spacing:-.015em;font-variant-numeric:tabular-nums}
+.sim__list .is-y dd{color:var(--accent);font-size:1.3rem}
+.sim__why{display:grid;gap:4px;color:#8e8e93;font-size:.9rem}
+.sim__why b{color:#fff;font-weight:500;font-size:1rem}
+.sim__cta{width:100%;margin-top:4px}
+@media (max-width:899px){
+  .loss__grid{grid-template-columns:minmax(0,1fr)}
+  .cases{grid-template-columns:1fr 1fr;gap:8px;border-top:0}
+  .cases button{min-height:54px;padding:0 12px;border:0;border-radius:14px;background:#111113;font-size:.9rem;line-height:1.2}
+  .cases button i{width:18px;height:18px}
+  .cases button i::after{inset:4px}
+  .cases button[aria-checked="true"]{background:#1b110c;box-shadow:inset 0 0 0 1.5px var(--accent)}
+  .sim__cta{white-space:normal;text-align:center}
+}
+
+/* destaque entre recursos: anel na tela e etiqueta ao lado do celular */
+.spot{fill:rgba(255,91,31,.1);stroke:var(--accent);stroke-width:2.5;stroke-linejoin:round}
+.spot-ln{fill:none;stroke:var(--accent);stroke-width:2;stroke-linecap:round}
+.chip{position:absolute;left:0;top:0;display:flex;align-items:center;gap:10px;padding:11px 18px 11px 14px;border-radius:999px;background:rgba(18,18,20,.92);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 18px 40px -18px rgba(0,0,0,.85);color:#fff;font-weight:500;font-size:15px;letter-spacing:-.01em;white-space:nowrap;will-change:transform}
+.chip i{flex:none;width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,91,31,.22)}
+
+/* ===== comercial no notebook: o anúncio que o cliente veria, saindo da tela ===== */
+.ad{position:relative;padding:clamp(72px,9vw,140px) 0 clamp(110px,12vw,180px);background:#000;color:#fff;overflow:clip}
+.ad::before{content:"";position:absolute;left:50%;top:46%;width:min(1500px,160vw);height:min(1000px,120vw);transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(255,255,255,.085),rgba(255,255,255,0));pointer-events:none}
+.ad__stage{position:relative;width:min(1080px,94vw);margin:0 auto}
+.mbp{position:relative;perspective:2600px;perspective-origin:50% 100%}
+.mbp::after{content:"";position:absolute;left:8%;right:8%;bottom:-46px;height:70px;background:radial-gradient(closest-side,rgba(255,91,31,.32),rgba(255,91,31,0));filter:blur(8px);pointer-events:none}
+.mbp__lid{position:relative;z-index:1;width:86%;margin:0 auto;padding:1.55% 1.55% 2.2%;border-radius:22px 22px 6px 6px;background:#0b0b0c;box-shadow:inset 0 0 0 1.5px #2e2e33,0 0 0 2.5px #9a9aa1,0 0 0 3.5px #4b4b51;transform-origin:50% 100%}
+.mbp__screen{position:relative;aspect-ratio:16/10;border-radius:10px;overflow:hidden;background:#000;isolation:isolate}
+.mbp__glare{position:absolute;inset:0;z-index:5;background:linear-gradient(118deg,rgba(255,255,255,.075) 0%,rgba(255,255,255,0) 34%);pointer-events:none}
+.mbp__cam{position:absolute;left:50%;top:.55%;width:7px;height:7px;margin-left:-3.5px;border-radius:50%;background:#18181c;box-shadow:inset 0 0 0 1.5px #2a2a31}
+.mbp__base{position:relative;z-index:2;width:100%;height:clamp(10px,1.9vw,22px);margin-top:-1px;border-radius:3px 3px 50% 50% / 3px 3px 100% 100%;background:linear-gradient(180deg,#e4e4e8 0%,#b4b4ba 48%,#6f6f76 100%);box-shadow:0 34px 60px -24px rgba(0,0,0,.95)}
+.mbp__base i{position:absolute;left:50%;top:0;width:12%;height:44%;transform:translateX(-50%);border-radius:0 0 14px 14px;background:linear-gradient(180deg,#86868d,#b9b9bf)}
+.film{position:absolute;left:0;top:0;width:1600px;height:1000px;transform-origin:0 0;background:radial-gradient(circle at 74% 42%,rgba(255,91,31,.16),rgba(255,91,31,0) 52%),#050505;color:#fff;font-family:var(--display);overflow:hidden}
+.f-chrome{position:absolute;left:46px;right:46px;top:30px;z-index:3}
+.f-bars{display:flex;gap:10px}
+.f-bars i{position:relative;flex:1;height:6px;border-radius:6px;background:rgba(255,255,255,.24);overflow:hidden}
+.f-bars b{position:absolute;inset:0;background:#fff;transform-origin:0 50%;transform:scaleX(0)}
+.f-who{display:flex;align-items:center;gap:16px;margin-top:22px;font-family:var(--sans)}
+.f-av{display:grid;place-items:center;width:60px;height:60px;border-radius:50%;background:#fff;color:#000}
+.f-av svg{width:42px;height:auto}
+.f-who b{font-size:28px;font-weight:600;letter-spacing:-.01em}
+.f-who small{font-size:24px;color:rgba(255,255,255,.62)}
+.f-hook{position:absolute;left:0;right:0;top:300px;display:grid;justify-items:center;gap:30px;text-align:center;opacity:0}
+.f-hook__a{font-size:210px;font-weight:700;letter-spacing:-.065em;line-height:1}
+.f-hook__b{max-width:1100px;font-family:var(--sans);font-size:56px;line-height:1.25;font-weight:600;letter-spacing:-.02em;color:rgba(255,255,255,.78)}
+.fc{position:absolute;left:112px;top:260px;width:900px;display:grid;font-size:84px;font-weight:700;line-height:1.04;letter-spacing:-.055em;opacity:0}
+.fl{display:block;overflow:hidden;padding:0 0 .1em;margin-bottom:-.1em}
+.fw{display:inline-block}
+.fa{color:var(--accent)}
+.f-out{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:34px;text-align:center;opacity:0}
+.f-out__logo{width:560px;height:auto;color:#fff}
+.f-out__t{font-size:92px;font-weight:700;line-height:1.02;letter-spacing:-.055em}
+.f-out__t span{color:var(--accent)}
+.f-out__s{font-family:var(--sans);font-size:44px;font-weight:500;color:rgba(255,255,255,.75)}
+.f-out__btn{display:inline-flex;align-items:center;height:104px;padding:0 54px;border-radius:999px;background:var(--accent);color:#000;font-family:var(--sans);font-size:40px;font-weight:600}
+.f-wipe{position:absolute;inset:0;z-index:4;background:var(--accent);transform:translateX(101%)}
+.pop{position:absolute;left:0;top:0;width:10px;height:10px;z-index:3;pointer-events:none;clip-path:inset(0 round 10px);opacity:0}
+.pop__in{position:absolute;left:0;top:0;width:1600px;height:1000px;transform-origin:0 0}
+.ph{position:absolute;left:1030px;top:150px;width:360px;height:740px;transform-origin:50% 60%;will-change:transform}
+.ph__back,.ph__thumb{position:absolute;left:-80px;top:240px;width:620px;height:900px;overflow:visible}
+.ph__back{z-index:0}
+.ph__thumb{z-index:3}
+.sk{fill:#c98a63}
+.sk2{fill:#a9694a}
+.crease{fill:none;stroke:#9e6243;stroke-width:5;stroke-linecap:round}
+.nail{fill:#e9bb9d}
+.ph__body{position:absolute;inset:0;z-index:1;border-radius:54px;background:#1b1b1f;box-shadow:inset 0 0 0 2px #45454c,inset 0 0 0 7px #0b0b0c,0 40px 80px -30px rgba(0,0,0,.9)}
+.ph__scr{position:absolute;inset:12px;border-radius:42px;overflow:hidden;background:#fff;font-family:var(--sans);color:#111}
+.ph__sb{position:absolute;left:0;right:0;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;height:62px;padding:8px 36px 0;font-size:22px}
+.ph__sb::after{content:"";position:absolute;left:50%;top:14px;width:112px;height:32px;margin-left:-56px;border-radius:20px;background:#000}
+.ph__sb i{width:40px;height:18px;border-radius:5px;box-shadow:inset 0 0 0 2px currentColor}
+.ui{position:absolute;inset:0;padding:86px 22px 22px;opacity:0;visibility:hidden}
+.ui.is-on{opacity:1;visibility:visible}
+.us__bar{display:flex;align-items:center;gap:12px;height:66px;padding:0 22px;border-radius:33px;background:#f1f3f4;font-size:24px;color:#202124}
+.us__bar svg{flex:none;width:26px;height:26px;color:#5f6368}
+.us__q{white-space:nowrap;overflow:hidden}
+.us__caret{flex:none;width:2px;height:28px;margin-left:-8px;background:#1a73e8}
+.us__res{display:grid;gap:14px;margin-top:24px}
+.us__card{display:grid;gap:5px;padding:18px 20px;border-radius:18px;background:#fff;box-shadow:inset 0 0 0 1.5px #e3e5e8;opacity:0}
+.us__card b{font-size:25px;font-weight:600;color:#1a0dab}
+.us__card span{font-size:20px;color:#4d5156}
+.us__card small{font-size:17px;font-weight:700;color:#202124}
+.us__none{margin-top:6px;padding:0 6px;font-size:20px;line-height:1.3;color:#9aa0a6;opacity:0}
+.ui--bio{display:flex;flex-direction:column;align-items:center;gap:13px;padding-top:100px;background:linear-gradient(180deg,#dfe7dc,#d4dcea)}
+.ub__av{width:112px;height:112px;border-radius:50%;background:radial-gradient(circle at 50% 38%,#e6c9a8 0 26%,transparent 27%),radial-gradient(circle at 50% 110%,#e6c9a8 0 52%,transparent 53%),#b9b2a6}
+.ui--bio b{font-size:25px}
+.ui--bio small{margin-bottom:12px;font-size:20px;color:#5b6168}
+.ub__btn{display:grid;place-items:center;width:100%;height:70px;border-radius:14px;background:#fff;font-size:22px;font-weight:600;color:#222;box-shadow:0 3px 0 rgba(0,0,0,.08)}
+.ub__wait{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:18px;background:rgba(255,255,255,.94);font-size:22px;color:#444;opacity:0}
+.ub__wait i,.uo__spin{border-radius:50%;animation:adspin .8s linear infinite}
+.ub__wait i{width:56px;height:56px;border:5px solid #ddd;border-top-color:#666}
+@keyframes adspin{to{transform:rotate(360deg)}}
+.ui--pdf{background:#2a2a2d;color:#fff}
+.up__file{display:flex;align-items:center;gap:16px;padding:18px;border-radius:18px;background:#3a3a3f}
+.up__ic{display:grid;place-items:center;flex:none;width:58px;height:70px;border-radius:9px;background:#e5484d;font-style:normal;font-weight:800;font-size:18px}
+.up__file b{display:block;font-size:19px;font-weight:600}
+.up__file small{font-size:17px;color:#a1a1a6}
+.up__bar{height:10px;margin-top:22px;border-radius:5px;background:#4a4a50;overflow:hidden}
+.up__bar i{display:block;width:0;height:100%;background:#4f8cff}
+.up__pct{display:block;margin-top:10px;font-size:18px;color:#bdbdc2}
+.up__page{position:absolute;left:48px;right:48px;top:290px;display:grid;align-content:start;gap:9px;padding:24px 26px;height:390px;background:#fff;transform-origin:22% 16%;opacity:0}
+.up__page b{margin-bottom:6px;font-family:Georgia,serif;font-size:15px;color:#111}
+.up__page i{display:block;height:5px;border-radius:2px;background:#c2c2c2}
+.ui--old{background:#fff}
+.uo__url{display:flex;align-items:center;gap:10px;height:54px;padding:0 18px;border-radius:12px;background:#f1f1f1;font-size:19px;color:#555;white-space:nowrap}
+.uo__url span{font-weight:700;color:#d93025}
+.uo__spin{width:72px;height:72px;margin:230px auto 0;border:7px solid #e6e6e6;border-top-color:#9a9a9a}
+.uo__page{position:absolute;left:22px;right:22px;top:160px;opacity:0;font-family:"Times New Roman",Times,serif;color:#000}
+.uo__page h4{margin-left:34px;font-size:30px;font-weight:700;color:#0000ee;text-decoration:underline}
+.uo__img{width:62%;height:150px;margin:16px 0 0 76px;background:repeating-linear-gradient(45deg,#cfcfcf 0 10px,#e2e2e2 10px 20px)}
+.uo__page p{margin:14px 0 0 12px;font-size:22px;color:#551a8b;text-decoration:underline}
+.uo__page .uo__small{font-size:16px;color:#777;text-decoration:none}
+.uo__box{width:80%;height:90px;margin:16px 0 0 40px;background:#ffff9c;border:3px ridge #9a9a9a}
+.uo__box--b{width:52%;height:60px;margin-left:120px;background:#a6d1ff}
+.uo__el{will-change:transform}
+.ui--good{padding:0;background:#f6ead8}
+.ui--good img{display:block;width:100%;height:auto}
+.ph__tap{position:absolute;left:0;top:0;z-index:4;width:72px;height:72px;margin:-36px 0 0 -36px;border-radius:50%;background:rgba(255,255,255,.5);box-shadow:0 0 0 3px rgba(255,255,255,.85);opacity:0}
+.ad__cta{position:relative;display:grid;justify-items:center;gap:14px;margin-top:clamp(56px,6vw,84px);text-align:center}
+.ad .micro{color:#8e8e93}
+
+/* ===== três sites em um: o mesmo site no computador, no tablet e no celular ===== */
+.tri{position:relative;padding:clamp(60px,8vw,120px) 0 clamp(120px,13vw,190px);background:#fff;overflow:clip}
+.tri__head{display:grid;justify-items:center;gap:16px;max-width:820px;margin:0 auto;text-align:center}
+.tri__t{font-family:var(--display);font-weight:600;font-size:clamp(2rem,1rem + 3vw,3.9rem);line-height:1.02;letter-spacing:-.055em}
+.tri__sub{max-width:34em;color:var(--mute);font-size:clamp(1rem,.95rem + .25vw,1.15rem);text-wrap:balance}
+.tri__stage{position:relative;width:min(1180px,100%);aspect-ratio:1180/690;margin:clamp(40px,5vw,72px) auto 0}
+.dv{position:absolute;will-change:transform}
+.dv__frame{position:relative;background:#0e0e10;box-shadow:inset 0 0 0 1.5px #3b3b41,0 50px 80px -40px rgba(0,0,0,.45),0 18px 30px -18px rgba(0,0,0,.3)}
+.dv__scr{position:relative;overflow:hidden;background:#f6ead8}
+.dv__scr img{display:block;width:100%;height:auto;will-change:transform}
+.dv--d{left:17%;top:0;width:66%;z-index:1}
+.dv--d .dv__frame{padding:1.15%;border-radius:16px}
+.dv--d .dv__scr{aspect-ratio:16/10;border-radius:5px}
+.dv__stand{display:block;width:15%;height:clamp(28px,4.6vw,62px);margin:0 auto;background:linear-gradient(90deg,#a9a9b0,#e9e9ed 45%,#b3b3ba);clip-path:polygon(20% 0,80% 0,94% 100%,6% 100%)}
+.dv__foot{display:block;width:34%;height:clamp(6px,.8vw,10px);margin:0 auto;border-radius:6px 6px 3px 3px;background:linear-gradient(180deg,#ececf0,#a3a3aa);box-shadow:0 12px 24px -10px rgba(0,0,0,.4)}
+.dv--t{left:2%;top:31%;width:24%;z-index:2}
+.dv--t .dv__frame{padding:4.2%;border-radius:clamp(16px,2.4vw,30px)}
+.dv--t .dv__scr{aspect-ratio:820/1180;border-radius:clamp(6px,.9vw,12px)}
+.dv--m{left:81%;top:37%;width:15%;z-index:3}
+.dv--m .dv__frame{padding:5.5%;border-radius:clamp(16px,2.6vw,34px)}
+.dv--m .dv__scr{aspect-ratio:390/844;border-radius:clamp(11px,1.9vw,24px)}
+.dv__island{position:absolute;left:50%;top:4.2%;width:30%;height:3.2%;transform:translateX(-50%);border-radius:20px;background:#000}
+.tri__list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,48px);max-width:1080px;margin:clamp(34px,4vw,56px) auto 0;list-style:none;text-align:center}
+.tri__list li{display:grid;gap:6px}
+.tri__list b{font-family:var(--display);font-weight:600;font-size:clamp(1.05rem,.95rem + .4vw,1.35rem);letter-spacing:-.03em}
+.tri__list span{color:var(--mute);font-size:.98rem}
+@media (max-width:899px){
+  .tri__stage{aspect-ratio:350/540}
+  .dv--d{left:0;top:0;width:100%}
+  .dv--t{left:4%;top:45%;width:54%}
+  .dv--m{left:63%;top:51%;width:32%}
+  .tri__list{grid-template-columns:minmax(0,1fr);gap:16px;max-width:26em}
+}
+@media (max-width:899px){.ad__stage{width:100vw}.mbp__lid{width:92%}}
+
 </style>
 </head>
 <body>
@@ -798,10 +972,9 @@ input{font:inherit}
         <span class="sr-only">Criamos à mão o site sob medida que não deixa venda escapar. Com a identidade única do seu negócio para vender enquanto você toca o resto.</span>
         <span class="alt" id="hero-alt" aria-hidden="true"><span class="alt__s is-on">Criamos à mão o site sob medida que <em>não deixa venda escapar.</em></span><span class="alt__s">Com a identidade única do seu negócio para <em>vender enquanto você toca o resto.</em></span></span>
       </h1>
-      <p class="intro__sub">O site mais bonito e rápido para o seu negócio vender mais. Pronto em 24 horas.</p>
+      <p class="intro__sub">O site mais bonito, rápido e calculado para vender, seja qual for o seu negócio. Sem enrolação: entregamos pronto em 24h e você só aprova se tiver certeza de que vai vender mais.</p>
       <div class="intro__cta">
         <a class="btn btn--accent magnetic" data-form href="https://wa.me/5511937654207?text=Ol%C3%A1!%20Quero%20minha%20pr%C3%A9via%20gr%C3%A1tis.">Quero minha prévia grátis</a>
-        <p class="micro">Sem pagar nada adiantado. Você só paga depois de ver no ar.</p>
       </div>
     </div>
     <div class="intro__peek"><div class="anchor" id="anchor-peek"></div></div>
@@ -820,10 +993,7 @@ input{font:inherit}
   <section class="pain" id="dor" aria-labelledby="dor-t">
     <svg class="edge edge--w" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,110 C360,110 1080,110 1440,110 L1440,110 L0,110 Z"/></svg>
     <div class="wrap">
-      <div class="pain__head" data-reveal>
-        <h2 id="dor-t" class="h-l">O que seu cliente encontra quando clica no seu link?</h2>
-        <p class="lead">Ele decide em segundos se compra de você ou de outro. Não importa se você vende roupa, hambúrguer, drinks ou reservas: o que aparece na tela decide a venda.</p>
-      </div>
+      <h2 id="dor-t" class="sr-only">O que o seu cliente encontra quando clica no seu link: você hoje e você com a CODEM</h2>
       <div class="duel" id="duel">
         <div class="dside dside--bad">
           <p class="who"><b><svg aria-hidden="true"><use href="#no"/></svg>Você hoje</b><span id="bad-sub">Preço só no direct</span></p>
@@ -840,6 +1010,88 @@ input{font:inherit}
     </div>
   </section>
 
+  <section class="ad" id="anuncio" aria-labelledby="ad-t">
+    <svg class="edge" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,110 C360,110 1080,110 1440,110 L1440,110 L0,110 Z"/></svg>
+    <h2 class="sr-only" id="ad-t">O seu cliente, do outro lado da tela</h2>
+    <p class="sr-only">Em segundos, o seu cliente decide se compra de você ou de outro. Ele te procura no Google e acha o concorrente. Link na bio não é site: cada toque a mais, um cliente a menos. Cardápio em PDF: ninguém dá zoom para comprar. Site lento e antigo parece loja fechada. No seu site novo, feito à mão pela CODEM, ele encontra um site bonito, rápido e calculado para vender, pronto em 24 horas. Você só aprova se tiver certeza de que vai vender mais.</p>
+    <div class="ad__stage" id="ad-stage">
+      <div class="mbp" id="mbp">
+        <div class="mbp__lid" id="mbp-lid">
+          <div class="mbp__screen" id="mbp-screen">
+            <div class="film" id="film" aria-hidden="true">
+              <div class="f-chrome"><div class="f-bars"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div><div class="f-who"><span class="f-av"><svg viewBox="0 0 982 100"><use href="#codem"/></svg></span><b>codem</b><small>apresenta</small></div></div>
+              <p class="f-hook" id="f-hook"><span class="f-hook__a">Seu cliente.</span><span class="f-hook__b">Em segundos, ele decide se compra de você ou de outro.</span></p>
+            <p class="fc" id="fc-g1"><span class="fl"><span class="fw">Ele</span> <span class="fw">te</span> <span class="fw">procura</span></span><span class="fl"><span class="fw">no</span> <span class="fw">Google…</span></span></p>
+            <p class="fc" id="fc-g2"><span class="fl"><span class="fw">…e</span> <span class="fw">acha</span> <span class="fw">o</span></span><span class="fl"><span class="fw fa">concorrente.</span></span></p>
+            <p class="fc" id="fc-l1"><span class="fl"><span class="fw">Link</span> <span class="fw">na</span> <span class="fw">bio</span></span><span class="fl"><span class="fw fa">não</span> <span class="fw fa">é</span> <span class="fw fa">site.</span></span></p>
+            <p class="fc" id="fc-l2"><span class="fl"><span class="fw">Cada</span> <span class="fw">toque</span></span><span class="fl"><span class="fw">a</span> <span class="fw">mais,</span> <span class="fw">um</span></span><span class="fl"><span class="fw fa">cliente</span> <span class="fw fa">a</span> <span class="fw fa">menos.</span></span></p>
+            <p class="fc" id="fc-p1"><span class="fl"><span class="fw">Cardápio</span></span><span class="fl"><span class="fw fa">em</span> <span class="fw fa">PDF?</span></span></p>
+            <p class="fc" id="fc-p2"><span class="fl"><span class="fw">Ninguém</span> <span class="fw">dá</span></span><span class="fl"><span class="fw">zoom</span> <span class="fw">para</span></span><span class="fl"><span class="fw fa">comprar.</span></span></p>
+            <p class="fc" id="fc-s1"><span class="fl"><span class="fw">Site</span> <span class="fw">lento</span></span><span class="fl"><span class="fw">e</span> <span class="fw">antigo…</span></span></p>
+            <p class="fc" id="fc-s2"><span class="fl"><span class="fw">…parece</span> <span class="fw">loja</span></span><span class="fl"><span class="fw fa">fechada.</span></span></p>
+            <p class="fc" id="fc-c1"><span class="fl"><span class="fw">Agora,</span> <span class="fw">veja</span></span><span class="fl"><span class="fw">o</span> <span class="fw">mesmo</span> <span class="fw">cliente</span></span><span class="fl"><span class="fw fa">no</span> <span class="fw fa">seu</span> <span class="fw fa">site</span> <span class="fw fa">novo.</span></span></p>
+            <p class="fc" id="fc-c2"><span class="fl"><span class="fw">Bonito,</span> <span class="fw">rápido</span></span><span class="fl"><span class="fw">e</span> <span class="fw fa">calculado</span></span><span class="fl"><span class="fw fa">para</span> <span class="fw fa">vender.</span></span></p>
+              <div class="f-out" id="f-out"><svg class="f-out__logo" viewBox="0 0 982 100"><use href="#codem"/></svg><p class="f-out__t">Feito à mão,<br>pronto em <span>24 horas.</span></p><p class="f-out__s">Você só aprova se tiver certeza de que vai vender mais.</p><span class="f-out__btn">Quero minha prévia grátis</span></div>
+              <i class="f-wipe" id="f-wipe"></i>
+            </div>
+            <i class="mbp__glare"></i>
+          </div>
+          <i class="mbp__cam"></i>
+        </div>
+        <div class="mbp__base"><i></i></div>
+      </div>
+      <div class="pop" id="film-pop" aria-hidden="true">
+        <div class="pop__in" id="pop-in">
+          <div class="ph" id="ph">
+            <svg class="ph__back" viewBox="-80 240 620 900" width="620" height="900">
+              <path class="sk" d="M58 770 C66 700 150 642 252 612 L330 592 C402 576 462 612 472 692 C484 790 470 930 452 1140 L126 1140 C104 990 54 880 58 770 Z"/>
+              <path class="sk2" d="M360 600 C410 588 456 618 466 690 C474 760 470 840 462 930 C440 860 420 780 392 720 C380 690 370 650 360 600 Z"/>
+              <g transform="rotate(-9 20 330)"><rect class="sk2" x="-64" y="306" width="110" height="58" rx="29"/><rect class="sk" x="-64" y="300" width="110" height="54" rx="27"/></g>
+              <g transform="rotate(-6 20 404)"><rect class="sk2" x="-72" y="380" width="118" height="62" rx="31"/><rect class="sk" x="-72" y="374" width="118" height="58" rx="29"/></g>
+              <g transform="rotate(-4 20 478)"><rect class="sk2" x="-66" y="454" width="112" height="58" rx="29"/><rect class="sk" x="-66" y="448" width="112" height="54" rx="27"/></g>
+              <g transform="rotate(-2 20 548)"><rect class="sk2" x="-52" y="526" width="98" height="52" rx="26"/><rect class="sk" x="-52" y="520" width="98" height="48" rx="24"/></g>
+              
+            </svg>
+            <div class="ph__body">
+              <div class="ph__scr">
+                <div class="ph__sb"><b>9:41</b><i></i></div>
+                <div class="ui ui--search" data-ui="search">
+                  <div class="us__bar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M16 16l5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg><span class="us__q" id="us-q"></span><i class="us__caret"></i></div>
+                  <div class="us__res">
+                    <div class="us__card us__card--ad"><small>Patrocinado</small><b>Smash do Bairro</b><span>★ 4,9 · Site · Pedir agora</span></div>
+                    <div class="us__card"><b>Burger House</b><span>★ 4,8 · Site · Rotas</span></div>
+                    <div class="us__card"><b>Brasa Burger</b><span>★ 4,7 · Site · Rotas</span></div>
+                    <p class="us__none">Hamburgueria do Gui: nenhum site encontrado</p>
+                  </div>
+                </div>
+                <div class="ui ui--bio" data-ui="bio"><i class="ub__av"></i><b>@hamburgueriadogui</b><small>Peça já o seu</small><span class="ub__btn">Cardápio</span><span class="ub__btn">Promoções da semana</span><span class="ub__btn">Fale no WhatsApp</span><span class="ub__btn">Nosso Instagram</span><span class="ub__btn">Como chegar</span><div class="ub__wait"><i></i><span>Abrindo link…</span></div></div>
+                <div class="ui ui--pdf" data-ui="pdf">
+                  <div class="up__file"><i class="up__ic">PDF</i><div><b>cardapio_gui_final_v3.pdf</b><small>12,4 MB</small></div></div>
+                  <div class="up__bar"><i id="up-fill"></i></div><small class="up__pct" id="up-pct">Baixando… 0%</small>
+                  <div class="up__page" id="up-page"><b>CARDÁPIO</b><i style="width:70%"></i><i style="width:92%"></i><i style="width:85%"></i><i style="width:40%"></i><i style="width:88%"></i><i style="width:95%"></i><i style="width:60%"></i><i style="width:90%"></i><i style="width:78%"></i><i style="width:35%"></i><i style="width:93%"></i><i style="width:86%"></i><i style="width:66%"></i><i style="width:91%"></i><i style="width:74%"></i><i style="width:52%"></i><i style="width:89%"></i><i style="width:94%"></i><i style="width:58%"></i><i style="width:83%"></i><i style="width:71%"></i><i style="width:45%"></i><i style="width:90%"></i><i style="width:87%"></i></div>
+                </div>
+                <div class="ui ui--old" data-ui="old">
+                  <div class="uo__url"><span>Não seguro</span>hamburgueriadogui.com.br</div>
+                  <div class="uo__spin" id="uo-spin"></div>
+                  <div class="uo__page" id="uo-page"><h4 class="uo__el">Bem-vindo ao nosso site!!!</h4><div class="uo__el uo__img"></div><p class="uo__el">Clique aqui para ver o cardápio</p><div class="uo__el uo__box"></div><p class="uo__el uo__small">Atualizado em 2016</p><div class="uo__el uo__box uo__box--b"></div></div>
+                </div>
+                <div class="ui ui--good" data-ui="good"><img src="/media/tri-m.webp" alt="" loading="lazy" decoding="async"></div>
+              </div>
+            </div>
+            <svg class="ph__thumb" id="ph-thumb" viewBox="-80 240 620 900" width="620" height="900">
+              <g id="thumb">
+                <path class="sk" d="M470 830 C440 760 380 660 312 578 C284 544 246 522 218 534 C192 546 196 580 218 608 C262 664 318 740 360 830 Z"/>
+                <path class="sk2" d="M360 830 C318 740 262 664 218 608 C208 596 202 584 202 572 C226 606 286 680 330 748 C346 772 356 800 362 830 Z"/>
+                <ellipse class="nail" cx="230" cy="556" rx="20" ry="27" transform="rotate(-40 230 556)"/>
+              </g>
+            </svg>
+            <i class="ph__tap" id="ph-tap"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ad__cta"><a class="btn btn--accent btn--xl magnetic" data-form href="https://wa.me/5511937654207?text=Ol%C3%A1!%20Quero%20minha%20pr%C3%A9via%20gr%C3%A1tis.">Quero minha prévia grátis</a></div>
+  </section>
   <section class="case" id="caso" aria-labelledby="case-t">
     <svg class="edge" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,110 C360,110 1080,110 1440,110 L1440,110 L0,110 Z"/></svg>
     <div class="wrap">
@@ -926,23 +1178,67 @@ input{font:inherit}
     </div>
   </section>
 
-  <section class="loss" id="perdas" aria-labelledby="loss-t">
-    <svg class="edge edge--o" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,110 C360,110 1080,110 1440,110 L1440,110 L0,110 Z"/></svg>
+  <section class="tri" id="telas" aria-labelledby="tri-t">
+    <svg class="edge edge--w" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,110 C360,110 1080,110 1440,110 L1440,110 L0,110 Z"/></svg>
     <div class="wrap">
-      <h2 id="loss-t" class="loss__t">Onde você está perdendo vendas agora?</h2>
-      <p class="loss__hint">Qual destas é a sua situação hoje?</p>
-      <div class="cases" id="cases" role="radiogroup" aria-label="Sua situação hoje">
-        <button type="button" role="radio" aria-checked="true" tabindex="0">Ainda não tenho site</button>
-        <button type="button" role="radio" aria-checked="false" tabindex="-1">Tenho site, mas é antigo</button>
-        <button type="button" role="radio" aria-checked="false" tabindex="-1">Uso PDF nos destaques</button>
-        <button type="button" role="radio" aria-checked="false" tabindex="-1">Mostro tudo no Instagram</button>
-        <button type="button" role="radio" aria-checked="false" tabindex="-1">Uso uma plataforma pronta</button>
-        <button type="button" role="radio" aria-checked="false" tabindex="-1">Atendo tudo no WhatsApp e no direct</button>
+      <div class="tri__head">
+        <h2 id="tri-t" class="tri__t">Três sites em um só.</h2>
+        <p class="tri__sub">O mesmo site se monta de um jeito no celular, de outro no tablet e de outro no computador. Ninguém precisa dar zoom nem caçar botão.</p>
       </div>
-      <p class="calc" id="calc">Todo dia, <span class="nf" data-k="p"><button type="button" data-d="-1" aria-label="Menos pessoas por dia"><svg aria-hidden="true"><use href="#minus"/></svg></button><output aria-live="polite">30</output><button type="button" data-d="1" aria-label="Mais pessoas por dia"><svg aria-hidden="true"><use href="#plus"/></svg></button></span> pessoas procuram o que você vende. Se <span class="nf" data-k="d"><button type="button" data-d="-1" aria-label="Menos desistências"><svg aria-hidden="true"><use href="#minus"/></svg></button><output aria-live="polite">2</output><button type="button" data-d="1" aria-label="Mais desistências"><svg aria-hidden="true"><use href="#plus"/></svg></button></span> em cada 10 desistem porque <span class="why" id="why"><span id="why-t" aria-live="polite">não encontram um site seu</span></span>, e cada uma gastaria <span class="nf nf--money" data-k="t"><button type="button" data-d="-1" aria-label="Diminuir o valor"><svg aria-hidden="true"><use href="#minus"/></svg></button><output aria-live="polite">R$ 50</output><button type="button" data-d="1" aria-label="Aumentar o valor"><svg aria-hidden="true"><use href="#plus"/></svg></button></span> com você, você deixa de faturar</p>
-      <p class="loss__n" aria-live="polite"><b id="loss-m">R$ 9.000</b><span>por mês</span></p>
-      <p class="loss__sub" id="loss-sub">São R$ 300 por dia e R$ 108.000 por ano.</p>
-      <a class="btn btn--black magnetic" data-form href="https://wa.me/5511937654207?text=Ol%C3%A1!%20Quero%20minha%20pr%C3%A9via%20gr%C3%A1tis.">Quero parar de perder essas vendas</a>
+      <div class="tri__stage" id="tri-stage" aria-hidden="true">
+        <div class="dv dv--d" data-dv="d"><div class="dv__frame"><div class="dv__scr"><img src="/media/tri-d.webp" alt="" width="1440" height="1137" loading="lazy" decoding="async"></div></div><i class="dv__stand"></i><i class="dv__foot"></i></div>
+        <div class="dv dv--t" data-dv="t"><div class="dv__frame"><div class="dv__scr"><img src="/media/tri-t.webp" alt="" width="1230" height="2199" loading="lazy" decoding="async"></div></div></div>
+        <div class="dv dv--m" data-dv="m"><div class="dv__frame"><div class="dv__scr"><img src="/media/tri-m.webp" alt="" width="780" height="2792" loading="lazy" decoding="async"></div><i class="dv__island"></i></div></div>
+      </div>
+      <ul class="tri__list">
+        <li><b>No tablet</b><span>Mais itens na tela, em grade, sem apertar nada.</span></li>
+        <li><b>No computador</b><span>A vitrine inteira de uma vez, com o menu completo.</span></li>
+        <li><b>No celular</b><span>Tudo no alcance do polegar e o pedido em poucos toques.</span></li>
+      </ul>
+    </div>
+  </section>
+  <section class="loss" id="perdas" aria-labelledby="loss-t">
+    <svg class="edge" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,110 C360,110 1080,110 1440,110 L1440,110 L0,110 Z"/></svg>
+    <div class="wrap loss__grid">
+      <div class="loss__intro">
+        <h2 id="loss-t" class="loss__t">Simule quanto você deixa de faturar.</h2>
+        <p class="loss__lead">Escolha a sua situação e ajuste os números do seu negócio.</p>
+        <p class="loss__lbl" id="cases-l">Sua situação hoje</p>
+        <div class="cases" id="cases" role="radiogroup" aria-labelledby="cases-l">
+          <button type="button" role="radio" aria-checked="true" tabindex="0"><span>Não tenho site</span><i aria-hidden="true"></i></button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1"><span>Tenho site, mas é antigo</span><i aria-hidden="true"></i></button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1"><span>Uso PDF nos destaques</span><i aria-hidden="true"></i></button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1"><span>Mostro tudo no Instagram</span><i aria-hidden="true"></i></button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1"><span>Uso plataforma pronta</span><i aria-hidden="true"></i></button>
+          <button type="button" role="radio" aria-checked="false" tabindex="-1"><span>Só WhatsApp e direct</span><i aria-hidden="true"></i></button>
+        </div>
+      </div>
+      <div class="sim" id="calc">
+        <div class="sim__in">
+          <div class="sim__f">
+            <label class="sim__row" for="s-p"><span>Pessoas que procuram você por dia</span><output id="o-p" for="s-p">30</output></label>
+            <input class="sim__range" type="range" id="s-p" data-k="p" min="0" max="10" step="1" value="0">
+          </div>
+          <div class="sim__f">
+            <label class="sim__row" for="s-d"><span>Quantas desistem, a cada 10</span><output id="o-d" for="s-d">2</output></label>
+            <input class="sim__range" type="range" id="s-d" data-k="d" min="0" max="10" step="1" value="0">
+          </div>
+          <div class="sim__f">
+            <label class="sim__row" for="s-t"><span>Quanto cada uma gastaria</span><output id="o-t" for="s-t">R$ 50</output></label>
+            <input class="sim__range" type="range" id="s-t" data-k="t" min="0" max="10" step="1" value="0">
+          </div>
+        </div>
+        <div class="sim__out">
+          <p class="sim__k">Você deixa de faturar por mês</p>
+          <p class="sim__n" aria-live="polite"><small>R$</small><b id="loss-m">9.000</b></p>
+          <dl class="sim__list">
+            <div><dt>Por dia</dt><dd id="loss-d">R$ 300</dd></div>
+            <div class="is-y"><dt>Em 12 meses</dt><dd id="loss-y">R$ 108.000</dd></div>
+          </dl>
+          <p class="sim__why"><span>Por quê</span><b id="why-t" aria-live="polite">O cliente procura e não encontra um site seu.</b></p>
+          <a class="btn btn--accent sim__cta" data-form href="https://wa.me/5511937654207?text=Ol%C3%A1!%20Quero%20minha%20pr%C3%A9via%20gr%C3%A1tis.">Quero parar de perder vendas</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -997,7 +1293,7 @@ input{font:inherit}
         <p class="chatwrap__lbl"><i></i>Assim fica a conversa no seu WhatsApp</p>
         <div class="iph"><div class="iph__screen">
           <div class="wa">
-            <div class="wa__head"><img class="wa__av wa__av--me" src="/media/gui-av.webp" alt="" width="34" height="34"><div class="wa__who"><b>Guilherme da CODEM</b><span>online</span></div></div>
+            <div class="wa__head"><img class="wa__av wa__av--me" src="/media/gui-av.webp" alt="" width="34" height="34"><div class="wa__who"><b>CODEM</b><span>online</span></div></div>
             <div class="wa__body"><div class="wa__list" id="wa-list"></div></div>
           </div>
         </div></div>
@@ -1306,37 +1602,158 @@ input{font:inherit}
   }
   mod('alt', () => { alternate($('#hero-alt'), 5600, true); alternate($('#case-alt'), 5200, false); });
 
+  /* ===== comercial no notebook: um anúncio de 26 s que fala com quem está lendo e sai da tela ===== */
+  mod('ad', () => {
+    const stage = $('#ad-stage'); if (!stage) return;
+    const lid = $('#mbp-lid'), scr = $('#mbp-screen'), film = $('#film'), pop = $('#film-pop'), popIn = $('#pop-in');
+    const ph = $('#ph'), thumb = $('#thumb'), tap = $('#ph-tap'), uis = $$('.ui', ph);
+    const q = $('#us-q'), fill = $('#up-fill'), pct = $('#up-pct'), page = $('#up-page'), spin = $('#uo-spin'), oldP = $('#uo-page');
+    const off = el => { let x = 0, y = 0; for (let e = el; e && e !== stage; e = e.offsetParent) { x += e.offsetLeft; y += e.offsetTop; } return { x, y }; };
+    let k = 1;
+    function fit() {
+      k = scr.offsetWidth / 1600;
+      film.style.transform = 'scale(' + k + ')'; popIn.style.transform = 'scale(' + k + ')';
+      const o = off(scr);
+      Object.assign(pop.style, { left: o.x + 'px', top: o.y + 'px', width: scr.offsetWidth + 'px', height: scr.offsetHeight + 'px' });
+    }
+    fit(); addEventListener('resize', fit, { passive: true });
+    const showUI = key => uis.forEach(u => u.classList.toggle('is-on', u.dataset.ui === key));
+    if (!motion) {
+      G && G.set('#f-out', { opacity: 1 });
+      return;
+    }
+    const T = G.timeline({ paused: true, repeat: -1, repeatDelay: 0.2 });
+    film.__t = T;
+    const words = id => $$('.fw', $('#fc-' + id));
+    const inC = (id, at) => T.set('#fc-' + id, { opacity: 1 }, at).fromTo(words(id), { yPercent: 118 }, { yPercent: 0, duration: 0.62, stagger: 0.05, ease: 'expo.out' }, at);
+    const outC = (id, at) => T.to(words(id), { yPercent: -118, duration: 0.38, stagger: 0.025, ease: 'power3.in' }, at).set('#fc-' + id, { opacity: 0 }, at + 0.62);
+    const tapAt = (x, y, at) => T.to(thumb, { rotation: -5, svgOrigin: '420 840', duration: 0.14, ease: 'power2.in' }, at - 0.14)
+      .to(thumb, { rotation: 0, svgOrigin: '420 840', duration: 0.3, ease: 'power2.out' }, at)
+      .set(tap, { left: x, top: y }, at)
+      .fromTo(tap, { scale: 0.4, opacity: 0.95 }, { scale: 1.55, opacity: 0, duration: 0.55, ease: 'power2.out', immediateRender: false }, at);
+    const wipe = at => T.fromTo('#f-wipe', { xPercent: 101 }, { xPercent: 0, duration: 0.3, ease: 'power3.in', immediateRender: false }, at).to('#f-wipe', { xPercent: -101, duration: 0.42, ease: 'power3.out' }, at + 0.34);
+    const bars = $$('.f-bars b', film), cuts = [0, 2.3, 6.9, 10.9, 14.9, 19.0, 26.0];
+    bars.forEach((b, i) => T.fromTo(b, { scaleX: 0 }, { scaleX: 1, duration: cuts[i + 1] - cuts[i], ease: 'none', immediateRender: false }, cuts[i]));
+    T.call(() => { q.textContent = ''; showUI('search'); fill.style.width = '0%'; pct.textContent = 'Baixando… 0%'; }, null, 0)
+      .set(bars, { scaleX: 0 }, 0)
+      .set(ph, { x: 0, y: 900, rotationY: -38, rotationX: 22, rotation: 10, scale: 0.9, transformPerspective: 1800 }, 0)
+      .set(pop, { clipPath: 'inset(0% 0% 0% 0% round 10px)' }, 0)
+      .fromTo('.f-chrome', { opacity: 0 }, { opacity: 1, duration: 0.4 }, 0.05)
+    /* gancho: fala com quem está lendo */
+      .fromTo('#f-hook', { opacity: 0 }, { opacity: 1, duration: 0.01 }, 0.15)
+      .fromTo('.f-hook__a', { scale: 1.7, opacity: 0, filter: 'blur(14px)' }, { scale: 1, opacity: 1, filter: 'blur(0px)', duration: 0.6, ease: 'expo.out' }, 0.15)
+      .fromTo('.f-hook__b', { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: 'power3.out' }, 0.85)
+      .to('#f-hook', { y: -60, opacity: 0, duration: 0.4, ease: 'power3.in' }, 2.0)
+    /* 1. Google: procurou e achou o concorrente */
+      .to(ph, { y: 0, rotationY: -16, rotationX: 6, rotation: 0, scale: 1, duration: 1.0, ease: 'expo.out' }, 2.3);
+    inC('g1', 2.45);
+    T.to({ n: 0 }, { n: 25, duration: 1.15, ease: 'none', onUpdate() { q.textContent = 'hamburgueria perto de mim'.slice(0, Math.round(this.targets()[0].n)); } }, 3.0)
+      .fromTo($$('.us__card', ph), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.12, ease: 'power3.out', immediateRender: false }, 4.3)
+      .fromTo('.us__none', { opacity: 0 }, { opacity: 1, duration: 0.4, immediateRender: false }, 4.8);
+    outC('g1', 5.1); inC('g2', 5.35);
+    tapAt(1160, 410, 5.9);
+    T.to(ph, { rotationY: -7, rotationX: 3, duration: 1.2, ease: 'sine.inOut' }, 5.2);
+    wipe(6.6);
+    outC('g2', 6.55);
+    /* 2. link na bio */
+    T.call(() => showUI('bio'), null, 6.95).set('.ub__wait', { opacity: 0 }, 6.95);
+    inC('l1', 7.1);
+    T.to(ph, { rotationY: -20, rotationX: 7, duration: 1.4, ease: 'sine.inOut' }, 7.0);
+    tapAt(1210, 520, 8.25);
+    T.fromTo('.ub__wait', { opacity: 0 }, { opacity: 1, duration: 0.25, immediateRender: false }, 8.4);
+    outC('l1', 8.9); inC('l2', 9.15);
+    wipe(10.6);
+    outC('l2', 10.55);
+    /* 3. PDF */
+    T.call(() => showUI('pdf'), null, 10.95).set(page, { opacity: 0, scale: 1 }, 10.95);
+    inC('p1', 11.1);
+    T.to({ v: 0 }, { v: 47, duration: 1.0, ease: 'power2.out', onUpdate() { const v = Math.round(this.targets()[0].v); fill.style.width = v + '%'; pct.textContent = 'Baixando… ' + v + '%'; } }, 11.2)
+      .to(page, { opacity: 1, duration: 0.3 }, 12.4)
+      .to(ph, { rotationY: -9, rotationX: 3, duration: 1.2, ease: 'sine.inOut' }, 11.0);
+    tapAt(1150, 520, 12.9); tapAt(1150, 520, 13.15);
+    T.to(page, { scale: 2.6, filter: 'blur(2.5px)', duration: 0.45, ease: 'power3.out' }, 13.2);
+    outC('p1', 13.3); inC('p2', 13.55);
+    wipe(14.6);
+    outC('p2', 14.55);
+    /* 4. site lento e antigo */
+    T.call(() => showUI('old'), null, 14.95).set(spin, { opacity: 1 }, 14.95).set(oldP, { opacity: 0 }, 14.95).set($$('.uo__el', ph), { x: 0, y: 0, rotation: 0 }, 14.95);
+    inC('s1', 15.1);
+    T.to(ph, { rotationY: -22, rotationX: 8, duration: 1.4, ease: 'sine.inOut' }, 15.0)
+      .to(spin, { opacity: 0, duration: 0.2 }, 16.5)
+      .to(oldP, { opacity: 1, duration: 0.15 }, 16.6)
+      .to($$('.uo__el', ph), { y: (i) => 520 + i * 40, rotation: (i) => (i % 2 ? 1 : -1) * (14 + i * 6), duration: 0.9, stagger: 0.07, ease: 'power2.in' }, 17.4);
+    outC('s1', 17.2); inC('s2', 17.45);
+    /* 5. quarta parede: o celular sai do notebook */
+    outC('s2', 18.85);
+    T.set(pop, { clipPath: 'inset(-90% -70% -170% -70% round 10px)' }, 19.2);
+    inC('c1', 19.1);
+    T.to(ph, { x: 10, y: 120, scale: 1.42, rotationY: -2, rotationX: -7, rotation: -2, duration: 1.05, ease: 'expo.inOut' }, 19.25);
+    tapAt(1210, 520, 20.45);
+    T.call(() => showUI('good'), null, 20.5)
+      .fromTo('.ui--good', { clipPath: 'circle(0% at 50% 50%)' }, { clipPath: 'circle(150% at 50% 50%)', duration: 0.7, ease: 'power3.inOut', immediateRender: false }, 20.5)
+      .fromTo('.ui--good img', { y: 0 }, { y: -520, duration: 2.4, ease: 'power1.inOut', immediateRender: false }, 21.0);
+    outC('c1', 20.9); inC('c2', 21.15);
+    T.to(ph, { x: 0, y: 0, scale: 1, rotationY: -16, rotationX: 6, rotation: 0, duration: 0.9, ease: 'expo.inOut' }, 22.5)
+      .set(pop, { clipPath: 'inset(0% 0% 0% 0% round 10px)' }, 23.4)
+      .to(ph, { y: 950, rotation: 9, duration: 0.6, ease: 'power3.in' }, 23.4);
+    outC('c2', 23.2);
+    /* fechamento */
+    T.fromTo('#f-out', { opacity: 0 }, { opacity: 1, duration: 0.01, immediateRender: false }, 23.7)
+      .fromTo('.f-out__logo', { opacity: 0, y: 40, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: 'expo.out', immediateRender: false }, 23.7)
+      .fromTo('.f-out__t', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6, ease: 'expo.out', immediateRender: false }, 23.95)
+      .fromTo('.f-out__s', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5, ease: 'power3.out', immediateRender: false }, 24.2)
+      .fromTo('.f-out__btn', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: 'back.out(2)', immediateRender: false }, 24.4)
+      .to('.f-out__btn', { scale: 1.06, duration: 0.35, yoyo: true, repeat: 1, ease: 'power2.inOut' }, 25.0)
+      .to('#f-out', { opacity: 0, duration: 0.4 }, 25.85)
+      .to('.f-chrome', { opacity: 0, duration: 0.3 }, 25.9);
+    /* abre a tampa quando o notebook aparece; o filme só roda com ele na tela */
+    let open = false, seen = false;
+    G.set(lid, { rotationX: -84 }); G.set(film, { opacity: 0 }); G.set('#f-wipe', { x: 0, xPercent: 101 });
+    whenSeen(stage, () => {
+      G.timeline()
+        .to(lid, { rotationX: 0, duration: 1.5, ease: 'power3.inOut' })
+        .to(film, { opacity: 1, duration: 0.5 }, 1.1)
+        .call(() => { fit(); G.set(pop, { opacity: 1 }); open = true; if (seen) T.play(); }, null, 1.5);
+    }, { threshold: 0.3 });
+    whileSeen(stage, () => { seen = true; if (open) T.play(); }, () => { seen = false; T.pause(); }, { threshold: 0.15 });
+  });
+
+  /* ===== três sites em um: os três aparelhos saem de um só e rolam o mesmo site juntos ===== */
+  mod('tri', () => {
+    const stage = $('#tri-stage'); if (!stage) return;
+    const dvs = $$('.dv', stage), m = $('.dv--m', stage);
+    if (!motion) return;
+    const items = $$('.tri__list li');
+    const from = el => { const a = el.getBoundingClientRect(), b = m.getBoundingClientRect(); return { x: (b.left + b.width / 2) - (a.left + a.width / 2), y: (b.top + b.height / 2) - (a.top + a.height / 2), scale: b.width / a.width }; };
+    G.set(items, { opacity: 0, y: 16 });
+    let scrollTl = null;
+    function rolling() {
+      scrollTl = G.timeline({ repeat: -1, paused: true });
+      dvs.forEach(dv => {
+        const scr = $('.dv__scr', dv), img = $('img', scr);
+        const dist = () => Math.max(0, img.offsetHeight - scr.offsetHeight);
+        scrollTl.fromTo(img, { y: 0 }, { y: () => -dist(), duration: 4.6, ease: 'power1.inOut', immediateRender: false }, 1.2)
+          .to(img, { y: 0, duration: 3.2, ease: 'power2.inOut' }, 7.4);
+      });
+      scrollTl.to({}, { duration: 0.01 }, 11.6);
+    }
+    whenSeen(stage, () => {
+      const tl = G.timeline();
+      dvs.forEach((dv, i) => { if (dv !== m) { const f = from(dv); tl.fromTo(dv, { x: f.x, y: f.y, scale: f.scale, opacity: 0 }, { x: 0, y: 0, scale: 1, opacity: 1, duration: 1.25, ease: 'expo.inOut' }, 0.15 + i * 0.12); } });
+      tl.fromTo(m, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7, ease: 'power3.out' }, 0)
+        .to(items, { opacity: 1, y: 0, duration: 0.6, stagger: 0.12, ease: 'power3.out' }, 1.1)
+        .call(() => { rolling(); if (live) scrollTl.play(); }, null, 1.3);
+    }, { threshold: 0.3 });
+    let live = false;
+    whileSeen(stage, () => { live = true; if (scrollTl) scrollTl.play(); }, () => { live = false; if (scrollTl) scrollTl.pause(); }, { threshold: 0.1 });
+    G.set(dvs, { opacity: 0 });
+  });
+
   /* ===== vídeo automático: cada negócio mostra o que ele tem de melhor =====
      cada recurso sai da própria tela: as peças da interface se descolam em camadas (2D para 3D),
      montam o recurso fora do celular e voltam ao lugar. Coordenadas em pixels do vídeo (540 x 1240). */
   const SC = [
-    { tab: 'Loja', intro: 'Uma loja de bolsas *com cara de grife.*', k: 'Loja de bolsas', v: 'f-carrinho', end: 11.3,
-      outro: 'Uma loja de bolsas com cara de grife. *Imagine o seu negócio assim.*',
-      beats: [
-        { t: 0.35, kit: 'explode', side: 'r', vy: 0.42, w: 250, tilt: [12, -22], hold: 3.1, edge: '#d6d2cb', glow: 'rgba(255,236,214,.42)',
-          r: [150, 92, 527, 620], box: [133, 66, 377, 544],
-          sl: [
-            { s: [283, 222, 527, 468], to: [133, 116], z: 95, rad: 20, main: 1, shine: 1 },
-            { s: [283, 470, 527, 562], to: [133, 382], z: 50, rad: 12 },
-            { s: [283, 566, 527, 620], to: [133, 490], z: 12, rad: 8 },
-            { s: [150, 92, 386, 128], to: [137, 66], z: 150, rad: 18 }
-          ],
-          tag: 'Design de luxo', cap: 'Vitrine com *cara de grife.*' },
-        { t: 6.6, kit: 'move', side: 'l', vy: 0.5, w: 400, tilt: [8, 16], hold: 3.4, edge: '#d9d9d9', glow: 'rgba(255,255,255,.3)', noArrow: 1,
-          r: [18, 150, 522, 1222], box: [-18, -88, 522, 360],
-          sl: [
-            { s: [18, 150, 522, 262], to: [0, 0], z: 26, rad: 16 },
-            { s: [18, 298, 522, 400], to: [0, 124], z: 26, rad: 14 },
-            { s: [18, 1118, 522, 1222], to: [0, 240], z: 26, rad: 16, main: 1 }
-          ],
-          aug: 'sheet', tag: 'Pedido montado', cap: 'O cliente monta o pedido *sozinho.*' },
-        { t: 8.9, kit: 'move', side: 'r', vy: 0.55, w: 360, tilt: [-6, -16], hold: 3.4, edge: '#064034', glow: 'rgba(37,211,102,.32)',
-          r: [100, 716, 523, 996], box: [0, 0, 423, 536],
-          sl: [ { s: [100, 716, 523, 996], to: [0, 0], z: 40, rad: 22, main: 1 } ],
-          aug: 'receipt', tag: 'Venda direta', cap: 'Cai no seu WhatsApp. *Sem taxa de plataforma.*' }
-      ],
-      duel: { bad: 'Preço só no direct', good: 'Loja com sacola e WhatsApp', noT: 'Cliente perdido', no: 'Ficou sem resposta e comprou em outra loja.', noAt: 7.2, okT: 'Novo pedido no seu WhatsApp', ok: 'Bolsa Diamond · R$ 59,90', okAt: 8.8, kind: 'dm' } },
-    { tab: 'Hamburgueria', intro: 'Uma hamburgueria que *vende pelo celular.*', k: 'Hamburgueria', v: 'hamb-m', end: 14.3,
+    { tab: 'Hamburgueria', intro: 'Uma hamburgueria que *vende pelo celular.*', k: 'Hamburgueria', v: 'hamb-m', end: 14.3, spots: [{ t: 3.7, e: 5.6, r: [14, 266, 540, 308], ks: [[3.7, 14, 266, 540, 308], [4.3, 96, 268, 206, 308], [4.75, 218, 268, 368, 308]], txt: 'Cardápio separado por categoria' }, { t: 6.4, e: 8.6, r: [16, 350, 518, 504], ks: [[6.4, 16, 350, 518, 504], [7.1, 16, 536, 518, 694], [7.8, 16, 718, 518, 878]], txt: 'Foto, ingredientes e preço em cada item' }],
       outro: 'Uma hamburgueria que vende pelo celular. *Imagine o seu negócio assim.*',
       beats: [
         { t: 1.0, kit: 'explode', side: 'l', vy: 0.48, w: 330, tilt: [16, 22], hold: 3.1, edge: '#ecd8bd', glow: 'rgba(255,120,40,.42)',
@@ -1358,7 +1775,7 @@ input{font:inherit}
           aug: 'chips', tag: 'Carrinho', cap: 'Total sempre à vista. *Ninguém desiste no meio.*' }
       ],
       duel: { bad: 'Cardápio em PDF no link da bio', good: 'Cardápio com pedido montado', noT: 'Cliente perdido', no: 'Desistiu do PDF e pediu em outro lugar.', noAt: 10.0, okT: 'Novo pedido no seu WhatsApp', ok: '2 itens · R$ 69,80', okAt: 10.8, kind: 'pdf' } },
-    { tab: 'Drinks', intro: 'Um bar com cardápio *que vende sozinho.*', k: 'Bar', v: 'f-sugestao', end: 10.6,
+    { tab: 'Cardápio', intro: 'Um bar com cardápio *que vende sozinho.*', k: 'Cardápio do bar', v: 'f-sugestao', end: 10.6, spots: [{ t: 2.6, e: 3.8, r: [28, 206, 262, 522], ks: [[2.6, 28, 206, 262, 522], [3.15, 288, 204, 520, 522]], txt: 'Foto real de cada drink' }],
       outro: 'Um bar com cardápio que vende sozinho. *Imagine o seu negócio assim.*',
       beats: [
         { t: 0.4, kit: 'explode', side: 'r', vy: 0.42, w: 360, tilt: [18, -24], hold: 3.0, edge: '#16161d', glow: 'rgba(255,45,149,.42)',
@@ -1388,7 +1805,7 @@ input{font:inherit}
           aug: 'pairsum', tag: 'Ticket maior', cap: 'A porção sugere o drink. *A mesa pede mais.*' }
       ],
       duel: { bad: 'Cardápio em PDF na mesa', good: 'Cardápio que sugere o que pedir junto', noT: 'Venda menor', no: 'Pediu só um drink. Ninguém sugeriu a porção.', noAt: 7.0, okT: 'Pedido maior', ok: 'Caipirita + porção mini coxinha · R$ 66,00', okAt: 7.6, kind: 'drinks' } },
-    { tab: 'Reservas', intro: 'Reservas de aniversário *no automático.*', k: 'Reserva de aniversário', v: 'aniv-m2', end: 17.2,
+    { tab: 'Reservas', intro: 'Reservas de aniversário *no automático.*', k: 'Reserva de aniversário', v: 'aniv-m2', end: 17.2, spots: [{ t: 2.5, e: 3.8, r: [30, 646, 510, 732], txt: 'Um passo de cada vez, sem conversa' }, { t: 9.9, e: 11.6, r: [30, 636, 510, 822], txt: 'Pedido especial já anotado' }],
       outro: 'Reservas no automático, sem planilha. *Imagine o seu negócio assim.*',
       beats: [
         { t: 1.4, kit: 'move', side: 'l', vy: 0.44, w: 400, tilt: [8, 16], hold: 3.3, edge: '#5a0b33', glow: 'rgba(255,45,149,.45)',
@@ -1407,8 +1824,36 @@ input{font:inherit}
           ],
           aug: 'panel', tag: 'Painel', cap: 'Conferido e confirmado: *já está no seu painel.*' }
       ],
-      duel: { bad: 'Reserva por mensagem', good: 'Reserva em 6 passos, com painel', noT: 'Reserva perdida', no: 'Ninguém respondeu a tempo. Reservou em outro bar.', noAt: 8.2, okT: 'Nova reserva no painel', ok: '12/12 · 30 pessoas · 21:00', okAt: 14.8, kind: 'lock' } }
+      duel: { bad: 'Reserva por mensagem', good: 'Reserva em 6 passos, com painel', noT: 'Reserva perdida', no: 'Ninguém respondeu a tempo. Reservou em outro bar.', noAt: 8.2, okT: 'Nova reserva no painel', ok: '12/12 · 30 pessoas · 21:00', okAt: 14.8, kind: 'lock' } },
+    { tab: 'Bolsas', intro: 'Uma loja de bolsas *com cara de grife.*', k: 'Loja de bolsas', v: 'f-carrinho', end: 11.3, spots: [{ t: 3.7, e: 4.9, r: [24, 1150, 508, 1214], txt: 'Confirma na hora, sem sair da vitrine' }],
+      outro: 'Uma loja de bolsas com cara de grife. *Imagine o seu negócio assim.*',
+      beats: [
+        { t: 0.35, kit: 'explode', side: 'r', vy: 0.42, w: 250, tilt: [12, -22], hold: 3.1, edge: '#d6d2cb', glow: 'rgba(255,236,214,.42)',
+          r: [150, 92, 527, 620], box: [133, 66, 377, 544],
+          sl: [
+            { s: [283, 222, 527, 468], to: [133, 116], z: 95, rad: 20, main: 1, shine: 1 },
+            { s: [283, 470, 527, 562], to: [133, 382], z: 50, rad: 12 },
+            { s: [283, 566, 527, 620], to: [133, 490], z: 12, rad: 8 },
+            { s: [150, 92, 386, 128], to: [137, 66], z: 150, rad: 18 }
+          ],
+          tag: 'Design de luxo', cap: 'Vitrine com *cara de grife.*' },
+        { t: 6.6, kit: 'move', side: 'l', vy: 0.5, w: 400, tilt: [8, 16], hold: 3.4, edge: '#d9d9d9', glow: 'rgba(255,255,255,.3)', noArrow: 1,
+          r: [18, 150, 522, 1222], box: [-18, -88, 522, 360],
+          sl: [
+            { s: [18, 150, 522, 262], to: [0, 0], z: 26, rad: 16 },
+            { s: [18, 298, 522, 400], to: [0, 124], z: 26, rad: 14 },
+            { s: [18, 1118, 522, 1222], to: [0, 240], z: 26, rad: 16, main: 1 }
+          ],
+          aug: 'sheet', tag: 'Pedido montado', cap: 'O cliente monta o pedido *sozinho.*' },
+        { t: 8.9, kit: 'move', side: 'r', vy: 0.55, w: 360, tilt: [-6, -16], hold: 3.4, edge: '#064034', glow: 'rgba(37,211,102,.32)',
+          r: [100, 716, 523, 996], box: [0, 0, 423, 536],
+          sl: [ { s: [100, 716, 523, 996], to: [0, 0], z: 40, rad: 22, main: 1 } ],
+          aug: 'receipt', tag: 'Venda direta', cap: 'Cai no seu WhatsApp. *Sem taxa de plataforma.*' }
+      ],
+      duel: { bad: 'Preço só no direct', good: 'Loja com sacola e WhatsApp', noT: 'Cliente perdido', no: 'Ficou sem resposta e comprou em outra loja.', noAt: 7.2, okT: 'Novo pedido no seu WhatsApp', ok: 'Bolsa Diamond · R$ 59,90', okAt: 8.8, kind: 'dm' } }
   ];
+  /* quadros em alta resolução (3x) de cada recurso: nome do arquivo e o canto, em pixels do vídeo */
+  const HIRES = {"f-carrinho@0.35":["hi-f-carrinho-0",144,86],"f-carrinho@6.6":["hi-f-carrinho-1",12,144],"f-carrinho@8.9":["hi-f-carrinho-2",94,710],"hamb-m@1":["hi-hamb-m-0",16,190],"hamb-m@9.6":["hi-hamb-m-1",16,339],"hamb-m@11.3":["hi-hamb-m-2",16,1132],"f-sugestao@0.4":["hi-f-sugestao-0",14,432],"f-sugestao@4.3":["hi-f-sugestao-1",46,844],"f-sugestao@7.4":["hi-f-sugestao-2",50,322],"aniv-m2@6.2":["hi-aniv-m2-1",94,412],"aniv-m2@15":["hi-aniv-m2-2",27,370]};
   const IC = id => '<svg aria-hidden="true"><use href="#' + id + '"/></svg>';
   const LOST = (txt) => '<div class="lost">' + IC('no') + '<b>' + txt + '</b></div>';
 
@@ -1491,7 +1936,7 @@ input{font:inherit}
     const badS = $('#bad-screen'), badSub = $('#bad-sub'), goodSub = $('#good-sub'), badRes = $('#bad-res'), goodRes = $('#good-res');
     if (!traveler || !A || !B || !C || !vslSec || !svg || !layer) return;
     const vids = SC.map((s, i) => { const v = D.createElement('video'); v.muted = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = i === 0 ? 'auto' : 'none'; v.dataset.src = '/media/' + s.v + '.mp4'; v.dataset.poster = '/media/' + s.v + '.jpg'; if (i === 0) v.classList.add('is-on'); fbS.appendChild(v); return v; });
-    const st = { cur: 0, nxt: -1, fired: [], trans: false, active: false, atStage: false, atDuel: false, freeze: false, fx: null, cam: { x: 0, ry: 0, s: 1, calm: 0 } };
+    const st = { cur: 0, nxt: -1, fired: [], trans: false, active: false, atStage: false, atDuel: false, freeze: false, fx: null, spot: null, rate: 1, cam: { x: 0, ry: 0, s: 1, calm: 0 } };
     const t0 = performance.now();
     let gl = null, duelTl = null, raf = 0;
     loadV(vids[0]);
@@ -1563,6 +2008,15 @@ input{font:inherit}
       c.className = 'sl';
       return c;
     }
+    const HS = 1170 / 540, HIMG = {};
+    function snapHi(img, hi, r) {
+      const c = D.createElement('canvas'), w = r[2] - r[0], h = r[3] - r[1];
+      c.width = Math.max(1, Math.round(w * HS)); c.height = Math.max(1, Math.round(h * HS));
+      try { c.getContext('2d').drawImage(img, (r[0] - hi[1]) * HS, (r[1] - hi[2]) * HS, w * HS, h * HS, 0, 0, c.width, c.height); } catch (e) { return null; }
+      c.className = 'sl';
+      return c;
+    }
+    if (!lite && motion) onReady(() => setTimeout(() => Object.values(HIRES).forEach(h => { const im = new Image(); im.decoding = 'async'; im.src = '/media/' + h[0] + '.webp'; HIMG[h[0]] = im; }), 1500));
     function add(fx, cls, x, y, w, h, z, html) {
       const e = D.createElement('div'); e.className = cls;
       e.style.left = x + 'px'; e.style.top = y + 'px'; e.style.width = w + 'px'; if (h) e.style.height = h + 'px';
@@ -1751,6 +2205,12 @@ input{font:inherit}
       pose.z += 70 * fx.lift * (1 - fx.fly);
       pose.s *= 1 + 0.05 * fx.lift * (1 - fx.fly);
       pose.ry += fx.dry * fx.fly;
+      if (fx.fl) {
+        const f = fx.fl, w = Math.sin(f * Math.PI);
+        pose.rx += Math.sin(f * Math.PI * 2) * 3.2 * fx.fly;
+        pose.y += Math.sin(f * Math.PI * 2.5) * 7 * fx.fly;
+        pose.s *= 1 + 0.035 * w * fx.fly;
+      }
       pose.ax = fx.ax; pose.ay = fx.ay;
       fx.g.style.transform = poseCSS(pose);
       fx.holes.forEach(h => { h.el.setAttribute('points', quad(h.r).map(p => p.x.toFixed(1) + ',' + p.y.toFixed(1)).join(' ')); h.el.style.opacity = fx.ha; });
@@ -1774,8 +2234,9 @@ input{font:inherit}
         .to(fx, { ak: 0, duration: 0.18 }, 0)
         .to(fx.glow, { opacity: 0, duration: 0.3 }, 0)
         .to(fx.slices.map(S => S.el), { x: (i) => fx.slices[i].src[0] - fx.slices[i].to[0], y: (i) => fx.slices[i].src[1] - fx.slices[i].to[1], z: 0, rotation: 0, duration: 0.55, ease: 'power3.inOut' }, 0.05)
-        .to(fx, { fly: 0, dry: 0, lift: 0, duration: 0.6, ease: 'power3.inOut' }, 0.05)
+        .to(fx, { fly: 0, dry: 0, lift: 0, fl: 0, duration: 0.6, ease: 'power3.inOut' }, 0.05)
         .to(fx, { ha: 0, duration: 0.18 }, 0.5)
+        .to(fx.slices.map(S => S.el), { opacity: 0, duration: 0.14, ease: 'none' }, 0.54)
         .add(() => G.to(st.cam, { x: 0, ry: 0, s: 1, calm: 0, duration: 0.8, ease: 'power3.inOut', overwrite: true }), 0)
         .call(() => endFx(fx, true), null, 0.68);
     }
@@ -1783,12 +2244,13 @@ input{font:inherit}
       abortFx(false);
       const box = b.box, ax = (box[0] + box[2]) / 2, ay = (box[1] + box[3]) / 2;
       const g = D.createElement('div'); g.className = 'lf'; g.style.transformOrigin = ax + 'px ' + ay + 'px';
-      const fx = { b, g, v, ax, ay, fly: 0, lift: 0, ak: 0, ha: 0, dry: 0, slices: [], holes: [] };
+      const fx = { b, g, v, ax, ay, fly: 0, lift: 0, ak: 0, ha: 0, dry: 0, fl: 0, slices: [], holes: [] };
       const glow = D.createElement('i'); glow.className = 'lf__glow';
       Object.assign(glow.style, { left: (box[0] - 60) + 'px', top: (box[1] - 60) + 'px', width: (box[2] - box[0] + 120) + 'px', height: (box[3] - box[1] + 120) + 'px', background: 'radial-gradient(closest-side,' + b.glow + ',rgba(0,0,0,0))', opacity: 0 });
       g.appendChild(glow); G.set(glow, { z: -70 }); fx.glow = glow;
+      const hi = HIRES[SC[st.cur].v + '@' + b.t], him = hi && HIMG[hi[0]], sharp = !!(him && him.complete && him.naturalWidth);
       for (const d of b.sl) {
-        const c = snap(v, d.s); if (!c) return;
+        const c = (sharp && snapHi(him, hi, d.s)) || snap(v, d.s); if (!c) return;
         const w = d.s[2] - d.s[0], h = d.s[3] - d.s[1];
         const sw = D.createElement('div'); sw.className = 'sw' + (d.neon && !lite ? ' neon-' + d.neon : '') + (d.soft ? ' soft' : '');
         Object.assign(sw.style, { left: d.to[0] + 'px', top: d.to[1] + 'px', width: w + 'px', height: h + 'px', borderRadius: (d.rad || 0) + 'px' });
@@ -1816,7 +2278,9 @@ input{font:inherit}
         .to(fx, { fly: 1, duration: 0.95, ease: 'expo.inOut' }, 0.12)
         .to(glow, { opacity: 1, duration: 0.7 }, 0.55)
         .to(fx, { ak: 1, duration: 0.45, ease: 'power2.out' }, 1.02)
-        .to(fx, { dry: b.side === 'r' ? 5 : -5, duration: Math.max(1, b.hold - 1.1), ease: 'sine.inOut' }, 1.05);
+        .to(fx, { dry: b.side === 'r' ? 9 : -9, duration: Math.max(1, b.hold - 1.1), ease: 'sine.inOut' }, 1.05)
+        .to(fx, { fl: 1, duration: Math.max(1, b.hold - 1.0), ease: 'none' }, 1.0)
+        .to(st.cam, { ry: fx.cam.ry - dir * 0.08, x: fx.cam.x * 1.12, duration: Math.max(0.6, (b.hold - 1.0) / 2), yoyo: true, repeat: 1, ease: 'sine.inOut' }, 1.0);
       fx.slices.forEach((S, i) => tl.to(S.el, { x: 0, y: 0, z: S.d.z, rotation: S.d.rot || 0, duration: 0.9, ease: 'power3.inOut' }, 0.14 + i * 0.05));
       (KIT[b.kit] || KIT.move)(fx, tl);
       if (AUG[b.aug]) AUG[b.aug](fx, tl);
@@ -1824,6 +2288,57 @@ input{font:inherit}
       fxFrame();
     }
 
+    /* entre um recurso e outro: um anel marca o que está acontecendo na tela e uma etiqueta explica,
+       e os trechos sem novidade passam acelerados, para a tela nunca ficar parada */
+    function showSpot(i) {
+      const s = SC[st.cur].spots[i];
+      const ring = D.createElementNS(SVGNS, 'polygon'); ring.setAttribute('class', 'spot'); ring.style.opacity = 0; svg.appendChild(ring);
+      const sp = { s, ring, a: 0 };
+      if (innerWidth >= 900) {
+        const chip = D.createElement('div'); chip.className = 'chip'; chip.innerHTML = '<i></i>' + s.txt; chip.style.opacity = 0; layer.appendChild(chip);
+        const ln = D.createElementNS(SVGNS, 'path'); ln.setAttribute('class', 'spot-ln'); ln.style.opacity = 0; svg.appendChild(ln);
+        sp.chip = chip; sp.ln = ln; sp.side = capBox.classList.contains('is-r') ? 'l' : 'r';
+      }
+      st.spot = sp;
+      G.to(sp, { a: 1, duration: 0.5, ease: 'power3.out' });
+    }
+    function hideSpot(now) {
+      const sp = st.spot; if (!sp) return; st.spot = null;
+      const bye = () => { sp.ring.remove(); if (sp.chip) { sp.chip.remove(); sp.ln.remove(); } };
+      if (now || !motion) { bye(); return; }
+      G.to(sp, { a: 0, duration: 0.3, ease: 'power2.in', onUpdate() { spotDraw(sp); }, onComplete: bye });
+    }
+    function spotRect(s, t) {
+      if (!s.ks) return s.r;
+      let a = s.ks[0];
+      for (let i = 1; i < s.ks.length; i++) {
+        const b = s.ks[i];
+        if (t < b[0]) return a.slice(1);
+        const e = clamp((t - b[0]) / 0.32), k = e < 0.5 ? 4 * e * e * e : 1 - Math.pow(-2 * e + 2, 3) / 2;
+        if (e < 1) return [1, 2, 3, 4].map(n => a[n] + (b[n] - a[n]) * k);
+        a = b;
+      }
+      return a.slice(1);
+    }
+    function spotDraw(sp) {
+      const q = quad(spotRect(sp.s, vids[st.cur].currentTime)), cx = (q[0].x + q[2].x) / 2, cy = (q[0].y + q[2].y) / 2, k = 0.94 + 0.06 * sp.a;
+      sp.ring.setAttribute('points', q.map(p => (cx + (p.x - cx) * k).toFixed(1) + ',' + (cy + (p.y - cy) * k).toFixed(1)).join(' '));
+      sp.ring.style.opacity = sp.a;
+      if (!sp.chip) return;
+      const sq = quad([0, 72, 540, 1240]), L = Math.min(sq[0].x, sq[3].x), R = Math.max(sq[1].x, sq[2].x);
+      const w = sp.chip.offsetWidth, h = sp.chip.offsetHeight, off = (1 - sp.a) * (sp.side === 'r' ? -26 : 26);
+      const x = (sp.side === 'r' ? R + 44 : L - 44 - w) + off, y = clamp(cy - h / 2, 80, innerHeight - h - 90);
+      sp.chip.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0)'; sp.chip.style.opacity = sp.a;
+      const ex = sp.side === 'r' ? Math.max(q[1].x, q[2].x) * k + cx * (1 - k) : Math.min(q[0].x, q[3].x) * k + cx * (1 - k);
+      const tx = sp.side === 'r' ? x - 4 : x + w + 4, ty = y + h / 2, mx = (ex + tx) / 2;
+      sp.ln.setAttribute('d', 'M' + ex.toFixed(1) + ',' + cy.toFixed(1) + ' C' + mx.toFixed(1) + ',' + cy.toFixed(1) + ' ' + mx.toFixed(1) + ',' + ty.toFixed(1) + ' ' + tx.toFixed(1) + ',' + ty.toFixed(1));
+      sp.ln.style.opacity = sp.a;
+    }
+    function pace(v, rate) {
+      st.rate += (rate - st.rate) * (rate > st.rate ? 0.06 : 0.2);
+      if (Math.abs(rate - st.rate) < 0.01) st.rate = rate;
+      if (Math.abs(v.playbackRate - st.rate) > 0.015) { try { v.playbackRate = st.rate; } catch (e) { } }
+    }
     function beat(i, anim) {
       const b = SC[st.cur].beats[i];
       caption(b.cap, b.tag, b.side, anim);
@@ -1835,7 +2350,7 @@ input{font:inherit}
       if (st.trans) return; st.trans = true;
       abortFx(false);
       const from = st.cur, last = SC[from].beats[SC[from].beats.length - 1];
-      st.nxt = to;
+      st.nxt = to; hideSpot(); st.rate = 1; vids.forEach(x => { try { x.playbackRate = 1; } catch (e) { } });
       const vis = st.T && st.T.stage > 0.9;
       if (manual) caption(SC[to].intro, SC[to].k, 'r', vis);
       else if (!st.fired.outro) caption(SC[from].outro, 'Feito pela CODEM', 'r', vis);
@@ -1850,8 +2365,8 @@ input{font:inherit}
     }
     function restart() {
       abortFx(false);
-      const v = vids[st.cur]; try { v.currentTime = 0; } catch (e) { }
-      st.fired = []; duel(st.cur);
+      const v = vids[st.cur]; try { v.currentTime = 0; v.playbackRate = 1; } catch (e) { }
+      st.fired = []; st.rate = 1; hideSpot(true); duel(st.cur);
       if (canPlay()) playV(v);
     }
 
@@ -1894,15 +2409,27 @@ input{font:inherit}
         const sc = SC[st.cur], v = vids[st.cur], t = v.currentTime;
         if (!st.freeze) sc.beats.forEach((b, i) => { if (!st.fired[i] && t >= b.t) { st.fired[i] = true; beat(i, T.stage > 0.97); } });
         if (!st.freeze && !st.fired.outro && st.fired[sc.beats.length - 1] && t >= Math.max(sc.end - 2.2, sc.beats[sc.beats.length - 1].t + 0.8)) { st.fired.outro = true; caption(sc.outro, 'Feito pela CODEM', 'r', T.stage > 0.97); }
+        const onStage = T.stage > 0.97;
+        if (motion && sc.spots) {
+          if (st.spot && (st.freeze || !onStage || t >= st.spot.s.e)) hideSpot(!onStage);
+          if (!st.spot && !st.freeze && onStage) sc.spots.forEach((s, i) => { if (!st.spot && !st.fired['s' + i] && t >= s.t && t < s.e - 0.3) { st.fired['s' + i] = true; showSpot(i); } });
+        }
+        if (motion && !st.freeze) {
+          let next = sc.end - 0.4;
+          sc.beats.forEach((b, i) => { if (!st.fired[i] && b.t > t) next = Math.min(next, b.t); });
+          (sc.spots || []).forEach((s, i) => { if (!st.fired['s' + i] && s.t > t) next = Math.min(next, s.t); });
+          pace(v, !onStage ? 1 : st.spot ? 0.6 : next - t > 1.3 ? 2.2 : 1);
+        }
         bar.style.transform = 'scaleX(' + clamp(t / sc.end).toFixed(4) + ')';
         if (duelTl) duelTl.time(Math.min(t, duelTl.duration()), false);
         if (!st.freeze && (t >= sc.end || v.ended) && motion) go((st.cur + 1) % SC.length);
       } else if (duelTl && st.nxt > -1) duelTl.time(Math.min(vids[st.nxt].currentTime, duelTl.duration()), false);
       if (gl) gl.render();
       fxFrame();
+      if (st.spot) spotDraw(st.spot);
     }
     function start() { if (st.active) return; st.active = true; traveler.classList.add('is-on'); if (!modal && !st.freeze) playV(vids[st.nxt > -1 ? st.nxt : st.cur]); cancelAnimationFrame(raf); raf = requestAnimationFrame(frame); }
-    function stop() { if (!st.active) return; abortFx(false); st.active = false; traveler.classList.remove('is-on'); cancelAnimationFrame(raf); vids.forEach(v => v.pause()); }
+    function stop() { if (!st.active) return; abortFx(false); hideSpot(true); st.active = false; traveler.classList.remove('is-on'); cancelAnimationFrame(raf); vids.forEach(v => v.pause()); }
     const seen = { a: false, b: false, c: false };
     const upd = () => (seen.a || seen.b || seen.c ? start() : stop());
     whileSeen($('#topo'), () => { seen.a = true; upd(); }, () => { seen.a = false; upd(); }, { threshold: 0 });
@@ -2257,45 +2784,41 @@ input{font:inherit}
     const root = $('#calc'); if (!root) return;
     const VALS = { p: [5, 10, 15, 20, 25, 30, 40, 50, 60, 80, 100, 150, 200, 300, 500, 800, 1000], d: [1, 2, 3, 4, 5, 6, 7, 8, 9], t: [10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 100, 120, 150, 200, 250, 300, 400, 500, 800, 1000] };
     const idx = { p: VALS.p.indexOf(30), d: VALS.d.indexOf(2), t: VALS.t.indexOf(50) };
-    const WHY = ['não encontram um site seu', 'o seu site é lento e parece abandonado', 'precisam abrir um PDF nos destaques', 'precisam caçar preço e informação no seu feed', 'caem numa página genérica que não parece sua', 'ficam esperando você responder'];
-    const cases = $$('#cases [role="radio"]');
+    const WHY = ['O cliente procura e não encontra um site seu.', 'O site antigo é lento e parece abandonado.', 'O cliente precisa abrir um PDF para ver o preço.', 'O cliente precisa caçar preço no seu feed.', 'A plataforma pronta não parece o seu negócio.', 'O cliente fica esperando você responder.'];
+    const cases = $$('#cases [role="radio"]'), ranges = $$('.sim__range', root);
     let why = 0, auto = 0, touched = false;
-    const brl = n => 'R$ ' + Math.round(n).toLocaleString('pt-BR');
-    const outM = $('#loss-m'), sub = $('#loss-sub'), whyT = $('#why-t'), nfs = $$('.nf', root);
+    const num = n => Math.round(n).toLocaleString('pt-BR');
+    const brl = n => 'R$ ' + num(n);
+    const outM = $('#loss-m'), outD = $('#loss-d'), outY = $('#loss-y'), whyT = $('#why-t');
     const shown = { v: 0 };
     const month = () => VALS.p[idx.p] * VALS.d[idx.d] / 10 * VALS.t[idx.t] * 30;
-    function render(anim) {
-      nfs.forEach(nf => {
-        const k = nf.dataset.k, v = VALS[k][idx[k]];
-        $('output', nf).textContent = k === 't' ? brl(v) : v.toLocaleString('pt-BR');
-        $$('button', nf).forEach(b => { b.disabled = (+b.dataset.d < 0 && idx[k] === 0) || (+b.dataset.d > 0 && idx[k] === VALS[k].length - 1); });
-      });
-      const m = month();
-      sub.textContent = 'São ' + brl(m / 30) + ' por dia e ' + brl(m * 12) + ' por ano.';
-      if (anim && motion) { G.killTweensOf(shown); G.to(shown, { v: m, duration: 0.55, ease: 'power3.out', onUpdate() { outM.textContent = brl(shown.v); } }); }
-      else { shown.v = m; outM.textContent = brl(m); }
+    const label = (k, v) => k === 't' ? brl(v) : num(v);
+    const spoken = (k, v) => k === 'p' ? v + ' pessoas por dia' : k === 'd' ? v + ' em cada 10' : brl(v);
+    function paint(r) {
+      const k = r.dataset.k, v = VALS[k][idx[k]];
+      r.style.setProperty('--p', (idx[k] / (VALS[k].length - 1) * 100).toFixed(2) + '%');
+      r.setAttribute('aria-valuetext', spoken(k, v));
+      $('#o-' + k).textContent = label(k, v);
     }
-    function step(k, d) {
-      const n = clamp(idx[k] + d, 0, VALS[k].length - 1); if (n === idx[k]) return;
-      idx[k] = n; render(true);
-      const o = $('output', $('.nf[data-k="' + k + '"]', root));
-      if (motion) G.fromTo(o, { y: d > 0 ? 8 : -8, opacity: 0.3 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
+    function render(anim) {
+      ranges.forEach(paint);
+      const m = month();
+      outD.textContent = brl(m / 30); outY.textContent = brl(m * 12);
+      if (anim && motion) { G.killTweensOf(shown); G.to(shown, { v: m, duration: 0.5, ease: 'power3.out', onUpdate() { outM.textContent = num(shown.v); } }); }
+      else { shown.v = m; outM.textContent = num(m); }
     }
     function stopAuto() { touched = true; clearInterval(auto); }
-    nfs.forEach(nf => $$('button', nf).forEach(b => {
-      const k = nf.dataset.k, d = +b.dataset.d; let hold = 0, rep = 0;
-      const stopH = () => { clearTimeout(hold); clearInterval(rep); };
-      b.addEventListener('pointerdown', e => { if (e.button !== 0 || b.disabled) return; stopAuto(); step(k, d); stopH(); hold = setTimeout(() => { rep = setInterval(() => step(k, d), 110); }, 420); });
-      ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => b.addEventListener(ev, stopH));
-      b.addEventListener('click', e => { if (e.detail === 0) { stopAuto(); step(k, d); } });
-    }));
+    ranges.forEach(r => {
+      const k = r.dataset.k;
+      r.max = VALS[k].length - 1; r.value = idx[k];
+      r.addEventListener('input', () => { stopAuto(); idx[k] = +r.value; render(true); });
+    });
     function setCase(i, focus) {
       why = (i + WHY.length) % WHY.length;
       cases.forEach((b, k) => { b.setAttribute('aria-checked', String(k === why)); b.tabIndex = k === why ? 0 : -1; });
       if (focus) cases[why].focus();
       if (!motion) { whyT.textContent = WHY[why]; return; }
-      G.to(whyT, { opacity: 0, duration: 0.14, onComplete() { whyT.textContent = WHY[why]; G.to(whyT, { opacity: 1, duration: 0.28 }); } });
-      G.fromTo('#why', { scale: 0.97 }, { scale: 1, duration: 0.4, ease: 'back.out(3)' });
+      G.to(whyT, { opacity: 0, y: -6, duration: 0.16, onComplete() { whyT.textContent = WHY[why]; G.fromTo(whyT, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power3.out' }); } });
     }
     cases.forEach((b, i) => {
       b.addEventListener('click', () => { stopAuto(); setCase(i); });
@@ -2306,9 +2829,9 @@ input{font:inherit}
     });
     render(false);
     if (!motion) return;
-    whileSeen(root, () => { if (touched) return; clearInterval(auto); auto = setInterval(() => setCase(why + 1), 2800); }, () => clearInterval(auto), { threshold: 0.35 });
-    shown.v = 0; outM.textContent = brl(0);
-    whenSeen(outM, () => G.to(shown, { v: month(), duration: 1.6, ease: 'power3.out', onUpdate() { outM.textContent = brl(shown.v); } }), { threshold: 0.4 });
+    whileSeen(root, () => { if (touched) return; clearInterval(auto); auto = setInterval(() => setCase(why + 1), 3200); }, () => clearInterval(auto), { threshold: 0.35 });
+    shown.v = 0; outM.textContent = '0';
+    whenSeen(outM, () => G.to(shown, { v: month(), duration: 1.6, ease: 'power3.out', onUpdate() { outM.textContent = num(shown.v); } }), { threshold: 0.4 });
   });
 
   /* ===== portfólio ===== */
