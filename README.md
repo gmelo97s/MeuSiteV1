@@ -1,4 +1,4 @@
-# CODEM · Sites sob medida que não deixam venda escapar
+# CODEM · Sites sob medida pro seu negócio
 
 Página de vendas da CODEM. Mostra ao dono do negócio o que um site bem feito muda na venda, prova com sites reais no ar e leva para a prévia grátis pelo WhatsApp. Ele só paga depois de aprovar o site no ar.
 
@@ -14,15 +14,17 @@ A Vercel publica a partir da branch `main`.
 
 ## A página, seção por seção
 
-1. Topo: a headline em dois estados que se alternam, o botão da prévia e um celular em 3D com quatro cenas (loja, hamburgueria, drinks e reservas). Cada recurso salta da tela para a coluna ao lado, ligado por uma linha ao ponto da tela de onde saiu.
-2. O que seu cliente encontra quando clica no seu link: o mesmo celular do topo desce com a rolagem e para à direita. À esquerda, o "antes" da mesma cena (preço só no direct, PDF, reserva por mensagem).
-3. Caso real do bar: seis passos, do direct à planilha, ao formulário, ao painel, à aprovação e aos números.
-4. Onde você está perdendo vendas agora: o visitante toca no que acontece com ele e o placar conta as portas abertas para o concorrente.
-5. Sites que já estão vendendo: notebook, tablet e celular, e cartões que se abrem com os porquês de cada site.
-6. Tudo o que faz o seu cliente comprar mais: recursos com vídeo.
-7. Como funciona: quatro passos e um exemplo de conversa com um cliente novo.
-8. Você não paga para ver: R$ 0 para ver o site no ar, 24 horas e risco zero, mais a comparação com agência e site genérico de IA.
-9. Dúvidas e rodapé com a marca.
+1. Abertura: sem barra de carregamento. As letras do logo saem do centro, se abrem e formam a palavra CODEM; o logo sobe para o lugar dele no topo e a página aparece.
+2. Topo escuro: a headline em dois estados que se alternam, o botão da prévia e o celular aparecendo por baixo.
+3. Vídeo automático: com um toque de rolagem o celular vai para o centro e mostra quatro sites (loja, hamburgueria, drinks e reservas). Em cada recurso o vídeo para, as peças da tela se descolam em camadas 3D e montam o recurso ao lado do celular, com uma seta saindo do ponto exato da tela. Depois as peças voltam ao lugar e o vídeo segue. A frase muda de lado conforme o recurso.
+4. Antes e depois: o mesmo celular desce e para à direita. À esquerda, o "antes" da mesma cena (preço só no direct, PDF, reserva por mensagem).
+5. Caso real do bar: reservas e cardápio inteligente, com tempo, clientes e pedidos.
+6. Onde você está perdendo vendas agora: a pessoa escolhe a situação dela (sem site, site antigo, PDF nos destaques, tudo no Instagram, plataforma pronta, tudo no WhatsApp e no direct) e faz a conta dentro do próprio texto.
+7. Sites que já estão vendendo: notebook, tablet e celular, e cartões que se abrem com os porquês de cada site.
+8. Tudo o que faz o seu cliente comprar mais: recursos com vídeo.
+9. Como funciona: quatro passos e a conversa do jeito que o cliente vai ver, ele mandando mensagem e o Guilherme respondendo.
+10. Você não paga para ver: R$ 0 para ver o site no ar, 24 horas e risco zero, mais a comparação com agência e site genérico de IA.
+11. Dúvidas e rodapé com a marca.
 
 O botão "Quero minha prévia grátis" abre um formulário de três perguntas, uma por vez, que monta a mensagem e envia pelo WhatsApp.
 
@@ -33,7 +35,10 @@ Tudo fica em `index.html`: textos, estilos (variáveis de cor no topo do `<style
 | Quero mudar… | Onde |
 |---|---|
 | Número do WhatsApp | `const PHONE` no script e os links `wa.me/5511937654207` |
-| Cenas do topo e recursos que saltam da tela | lista `const SC` no script (tempo de cada recurso em segundos do vídeo) |
+| Abertura com o logo | módulo `loader` no script e `#loader` no começo do `<body>` |
+| Cenas do vídeo e recursos que saem da tela | lista `const SC` no script: tempo de cada recurso em segundos do vídeo, região da tela de onde ele sai e as frases |
+| Situações da calculadora | botões `#cases` no HTML e lista `const WHY` no script |
+| Foto do WhatsApp em "Como funciona" | `public/media/gui-av.webp` |
 | "Antes" de cada cena na segunda dobra | objeto `const BEFORE` no script |
 | Sites do portfólio e os porquês de cada um | lista `const SITES` no script |
 | Recursos com vídeo | lista `const F` no script |
@@ -42,10 +47,11 @@ Tudo fica em `index.html`: textos, estilos (variáveis de cor no topo do `<style
 
 ## Identidade
 
-- Branco como cor principal e preto nos capítulos escuros. Azul `#2B44FF` como cor da marca: títulos do topo, botões e a dobra das perdas.
+- Preto na abertura, no topo e no vídeo; branco a partir do antes e depois.
+- Laranja `#FF5B1F` só no que é destaque: palavras-chave, botões (com texto preto) e a dobra das perdas.
 - Vermelho só para o "antes" e verde só para o resultado bom, para a comparação ficar clara.
 - Unbounded nos títulos e Geist nos textos.
 
 ## Bibliotecas
 
-GSAP e Lenis (rolagem suave no computador) por CDN. O Three.js (celular em 3D) só carrega depois que a página abre e só em aparelhos que aguentam; nos outros o celular é feito em CSS. O CSS sai sem minificação de propósito, para o site publicado ficar idêntico ao que foi testado.
+GSAP e Lenis (rolagem suave no computador) por CDN. O Three.js (celular em 3D) só carrega em aparelhos que aguentam e monta a cena enquanto o logo da abertura está parado, para nada engasgar; nos outros o celular é feito em CSS e os recursos saem da tela do mesmo jeito. O CSS sai sem minificação de propósito, para o site publicado ficar idêntico ao que foi testado.
