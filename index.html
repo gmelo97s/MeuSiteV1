@@ -762,14 +762,14 @@ input{font:inherit}
 .sim__out{display:grid;gap:14px;padding:clamp(22px,2.4vw,30px);border-top:1px solid #1f1f22}
 .sim__k{color:#8e8e93;font-size:.95rem;font-weight:500}
 .sim__n{display:flex;align-items:baseline;gap:.2em;margin-top:-6px;line-height:1;font-variant-numeric:tabular-nums}
-.sim__n small{font-size:clamp(1.3rem,1rem + 1vw,2rem);font-weight:500;color:#8e8e93;letter-spacing:-.02em}
-.sim__n b{font-size:clamp(3rem,1.6rem + 4.2vw,5rem);font-weight:600;letter-spacing:-.05em}
+.sim__n small{font-size:clamp(1.3rem,1rem + 1vw,2rem);font-weight:600;color:var(--loss);opacity:.75;letter-spacing:-.02em}
+.sim__n b{font-size:clamp(3rem,1.6rem + 4.2vw,5rem);font-weight:600;letter-spacing:-.05em;color:var(--loss);text-shadow:0 0 42px rgba(255,59,48,.35)}
 .sim__list{display:grid;border-radius:18px;background:#141416}
 .sim__list div{display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 18px}
 .sim__list div + div{border-top:1px solid #1f1f22}
 .sim__list dt{color:#8e8e93;font-size:.95rem}
 .sim__list dd{font-size:1.1rem;font-weight:600;letter-spacing:-.015em;font-variant-numeric:tabular-nums}
-.sim__list .is-y dd{color:var(--accent);font-size:1.3rem}
+.sim__list .is-y dd{color:var(--loss);font-size:1.3rem}
 .sim__why{display:grid;gap:4px;color:#8e8e93;font-size:.9rem}
 .sim__why b{color:#fff;font-weight:500;font-size:1rem}
 .sim__cta{width:100%;margin-top:4px}
@@ -821,6 +821,53 @@ input{font:inherit}
   .dv--t{left:4%;top:45%;width:54%}
   .dv--m{left:63%;top:51%;width:32%}
   .tri__list{grid-template-columns:minmax(0,1fr);gap:16px;max-width:26em}
+}
+
+.loss{--loss:#ff3b30}
+.sim__f{position:relative}
+.sim__f::before{content:"";position:absolute;inset:-10px -14px;border-radius:16px;background:linear-gradient(90deg,rgba(255,91,31,0) 0%,rgba(255,91,31,.18) 50%,rgba(255,91,31,0) 100%);opacity:0;pointer-events:none}
+.sim__f.is-swept::before{animation:simSweep .95s cubic-bezier(.2,.7,.2,1)}
+@keyframes simSweep{0%{opacity:0;transform:translateX(-45%)}25%{opacity:1}100%{opacity:0;transform:translateX(45%)}}
+.sim__q{display:block}
+.sim.is-lit{animation:simLit 1.1s ease-out}
+@keyframes simLit{0%{box-shadow:inset 0 0 0 1px #1f1f22,0 50px 90px -50px rgba(0,0,0,.9)}22%{box-shadow:inset 0 0 0 1.5px var(--accent),0 0 70px -6px rgba(255,91,31,.4)}100%{box-shadow:inset 0 0 0 1px #1f1f22,0 50px 90px -50px rgba(0,0,0,.9)}}
+.cases button.is-lit{animation:caseLit .8s ease-out}
+@keyframes caseLit{0%{box-shadow:0 0 0 0 rgba(255,91,31,0)}30%{box-shadow:0 0 34px 0 rgba(255,91,31,.38)}100%{box-shadow:0 0 0 0 rgba(255,91,31,0)}}
+.sim-beam{position:fixed;left:0;top:0;z-index:60;width:120px;height:3px;margin-top:-1.5px;border-radius:3px;background:linear-gradient(90deg,rgba(255,91,31,0),var(--accent) 70%,#fff);box-shadow:0 0 14px 2px rgba(255,91,31,.75);pointer-events:none;transform-origin:100% 50%}
+
+/* ===== números: fundo branco infinito, um número por vez ===== */
+.nums{position:relative;background:#fff}
+.nums__track{position:relative;height:520svh}
+.nums__stage{position:sticky;top:0;height:100svh;overflow:hidden;background:radial-gradient(130% 55% at 50% 118%,#ececef 0%,rgba(255,255,255,0) 62%),#fff}
+.nums__slides{position:absolute;inset:0;display:grid;place-items:center}
+.nums__slide{grid-area:1/1;display:grid;justify-items:center;gap:clamp(10px,1.6vw,22px);width:min(1100px,92vw);text-align:center;opacity:0;visibility:hidden}
+.nums__slide.is-on{opacity:1;visibility:visible}
+.nums__h{display:grid;gap:.3em;font-family:var(--display);font-weight:600;font-size:clamp(2.1rem,1rem + 4.2vw,5.4rem);line-height:1;letter-spacing:-.06em;text-wrap:balance}
+.nums__h span{color:var(--accent-ink)}
+.nums__n{font-family:var(--display);font-weight:700;font-size:clamp(4.6rem,1rem + 15vw,15rem);line-height:.9;letter-spacing:-.075em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.nums__c{max-width:20em;font-family:var(--display);font-weight:500;font-size:clamp(1.15rem,.8rem + 1.3vw,2rem);line-height:1.18;letter-spacing:-.035em;text-wrap:balance}
+.nums__s{margin-top:clamp(6px,1vw,14px);color:#8e8e93;font-size:.82rem;letter-spacing:.01em}
+.nums__dots{position:absolute;left:50%;bottom:clamp(22px,4svh,40px);display:flex;gap:8px;transform:translateX(-50%)}
+.nums__dots i{width:7px;height:7px;border-radius:50%;background:#d4d4d8;transition:background .3s,transform .3s}
+.nums__dots i.is-on{background:var(--ink);transform:scale(1.25)}
+/* ===== 100 clientes ===== */
+.cem{position:relative;padding:clamp(40px,6vw,90px) 0 clamp(120px,13vw,190px);background:#fff;overflow:clip}
+.cem__in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,6vw,100px);align-items:center}
+.cem__t{font-family:var(--display);font-weight:600;font-size:clamp(2rem,1rem + 3vw,3.9rem);line-height:1.02;letter-spacing:-.055em}
+.cem__step{margin-top:clamp(18px,2.4vw,30px);max-width:19em;font-family:var(--display);font-weight:500;font-size:clamp(1.2rem,.9rem + 1vw,1.9rem);line-height:1.2;letter-spacing:-.035em;color:#b4b4ba;transition:color .5s}
+.cem__step.is-on{color:var(--ink)}
+.cem__k{font-weight:700;color:var(--accent-ink);font-variant-numeric:tabular-nums}
+.cem__end{display:grid;gap:12px;margin-top:clamp(26px,3vw,40px);font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,1rem + 1.9vw,2.8rem);line-height:1.05;letter-spacing:-.05em;color:var(--ink)}
+.cem__end span{max-width:22em;font-family:var(--sans);font-weight:500;font-size:clamp(1rem,.95rem + .25vw,1.15rem);line-height:1.45;letter-spacing:-.01em;color:var(--mute)}
+.cem__src{margin-top:clamp(18px,2vw,26px);color:#8e8e93;font-size:.8rem}
+.cem__grid{display:grid;grid-template-columns:repeat(10,1fr);gap:clamp(8px,1.4vw,18px);width:min(560px,100%);justify-self:center}
+.cem__grid i{display:block;aspect-ratio:1;border-radius:50%;background:#e4e4e7;transform-origin:50% 50%}
+.cem__grid i.is-k{background:var(--ink)}
+.cem__grid i.is-g{background:var(--accent)}
+@media (max-width:899px){
+  .cem__in{grid-template-columns:minmax(0,1fr)}
+  .cem__grid{width:min(420px,100%);gap:9px}
+  .nums__track{height:480svh}
 }
 
 </style>
@@ -908,6 +955,33 @@ input{font:inherit}
     </div>
   </section>
 
+  <section class="nums" id="numeros" aria-labelledby="nums-t">
+    <div class="nums__track" id="nums-track">
+      <div class="nums__stage">
+        <div class="nums__slides">
+          <div class="nums__slide is-on" data-i="0"><h2 id="nums-t" class="nums__h">O seu cliente já está procurando.<span>A pergunta é quem ele encontra.</span></h2></div>
+          <div class="nums__slide" data-i="1"><p class="nums__n" data-to="79" data-pre="" data-suf="%">79%</p><p class="nums__c">dos brasileiros pesquisam antes de comprar.</p><p class="nums__s">PwC, Global Consumer Insights Survey 2026</p></div>
+          <div class="nums__slide" data-i="2"><p class="nums__n" data-to="9" data-pre="" data-suf=" em 10">9 em 10</p><p class="nums__c">pequenos negócios não têm site próprio.</p><p class="nums__s">Sebrae, Transformação Digital nos Pequenos Negócios</p></div>
+          <div class="nums__slide" data-i="3"><p class="nums__n" data-to="1" data-pre="" data-suf=" em 2">1 em 2</p><p class="nums__c">não volta a comprar depois de uma experiência ruim no site.</p><p class="nums__s">Locaweb, pesquisa com 500 consumidores, 2026</p></div>
+          <div class="nums__slide" data-i="4"><p class="nums__n" data-to="260" data-pre="R$ " data-suf=" bi">R$ 260 bi</p><p class="nums__c">devem passar pelas vendas online no Brasil em 2026.</p><p class="nums__s">Abiacom, projeção 2026</p></div>
+        </div>
+        <div class="nums__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cem" id="cem" aria-labelledby="cem-t">
+    <div class="wrap cem__in">
+      <div class="cem__copy">
+        <h2 id="cem-t" class="cem__t">Pense em 100 clientes.</h2>
+        <p class="cem__step" data-s="1"><b class="cem__k" id="cem-k">79</b> vão te procurar na internet antes de comprar.</p>
+        <p class="cem__step" data-s="2">Sem um site seu, eles encontram outra empresa primeiro.</p>
+        <p class="cem__end" data-s="3">É aí que a venda escapa.<span>Agora veja isso resolvido na prática, num bar de São Paulo.</span></p>
+        <p class="cem__src">Base: PwC, Global Consumer Insights Survey 2026.</p>
+      </div>
+      <div class="cem__grid" id="cem-grid" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </section>
   <section class="case" id="caso" aria-labelledby="case-t">
     <svg class="edge" viewBox="0 0 1440 110" preserveAspectRatio="none" aria-hidden="true"><path d="M0,110 C360,110 1080,110 1440,110 L1440,110 L0,110 Z"/></svg>
     <div class="wrap">
@@ -1031,27 +1105,32 @@ input{font:inherit}
       </div>
       <div class="sim" id="calc">
         <div class="sim__in">
-          <div class="sim__f">
-            <label class="sim__row" for="s-p"><span>Pessoas que procuram você por dia</span><output id="o-p" for="s-p">30</output></label>
+          <div class="sim__f" data-k="p">
+            <label class="sim__row" for="s-p"><span class="sim__q" id="q-p">Pessoas que procuram o que você vende, por dia</span><output id="o-p" for="s-p">20</output></label>
             <input class="sim__range" type="range" id="s-p" data-k="p" min="0" max="10" step="1" value="0">
           </div>
-          <div class="sim__f">
-            <label class="sim__row" for="s-d"><span>Quantas desistem, a cada 10</span><output id="o-d" for="s-d">2</output></label>
+          <div class="sim__f" data-k="d">
+            <label class="sim__row" for="s-d"><span class="sim__q" id="q-d">Quantas desistem por não te acharem no Google ou por um link ruim no Instagram</span><output id="o-d" for="s-d">2 de 10</output></label>
             <input class="sim__range" type="range" id="s-d" data-k="d" min="0" max="10" step="1" value="0">
           </div>
-          <div class="sim__f">
-            <label class="sim__row" for="s-t"><span>Quanto cada uma gastaria</span><output id="o-t" for="s-t">R$ 50</output></label>
+          <div class="sim__f" data-k="e">
+            <label class="sim__row" for="s-e"><span class="sim__q" id="q-e">Quantas deixam de comprar ou de te chamar no WhatsApp por você não ter site</span><output id="o-e" for="s-e">1 de 10</output></label>
+            <input class="sim__range" type="range" id="s-e" data-k="e" min="0" max="10" step="1" value="0">
+          </div>
+          <div class="sim__f" data-k="t">
+            <label class="sim__row" for="s-t"><span class="sim__q" id="q-t">Quanto cada cliente gasta com você, em média</span><output id="o-t" for="s-t">R$ 50</output></label>
             <input class="sim__range" type="range" id="s-t" data-k="t" min="0" max="10" step="1" value="0">
           </div>
         </div>
         <div class="sim__out">
           <p class="sim__k">Você deixa de faturar por mês</p>
-          <p class="sim__n" aria-live="polite"><small>R$</small><b id="loss-m">9.000</b></p>
+          <p class="sim__n" aria-live="polite"><small>R$</small><b id="loss-m">8.400</b></p>
           <dl class="sim__list">
-            <div><dt>Por dia</dt><dd id="loss-d">R$ 300</dd></div>
-            <div class="is-y"><dt>Em 12 meses</dt><dd id="loss-y">R$ 108.000</dd></div>
+            <div><dt>Clientes perdidos por mês</dt><dd id="loss-c">168</dd></div>
+            <div><dt>Por dia</dt><dd id="loss-d">R$ 280</dd></div>
+            <div class="is-y"><dt>Em 12 meses</dt><dd id="loss-y">R$ 100.800</dd></div>
           </dl>
-          <p class="sim__why"><span>Por quê</span><b id="why-t" aria-live="polite">O cliente procura e não encontra um site seu.</b></p>
+          <p class="sim__why"><span>Por quê</span><b id="why-t" aria-live="polite">Sem site, quem procura no Google acha o concorrente, e quem chega pelo Instagram não tem onde ver preço e comprar.</b></p>
           <a class="btn btn--accent sim__cta" data-form href="https://wa.me/5511937654207?text=Ol%C3%A1!%20Quero%20minha%20pr%C3%A9via%20gr%C3%A1tis.">Quero parar de perder vendas</a>
         </div>
       </div>
@@ -1417,6 +1496,55 @@ input{font:inherit}
     if (intro) onReady(arm); else arm();
   }
   mod('alt', () => { alternate($('#hero-alt'), 5600, true); alternate($('#case-alt'), 5200, false); });
+
+  /* ===== números: um por vez, no meio da tela, enquanto a pessoa rola ===== */
+  mod('nums', () => {
+    const track = $('#nums-track'); if (!track) return;
+    const slides = $$('.nums__slide', track), dots = $$('.nums__dots i', track), N = slides.length;
+    let cur = 0;
+    dots[0].classList.add('is-on');
+    const count = el => {
+      const to = +el.dataset.to, pre = el.dataset.pre || '', suf = el.dataset.suf || '', o = { v: 0 };
+      G.to(o, { v: to, duration: 1.1, ease: 'power3.out', onUpdate() { el.textContent = pre + Math.round(o.v).toLocaleString('pt-BR') + suf; } });
+    };
+    function show(i) {
+      if (i === cur) return;
+      const a = slides[cur], b = slides[i], dir = i > cur ? 1 : -1; cur = i;
+      dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
+      if (!motion) { a.classList.remove('is-on'); b.classList.add('is-on'); return; }
+      G.killTweensOf([a, b]);
+      G.to(a, { opacity: 0, scale: dir > 0 ? 1.08 : 0.92, filter: 'blur(10px)', duration: 0.42, ease: 'power2.in', onComplete() { a.classList.remove('is-on'); G.set(a, { clearProps: 'opacity,scale,filter,transform' }); } });
+      b.classList.add('is-on');
+      G.fromTo(b, { opacity: 0, scale: dir > 0 ? 0.9 : 1.1, filter: 'blur(12px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.75, ease: 'expo.out', delay: 0.16 });
+      const n = $('.nums__n', b); if (n && dir > 0) count(n);
+    }
+    const onScroll = () => {
+      const r = track.getBoundingClientRect(), total = Math.max(1, r.height - innerHeight);
+      show(Math.min(N - 1, Math.floor(clamp(-r.top / total) * N * 0.9999)));
+    };
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  });
+
+  /* ===== 100 clientes: 79 pesquisam antes de comprar e, sem site, vão embora ===== */
+  mod('cem', () => {
+    const grid = $('#cem-grid'); if (!grid) return;
+    const dots = $$('i', grid), steps = $$('.cem__step'), end = $('.cem__end'), k = $('#cem-k');
+    const order = dots.map((d, i) => i).sort((a, b) => ((a * 37) % 101) - ((b * 37) % 101));
+    const who = order.slice(0, 79);
+    if (!motion) { who.forEach(i => dots[i].classList.add('is-g')); steps.forEach(s => s.classList.add('is-on')); return; }
+    G.set(dots, { scale: 0 }); G.set(end, { opacity: 0, y: 20 });
+    whenSeen(grid, () => {
+      const tl = G.timeline();
+      tl.to(dots, { scale: 1, duration: 0.5, ease: 'back.out(2)', stagger: { each: 0.008, from: 'center', grid: [10, 10] } })
+        .call(() => steps[0].classList.add('is-on'), null, 0.6)
+        .to({ v: 0 }, { v: 79, duration: 1.6, ease: 'power2.out', onUpdate() { k.textContent = Math.round(this.targets()[0].v); } }, 0.6);
+      who.forEach((i, n) => tl.call(() => dots[i].classList.add('is-k'), null, 0.6 + n * 0.02));
+      tl.call(() => steps[1].classList.add('is-on'), null, 2.6)
+        .call(() => who.forEach(i => { dots[i].classList.remove('is-k'); dots[i].classList.add('is-g'); }), null, 2.85)
+        .to(who.map(i => dots[i]), { x: () => 180 + Math.random() * 160, scale: 0.5, opacity: 0, duration: 0.9, ease: 'power2.in', stagger: { each: 0.008, from: 'end' } }, 3.0)
+        .to(end, { opacity: 1, y: 0, duration: 0.75, ease: 'expo.out' }, 3.9);
+    }, { threshold: 0.35 });
+  });
 
   /* ===== três sites em um: os três aparelhos saem de um só e rolam o mesmo site juntos ===== */
   mod('tri', () => {
@@ -2482,20 +2610,40 @@ input{font:inherit}
   /* ===== onde você está perdendo vendas: a conta no próprio texto ===== */
   mod('calc', () => {
     const root = $('#calc'); if (!root) return;
-    const VALS = { p: [5, 10, 15, 20, 25, 30, 40, 50, 60, 80, 100, 150, 200, 300, 500, 800, 1000], d: [1, 2, 3, 4, 5, 6, 7, 8, 9], t: [10, 15, 20, 25, 30, 40, 50, 60, 70, 80, 100, 120, 150, 200, 250, 300, 400, 500, 800, 1000] };
-    const idx = { p: VALS.p.indexOf(30), d: VALS.d.indexOf(2), t: VALS.t.indexOf(50) };
-    const WHY = ['O cliente procura e não encontra um site seu.', 'O site antigo é lento e parece abandonado.', 'O cliente precisa abrir um PDF para ver o preço.', 'O cliente precisa caçar preço no seu feed.', 'A plataforma pronta não parece o seu negócio.', 'O cliente fica esperando você responder.'];
-    const cases = $$('#cases [role="radio"]'), ranges = $$('.sim__range', root);
-    let why = 0, auto = 0, touched = false;
+    const VALS = { p: [5, 10, 15, 20, 25, 30, 40, 50, 60, 80, 100, 150, 200, 300, 500, 800, 1000], d: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], e: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9], t: [10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 70, 80, 90, 100, 120, 150, 200, 250, 300, 400, 500, 800, 1000] };
+    const GASTO = 'Quanto cada cliente gasta com você, em média';
+    /* cada situação: as perguntas na língua de quem vive aquilo, números iniciais realistas e o porquê da perda */
+    const SITU = [
+      { q: ['Pessoas que procuram o que você vende, por dia', 'Quantas desistem por não te acharem no Google ou por um link ruim no Instagram', 'Quantas deixam de comprar ou de te chamar no WhatsApp por você não ter site', GASTO], v: { p: 20, d: 2, e: 1, t: 50 },
+        why: 'Sem site, quem procura no Google acha o concorrente, e quem chega pelo Instagram não tem onde ver preço e comprar.' },
+      { q: ['Pessoas que entram no seu site, por dia', 'Quantas saem antes de a página carregar, porque o site é lento', 'Quantas não confiam no visual antigo e não compram nem te chamam', GASTO], v: { p: 20, d: 3, e: 1, t: 50 },
+        why: 'Site lento e com cara de abandonado passa a impressão de loja fechada.' },
+      { q: ['Pessoas que veem seu perfil no Instagram, por dia', 'Quantas desistem antes de o PDF abrir no celular', 'Quantas cansam de dar zoom e não pedem nem te chamam', GASTO], v: { p: 30, d: 2, e: 1, t: 45 },
+        why: 'O PDF demora para abrir no celular e obriga o cliente a dar zoom para achar o preço.' },
+      { q: ['Pessoas que visitam o seu perfil, por dia', 'Quantas não acham o preço no meio das postagens', 'Quantas perguntam no direct e desistem antes da resposta', GASTO], v: { p: 30, d: 2, e: 1, t: 50 },
+        why: 'No feed, o preço some entre as postagens e a venda fica esperando você responder.' },
+      { q: ['Pessoas que abrem o link da sua plataforma, por dia', 'Quantas estranham a página genérica, que não parece sua', 'Quantas escolhem um concorrente que aparece na mesma plataforma', GASTO], v: { p: 30, d: 1, e: 2, t: 55 },
+        why: 'Na plataforma pronta você é mais um na lista, com a mesma cara de todos os outros.' },
+      { q: ['Pessoas que te chamam no WhatsApp ou no direct, por dia', 'Quantas não recebem resposta a tempo', 'Quantas desistem no meio da conversa, antes de fechar', GASTO], v: { p: 20, d: 2, e: 1, t: 70 },
+        why: 'Tudo depende de você responder rápido, e enquanto você atende um, os outros esperam.' }
+    ];
+    const KEYS = ['p', 'd', 'e', 't'];
+    const at = (k, v) => Math.max(0, VALS[k].indexOf(v));
+    const idx = {}; KEYS.forEach(k => { idx[k] = at(k, SITU[0].v[k]); });
+    const cases = $$('#cases [role="radio"]'), ranges = $$('.sim__range', root), rows = $$('.sim__f', root);
+    let sit = 0, auto = 0, touched = false, moved = false;
     const num = n => Math.round(n).toLocaleString('pt-BR');
     const brl = n => 'R$ ' + num(n);
-    const outM = $('#loss-m'), outD = $('#loss-d'), outY = $('#loss-y'), whyT = $('#why-t');
+    const outM = $('#loss-m'), outD = $('#loss-d'), outY = $('#loss-y'), outC = $('#loss-c'), whyT = $('#why-t');
     const shown = { v: 0 };
-    const month = () => VALS.p[idx.p] * VALS.d[idx.d] / 10 * VALS.t[idx.t] * 30;
-    const label = (k, v) => k === 't' ? brl(v) : num(v);
-    const spoken = (k, v) => k === 'p' ? v + ' pessoas por dia' : k === 'd' ? v + ' em cada 10' : brl(v);
+    const val = k => VALS[k][Math.round(idx[k])];
+    /* funil: de quem procura, uma parte não te acha; de quem acha, uma parte não compra */
+    const lostDay = () => val('p') * (val('d') / 10 + (1 - val('d') / 10) * val('e') / 10);
+    const month = () => lostDay() * val('t') * 30;
+    const label = (k, v) => k === 't' ? brl(v) : k === 'p' ? num(v) : v + ' de 10';
+    const spoken = (k, v) => k === 'p' ? v + ' pessoas por dia' : k === 't' ? brl(v) : v + ' em cada 10';
     function paint(r) {
-      const k = r.dataset.k, v = VALS[k][idx[k]];
+      const k = r.dataset.k, v = val(k);
       r.style.setProperty('--p', (idx[k] / (VALS[k].length - 1) * 100).toFixed(2) + '%');
       r.setAttribute('aria-valuetext', spoken(k, v));
       $('#o-' + k).textContent = label(k, v);
@@ -2503,33 +2651,73 @@ input{font:inherit}
     function render(anim) {
       ranges.forEach(paint);
       const m = month();
-      outD.textContent = brl(m / 30); outY.textContent = brl(m * 12);
-      if (anim && motion) { G.killTweensOf(shown); G.to(shown, { v: m, duration: 0.5, ease: 'power3.out', onUpdate() { outM.textContent = num(shown.v); } }); }
+      outD.textContent = brl(m / 30); outY.textContent = brl(m * 12); outC.textContent = num(lostDay() * 30);
+      if (anim && motion) { G.killTweensOf(shown); G.to(shown, { v: m, duration: 0.55, ease: 'power3.out', onUpdate() { outM.textContent = num(shown.v); } }); }
       else { shown.v = m; outM.textContent = num(m); }
     }
     function stopAuto() { touched = true; clearInterval(auto); }
     ranges.forEach(r => {
       const k = r.dataset.k;
       r.max = VALS[k].length - 1; r.value = idx[k];
-      r.addEventListener('input', () => { stopAuto(); idx[k] = +r.value; render(true); });
+      r.addEventListener('input', () => { stopAuto(); moved = true; if (G) G.killTweensOf(idx); KEYS.forEach(n => { idx[n] = Math.round(idx[n]); }); ranges.forEach(x => { x.step = 1; if (x !== r) x.value = idx[x.dataset.k]; }); idx[k] = Math.round(+r.value); render(true); });
     });
-    function setCase(i, focus) {
-      why = (i + WHY.length) % WHY.length;
-      cases.forEach((b, k) => { b.setAttribute('aria-checked', String(k === why)); b.tabIndex = k === why ? 0 : -1; });
-      if (focus) cases[why].focus();
-      if (!motion) { whyT.textContent = WHY[why]; return; }
-      G.to(whyT, { opacity: 0, y: -6, duration: 0.16, onComplete() { whyT.textContent = WHY[why]; G.fromTo(whyT, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power3.out' }); } });
+    /* a luz sai da opção escolhida e acende as perguntas que mudaram */
+    function beam(btn) {
+      const a = btn.getBoundingClientRect(), c = root.getBoundingClientRect(), mob = innerWidth < 900;
+      const b = D.createElement('i'); b.className = 'sim-beam'; D.body.appendChild(b);
+      const sx = mob ? a.left + a.width / 2 : a.right, sy = mob ? a.bottom : a.top + a.height / 2;
+      const tx = mob ? c.left + c.width / 2 : c.left, ty = mob ? c.top : c.top + 56;
+      const ang = Math.atan2(ty - sy, tx - sx) * 57.2958, len = Math.hypot(tx - sx, ty - sy);
+      G.set(b, { x: sx - 120, y: sy, rotation: ang, transformOrigin: '100% 50%' });
+      G.timeline({ onComplete() { b.remove(); } })
+        .to(b, { x: sx - 120 + (len) * Math.cos(ang / 57.2958), y: sy + len * Math.sin(ang / 57.2958), duration: 0.42, ease: 'power2.in' })
+        .to(b, { opacity: 0, duration: 0.15 }, 0.36);
+      return 0.38;
+    }
+    function relight(el, cls) { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); }
+    function setCase(i, focus, byUser) {
+      sit = (i + SITU.length) % SITU.length;
+      const S = SITU[sit], btn = cases[sit];
+      cases.forEach((b, k) => { b.setAttribute('aria-checked', String(k === sit)); b.tabIndex = k === sit ? 0 : -1; });
+      if (focus) btn.focus();
+      const swap = () => {
+        whyT.textContent = S.why;
+        rows.forEach((row, n) => { const q = $('.sim__q', row); if (q.textContent !== S.q[n]) q.textContent = S.q[n]; });
+        if (!moved) { KEYS.forEach(k => { idx[k] = at(k, S.v[k]); ranges.forEach(r => { if (r.dataset.k === k) r.value = idx[k]; }); }); }
+        render(true);
+      };
+      if (!motion) { swap(); return; }
+      relight(btn, 'is-lit');
+      const delay = beam(btn);
+      G.delayedCall(delay, () => {
+        relight(root, 'is-lit');
+        rows.forEach((row, n) => {
+          const q = $('.sim__q', row), text = S.q[n];
+          G.delayedCall(n * 0.07, () => {
+            relight(row, 'is-swept');
+            if (q.textContent === text) return;
+            G.to(q, { y: -10, opacity: 0, duration: 0.18, ease: 'power2.in', onComplete() { q.textContent = text; G.fromTo(q, { y: 12, opacity: 0 }, { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' }); } });
+          });
+        });
+        G.to(whyT, { opacity: 0, y: -6, duration: 0.16, onComplete() { whyT.textContent = S.why; G.fromTo(whyT, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.35, ease: 'power3.out' }); } });
+        if (!moved) {
+          /* os controles deslizam até os números do novo cenário */
+          const to = {}; KEYS.forEach(k => { to[k] = at(k, S.v[k]); });
+          ranges.forEach(r => { r.step = 'any'; });
+          G.to(idx, Object.assign({ duration: 0.7, ease: 'power3.inOut', onUpdate() { ranges.forEach(r => { r.value = idx[r.dataset.k]; paint(r); }); const m = month(); outM.textContent = num(m); shown.v = m; outD.textContent = brl(m / 30); outY.textContent = brl(m * 12); outC.textContent = num(lostDay() * 30); }, onComplete() { KEYS.forEach(k => { idx[k] = Math.round(idx[k]); }); ranges.forEach(r => { r.step = 1; r.value = idx[r.dataset.k]; }); render(false); } }, to));
+        } else render(true);
+      });
     }
     cases.forEach((b, i) => {
-      b.addEventListener('click', () => { stopAuto(); setCase(i); });
+      b.addEventListener('click', () => { stopAuto(); if (i !== sit) setCase(i, false, true); });
       b.addEventListener('keydown', e => {
         const k = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? 1 : e.key === 'ArrowLeft' || e.key === 'ArrowUp' ? -1 : 0;
-        if (k) { e.preventDefault(); stopAuto(); setCase(why + k, true); }
+        if (k) { e.preventDefault(); stopAuto(); setCase(sit + k, true, true); }
       });
     });
     render(false);
     if (!motion) return;
-    whileSeen(root, () => { if (touched) return; clearInterval(auto); auto = setInterval(() => setCase(why + 1), 3200); }, () => clearInterval(auto), { threshold: 0.35 });
+    whileSeen(root, () => { if (touched) return; clearInterval(auto); auto = setInterval(() => setCase(sit + 1), 4600); }, () => clearInterval(auto), { threshold: 0.35 });
     shown.v = 0; outM.textContent = '0';
     whenSeen(outM, () => G.to(shown, { v: month(), duration: 1.6, ease: 'power3.out', onUpdate() { outM.textContent = num(shown.v); } }), { threshold: 0.4 });
   });
