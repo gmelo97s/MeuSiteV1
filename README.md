@@ -14,11 +14,11 @@ A Vercel publica a partir da branch `main`.
 
 ## A página, seção por seção
 
-1. Abertura: sem barra de carregamento. As letras do logo saem do centro, se abrem e formam a palavra CODEM; o logo sobe para o lugar dele no topo e a página aparece.
+1. Abertura: sem barra de carregamento. O ícone do favicon (C, O e D num círculo) aparece no centro e se abre na palavra CODEM; o logo sobe para o lugar dele no topo e a página aparece.
 2. Topo escuro: a headline em dois estados que se alternam, a subheadline e o botão da prévia, com o celular aparecendo por baixo.
 3. Vídeo automático: o celular vai para o centro e mostra quatro negócios, nesta ordem: hamburgueria, cardápio do bar, reservas e loja de bolsas. Em cada recurso o vídeo para, as peças da tela se soltam em camadas 3D (recortadas de quadros em alta resolução) e montam o recurso ao lado do celular, que continua girando e respirando enquanto ele está fora. Entre um recurso e outro, um anel percorre a tela com uma etiqueta explicando o que acontece, e os trechos sem novidade passam acelerados.
 4. Antes e depois: o mesmo celular desce e para à direita; à esquerda, o "antes" da mesma cena.
-5. Números, em fundo branco e numa tela só: a pergunta de 2027 e quatro números de pesquisa real que contam até o valor com um gráfico pequeno cada (PwC, Sebrae, Locaweb e a projeção do EBANX para 2027, com a fonte embaixo de cada um).
+5. Números, em fundo branco: a pergunta de 2027 e depois quatro números de pesquisa real, um por vez no meio da tela, cada um contando até o valor com o seu gráfico (PwC, Sebrae, Locaweb e a projeção do EBANX para 2027, com a fonte embaixo). Cada giro da roda do mouse, toque no trackpad ou arrasto no celular leva à próxima frase, e depois da última a página segue direto para a dobra seguinte.
 6. Pense em 100 clientes: 79 pesquisam antes de comprar e, sem site, vão embora; a dobra termina chamando o caso do bar.
 7. Caso real do bar: reservas e cardápio inteligente, com tempo, clientes e pedidos.
 8. Três sites em um: o mesmo site no computador, no tablet e no celular, cada um com o seu layout, saindo de um aparelho só e rolando juntos.
@@ -38,13 +38,13 @@ Tudo fica em `index.html`: textos, estilos (variáveis de cor no topo do `<style
 | Quero mudar… | Onde |
 |---|---|
 | Número do WhatsApp | `const PHONE` no script e os links `wa.me/5511937654207` |
-| Abertura com o logo | módulo `loader` no script e `#loader` no começo do `<body>` |
+| Abertura com o logo | módulo `loader` no script e `#loader` no começo do `<body>` (o ícone é o mesmo desenho do `public/favicon.svg`) |
 | Cenas do vídeo e recursos que saem da tela | lista `const SC` no script: tempo de cada recurso em segundos do vídeo, região da tela de onde ele sai e as frases |
 | Etiquetas entre um recurso e outro | campo `spots` de cada cena em `const SC` (tempo de início e fim, região da tela e texto) |
 | Quadros nítidos dos recursos | `public/media/hi-*.webp` e a tabela `const HIRES` no script |
 | Três sites em um | `#telas` no HTML e `public/media/tri-*.webp` (o site capturado no celular, tablet e computador) |
 | Situações, perguntas e números do simulador | botões `#cases` no HTML e, no módulo `calc` do script, a lista `SITU` (perguntas, valores iniciais e o porquê de cada situação) e `VALS` (valores de cada controle) |
-| Números de pesquisa | `#numeros` e `#cem` no HTML (o número, a frase e a fonte de cada um) |
+| Números de pesquisa | `#numeros` e `#cem` no HTML (o número, o gráfico, a frase e a fonte de cada um); a troca de frases é o módulo `nums` no script e a distância de rolagem entre uma e outra é o `--step` de `.nums__track` no CSS |
 | Foto do WhatsApp em "Como funciona" | `public/media/gui-av.webp` |
 | "Antes" de cada cena na segunda dobra | objeto `const BEFORE` no script |
 | Sites do portfólio e os stories de cada um | lista `const SITES` no script (campo `st`: etiqueta, frase grande e linha de apoio de cada story) |
@@ -54,7 +54,7 @@ Tudo fica em `index.html`: textos, estilos (variáveis de cor no topo do `<style
 
 ## Identidade
 
-- Preto na abertura, no topo, no vídeo, no caso e no simulador; branco e cinza-claro no resto, alternando as dobras.
+- Preto puro, sem brilho colorido, na abertura, no topo e no vídeo; preto também no caso e no simulador; branco e cinza-claro no resto, alternando as dobras.
 - Laranja `#FF5B1F` só no que é destaque: palavras-chave, botões (com texto preto) e a dobra das perdas.
 - Vermelho só para o "antes" e verde só para o resultado bom, para a comparação ficar clara.
 - Unbounded nos títulos e Geist nos textos.

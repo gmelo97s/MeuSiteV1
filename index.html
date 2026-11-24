@@ -124,11 +124,9 @@ input{font:inherit}
 .intro .micro{color:#8e8e93}
 .intro__peek{position:relative;z-index:1;flex:1 0 auto;width:100%;min-height:16svh}
 .intro__peek .anchor{position:absolute;left:50%;top:clamp(22px,4.5vh,52px);height:min(96svh,1000px);aspect-ratio:1/var(--ph);transform:translateX(-50%)}
-.intro__glow{position:absolute;left:50%;bottom:-40svh;z-index:0;width:min(1200px,150vw);height:84svh;transform:translateX(-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,91,31,.36),rgba(255,91,31,.1) 55%,rgba(255,91,31,0));pointer-events:none}
 
 /* ===== vídeo automático: o celular no centro ===== */
 .vsl{position:relative;height:100svh;min-height:600px;background:#000;color:#fff;overflow:hidden}
-.vsl::before{content:"";position:absolute;left:50%;top:50%;width:min(980px,130vw);height:min(980px,130vw);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,91,31,.22),rgba(255,91,31,0));pointer-events:none}
 .vsl__in{position:relative;display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:clamp(28px,4.5vw,84px);height:100%;max-width:1440px;margin:0 auto;padding:0 var(--gut)}
 .vsl__cap{grid-column:1;grid-row:1;justify-self:end;display:grid;gap:12px;width:min(400px,100%);text-align:left;will-change:transform}
 .vsl__cap.is-r{grid-column:3;justify-self:start}
@@ -658,7 +656,7 @@ input{font:inherit}
 .lifts{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 .lf{position:absolute;left:0;top:0;width:0;height:0;transform-style:preserve-3d;will-change:transform}
 .lf>*{position:absolute;transform-style:preserve-3d}
-.lf__glow{display:block;border-radius:50%;pointer-events:none}
+.lf__glow{display:none}
 .sw .ed,.sw .sl,.sw .shine{position:absolute;inset:0;width:100%;height:100%;border-radius:inherit}
 .sw .ed{display:block}
 .sw .sl{display:block}
@@ -734,9 +732,9 @@ input{font:inherit}
 .loader{position:fixed;inset:0;z-index:300;display:none;place-items:center;background:#000;pointer-events:none}
 .js .loader{display:grid;animation:ldKill .4s 4.2s forwards}
 @keyframes ldKill{to{opacity:0;visibility:hidden}}
-.loader__glow{position:absolute;left:50%;top:50%;width:min(760px,120vw);height:min(420px,70vw);margin:calc(min(420px,70vw) / -2) 0 0 calc(min(760px,120vw) / -2);border-radius:50%;background:radial-gradient(closest-side,rgba(255,91,31,.28),rgba(255,91,31,0));opacity:0}
 .loader__logo{position:relative;width:min(560px,72vw);height:auto;overflow:visible;color:#fff}
-.loader__logo g{opacity:0}
+.loader__logo>*{opacity:0}
+.ld-tile{fill:#0b0b0c;stroke:rgba(255,255,255,.14);stroke-width:2}
 
 /* ===== simulador de perdas, com cara de app de banco ===== */
 .loss{position:relative;padding:clamp(56px,7vw,100px) 0 clamp(120px,13vw,190px);background:#000;color:#fff}
@@ -845,33 +843,42 @@ input{font:inherit}
 @keyframes caseLit{0%{box-shadow:0 0 0 0 rgba(255,91,31,0)}30%{box-shadow:0 0 34px 0 rgba(255,91,31,.38)}100%{box-shadow:0 0 0 0 rgba(255,91,31,0)}}
 .sim-beam{position:fixed;left:0;top:0;z-index:60;width:120px;height:3px;margin-top:-1.5px;border-radius:3px;background:linear-gradient(90deg,rgba(255,91,31,0),var(--accent) 70%,#fff);box-shadow:0 0 14px 2px rgba(255,91,31,.75);pointer-events:none;transform-origin:100% 50%}
 
-/* ===== números: fundo branco infinito, tudo numa tela ===== */
-.nums{position:relative;padding:clamp(56px,7vw,110px) 0 clamp(40px,5vw,80px);background:radial-gradient(120% 60% at 50% 110%,#efeff2 0%,rgba(255,255,255,0) 60%),#fff}
-.nums__h{display:grid;gap:.25em;max-width:16em;margin:0 auto;text-align:center;font-family:var(--display);font-weight:600;font-size:clamp(2rem,1rem + 3.3vw,4.6rem);line-height:1;letter-spacing:-.06em;text-wrap:balance}
+/* ===== números: fundo branco infinito, uma frase por vez ===== */
+.nums{position:relative;background:#fff}
+.nums__stage{position:relative;background:radial-gradient(130% 55% at 50% 118%,#ececef 0%,rgba(255,255,255,0) 62%),#fff}
+.nums__slides{display:grid;justify-items:center;gap:clamp(72px,12vw,140px);padding:clamp(64px,9vw,120px) var(--gut)}
+.nums__slide{display:grid;justify-items:center;gap:clamp(10px,1.5vw,20px);width:min(1100px,100%);text-align:center;container-type:inline-size}
+.nums__dots{display:none}
+.nums__dots i{width:7px;height:7px;border-radius:50%;background:#d4d4d8;transition:background .3s,transform .3s}
+.nums__dots i.is-on{background:var(--ink);transform:scale(1.25)}
+/* com movimento: a tela fica parada e cada rolagem leva à próxima frase */
+.nums.is-pin .nums__track{--step:44svh;height:calc(100svh + var(--step) * 4.5)}
+.nums.is-pin .nums__stage{position:sticky;top:0;height:100svh;overflow:hidden}
+.nums.is-pin .nums__slides{position:absolute;inset:0;place-items:center;gap:0;padding:0 var(--gut)}
+.nums.is-pin .nums__slide{grid-area:1/1;opacity:0;visibility:hidden}
+.nums.is-pin .nums__slide.is-on{opacity:1;visibility:visible}
+.nums.is-pin .nums__dots{position:absolute;left:50%;bottom:clamp(22px,4svh,40px);display:flex;gap:8px;transform:translateX(-50%)}
+@media (hover:none) and (pointer:coarse){.nums.is-pin .nums__track{--step:56svh}}
+.nums__h{display:grid;gap:.3em;font-family:var(--display);font-weight:600;font-size:clamp(2.1rem,1rem + 4.2vw,5.4rem);line-height:1;letter-spacing:-.06em;text-wrap:balance}
 .nums__h span{color:var(--accent-ink)}
-.nums__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(34px,4.4vw,64px) clamp(28px,5vw,90px);max-width:1180px;margin:clamp(40px,5vw,76px) auto 0;list-style:none}
-.nums__it{display:grid;align-content:start;gap:12px;container-type:inline-size}
-.nums__n{font-family:var(--display);font-weight:700;font-size:min(clamp(3.2rem,1rem + 6.4vw,6.6rem),16.5cqi);line-height:.92;letter-spacing:-.07em;white-space:nowrap;font-variant-numeric:tabular-nums}
-.nums__c{max-width:21em;font-family:var(--display);font-weight:500;font-size:clamp(1.05rem,.85rem + .7vw,1.5rem);line-height:1.2;letter-spacing:-.03em;text-wrap:balance}
-.nums__s{color:#8e8e93;font-size:.8rem}
-.nv{height:30px;display:flex;align-items:center}
-.nv--bar{position:relative;height:12px;border-radius:12px;background:#ececef;overflow:hidden}
-.nv--bar i{position:absolute;left:0;top:0;bottom:0;width:var(--w);border-radius:12px;background:var(--accent);transform-origin:0 50%}
-.nv--ten{gap:8px}
-.nv--ten i{width:22px;height:22px;border-radius:7px;background:var(--ink)}
+.nums__n{font-family:var(--display);font-weight:700;font-size:min(15rem,23cqi);line-height:.9;letter-spacing:-.075em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.nums__n.is-long{font-size:min(15rem,15.6cqi)}
+.nums__c{max-width:20em;font-family:var(--display);font-weight:500;font-size:clamp(1.25rem,.8rem + 1.3vw,2rem);line-height:1.18;letter-spacing:-.035em;text-wrap:balance}
+.nums__s{margin-top:clamp(4px,.8vw,10px);color:#8e8e93;font-size:.82rem;letter-spacing:.01em}
+/* infográficos de cada número */
+.nv{display:flex;align-items:center;justify-content:center;margin:clamp(4px,1vw,12px) 0 clamp(2px,.6vw,8px)}
+.nv--bar{position:relative;width:min(560px,78cqi);height:14px;border-radius:14px;background:#ececef;overflow:hidden}
+.nv--bar i{position:absolute;left:0;top:0;bottom:0;width:var(--w);border-radius:14px;background:var(--accent);transform-origin:0 50%}
+.nv--ten{gap:clamp(6px,.8vw,10px)}
+.nv--ten i{width:clamp(20px,2.6vw,34px);aspect-ratio:1;border-radius:28%;background:var(--ink)}
 .nv--ten i.is-1{background:var(--accent)}
-.nv--two{gap:10px}
-.nv--two i{width:26px;height:26px;border-radius:50%;background:#ececef}
+.nv--two{gap:clamp(10px,1.2vw,14px)}
+.nv--two i{width:clamp(28px,3.4vw,46px);aspect-ratio:1;border-radius:50%;background:#e4e4e7}
 .nv--two i.is-x{background:var(--ink)}
-.nv--cols{align-items:flex-end;gap:10px;height:56px}
-.nv--cols span{position:relative;display:block;width:44px;height:var(--h);border-radius:6px 6px 2px 2px;background:#d4d4d8;transform-origin:50% 100%}
+.nv--cols{align-items:flex-end;gap:clamp(10px,1.2vw,14px);height:clamp(70px,11svh,120px);margin-bottom:24px}
+.nv--cols span{position:relative;display:block;width:clamp(44px,5vw,68px);height:var(--h);border-radius:8px 8px 3px 3px;background:#d4d4d8;transform-origin:50% 100%}
 .nv--cols span.is-now{background:var(--accent)}
-.nv--cols b{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);font-weight:500;font-size:.7rem;color:#8e8e93}
-.nv--cols{margin-bottom:16px}
-@media (max-width:899px){
-  .nums__grid{grid-template-columns:minmax(0,1fr);gap:40px}
-  .nums__h{font-size:clamp(1.9rem,1rem + 4.6vw,2.6rem)}
-}
+.nv--cols b{position:absolute;left:50%;bottom:-21px;transform:translateX(-50%);font-weight:500;font-size:.74rem;color:#8e8e93}
 /* ===== 100 clientes ===== */
 .cem{position:relative;padding:clamp(40px,6vw,90px) 0 clamp(120px,13vw,190px);background:#fff;overflow:clip}
 .cem__in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,6vw,100px);align-items:center}
@@ -889,18 +896,17 @@ input{font:inherit}
 @media (max-width:899px){
   .cem__in{grid-template-columns:minmax(0,1fr)}
   .cem__grid{width:min(420px,100%);gap:9px}
-  .nums__track{height:480svh}
 }
 
 </style>
 </head>
 <body>
 <div class="loader" id="loader" aria-hidden="true">
-  <i class="loader__glow"></i>
   <svg class="loader__logo" viewBox="0 0 982 100">
-    <g class="ld-c"><path d="M149,7 H58 A51,43 0 0 0 7,50 A51,43 0 0 0 58,93 H149" fill="none" stroke="currentColor" stroke-width="14"/></g>
-    <g class="ld-o"><rect x="215" y="7" width="142" height="86" rx="51" ry="43" fill="none" stroke="currentColor" stroke-width="14"/></g>
-    <g class="ld-d"><path d="M425,7 H514 A51,43 0 0 1 565,50 A51,43 0 0 1 514,93 H425" fill="none" stroke="currentColor" stroke-width="14"/></g>
+    <rect class="ld-tile" x="313.2" y="-127.8" width="355.6" height="355.6" rx="83.3"/>
+    <path class="ld-c" fill="currentColor" d="M149 0H58A58 50 0 0 0 0 50A58 50 0 0 0 58 100H149V86H58A44 36 0 0 1 14 50A44 36 0 0 1 58 14H149Z"/>
+    <rect class="ld-o" x="215" y="7" width="142" height="86" rx="51" ry="43" fill="none" stroke="currentColor" stroke-width="14"/>
+    <path class="ld-d" fill="currentColor" d="M425 0H514A58 50 0 0 1 572 50A58 50 0 0 1 514 100H425V86H514A44 36 0 0 0 558 50A44 36 0 0 0 514 14H425Z"/>
     <g class="ld-e" fill="currentColor"><rect x="626" y="0" width="14" height="100"/><rect x="626" y="0" width="135" height="14"/><rect x="626" y="43" width="122" height="14"/><rect x="626" y="86" width="135" height="14"/></g>
     <g class="ld-m" fill="currentColor"><polygon points="820,100 820,0 834,0 901,55 968,0 982,0 982,100 968,100 968,18.11 901,73.11 834,18.11 834,100"/></g>
   </svg>
@@ -945,7 +951,6 @@ input{font:inherit}
       </div>
     </div>
     <div class="intro__peek"><div class="anchor" id="anchor-peek"></div></div>
-    <div class="intro__glow" aria-hidden="true"></div>
   </section>
 
   <section class="vsl" id="video" aria-labelledby="vsl-t">
@@ -978,14 +983,17 @@ input{font:inherit}
   </section>
 
   <section class="nums" id="numeros" aria-labelledby="nums-t">
-    <div class="wrap nums__in">
-      <h2 id="nums-t" class="nums__h">O seu cliente já está procurando.<span>Em 2027, quem ele vai encontrar?</span></h2>
-      <ul class="nums__grid">
-        <li class="nums__it"><p class="nums__n" data-to="79" data-suf="%">79%</p><div class="nv nv--bar" aria-hidden="true"><i style="--w:79%"></i></div><p class="nums__c">dos brasileiros pesquisam antes de comprar.</p><p class="nums__s">PwC, Global Consumer Insights Survey 2026</p></li>
-        <li class="nums__it"><p class="nums__n" data-to="9" data-suf=" em 10">9 em 10</p><div class="nv nv--ten" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="is-1"></i></div><p class="nums__c">pequenos negócios não têm site próprio.</p><p class="nums__s">Sebrae, Transformação Digital nos Pequenos Negócios</p></li>
-        <li class="nums__it"><p class="nums__n" data-to="1" data-suf=" em 2">1 em 2</p><div class="nv nv--two" aria-hidden="true"><i class="is-x"></i><i></i></div><p class="nums__c">não volta a comprar depois de uma experiência ruim no site.</p><p class="nums__s">Locaweb, pesquisa com 500 consumidores, 2026</p></li>
-        <li class="nums__it"><p class="nums__n" data-to="421" data-pre="US$ " data-suf=" bi">US$ 421 bi</p><div class="nv nv--cols" aria-hidden="true"><span style="--h:91%"><b>2026</b></span><span class="is-now" style="--h:100%"><b>2027</b></span></div><p class="nums__c">em vendas online no Brasil em 2027, a primeira vez acima de US$ 400 bilhões.</p><p class="nums__s">EBANX com dados da PCMI, projeção de novembro de 2026</p></li>
-      </ul>
+    <div class="nums__track" id="nums-track">
+      <div class="nums__stage">
+        <div class="nums__slides">
+          <div class="nums__slide is-on" data-i="0"><h2 id="nums-t" class="nums__h">O seu cliente já está procurando.<span>Em 2027, quem ele vai encontrar?</span></h2></div>
+          <div class="nums__slide" data-i="1"><p class="nums__n" data-to="79" data-suf="%">79%</p><div class="nv nv--bar" aria-hidden="true"><i style="--w:79%"></i></div><p class="nums__c">dos brasileiros pesquisam antes de comprar.</p><p class="nums__s">PwC, Global Consumer Insights Survey 2026</p></div>
+          <div class="nums__slide" data-i="2"><p class="nums__n" data-to="9" data-suf=" em 10">9 em 10</p><div class="nv nv--ten" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="is-1"></i></div><p class="nums__c">pequenos negócios não têm site próprio.</p><p class="nums__s">Sebrae, Transformação Digital nos Pequenos Negócios</p></div>
+          <div class="nums__slide" data-i="3"><p class="nums__n" data-to="1" data-suf=" em 2">1 em 2</p><div class="nv nv--two" aria-hidden="true"><i class="is-x"></i><i></i></div><p class="nums__c">não volta a comprar depois de uma experiência ruim no site.</p><p class="nums__s">Locaweb, pesquisa com 500 consumidores, 2026</p></div>
+          <div class="nums__slide" data-i="4"><p class="nums__n is-long" data-to="421" data-pre="US$ " data-suf=" bi">US$ 421 bi</p><div class="nv nv--cols" aria-hidden="true"><span style="--h:91%"><b>2026</b></span><span class="is-now" style="--h:100%"><b>2027</b></span></div><p class="nums__c">em vendas online no Brasil em 2027, a primeira vez acima de US$ 400 bilhões.</p><p class="nums__s">EBANX com dados da PCMI, projeção de novembro de 2026</p></div>
+        </div>
+        <div class="nums__dots" aria-hidden="true"><i class="is-on"></i><i></i><i></i><i></i><i></i></div>
+      </div>
     </div>
   </section>
 
@@ -1444,18 +1452,31 @@ input{font:inherit}
     if (!motion) { done(); return; }
     lockPage(true);
     if (topLogo) topLogo.style.opacity = 0;
-    const parts = ['c', 'o', 'd', 'e', 'm'].map(k => $('.ld-' + k, logo));
-    const CX = [78, 286, 495, 693.5, 901];
-    const strokes = $$('[fill="none"]', logo);
-    strokes.forEach(s => { const L = Math.ceil(s.getTotalLength ? s.getTotalLength() : 600); s.style.strokeDasharray = L; s.style.strokeDashoffset = L; });
-    G.set(parts, { x: i => 491 - CX[i], opacity: 0 });
+    /* o ícone do favicon (C, O e D num círculo) aparece e se abre na palavra CODEM */
+    const tile = $('.ld-tile', logo), c = $('.ld-c', logo), o = $('.ld-o', logo), d = $('.ld-d', logo), e = $('.ld-e', logo), m = $('.ld-m', logo);
+    const S = 1.3, MX = 491, MY = 50, X = x => MX + (x - 94) * S, Y = y => MY + (y - 94) * S, OR = MX + ' ' + MY;
+    const C0 = [X(64), Y(4.92), X(64), 94 * S, 94 * S, X(0), Y(94), Y(183.08), Y(155.02), X(64), 68 * S, 68 * S, X(26), Y(94), Y(32.98)];
+    const C1 = [149, 0, 58, 58, 50, 0, 50, 100, 86, 58, 44, 36, 14, 50, 14];
+    const D0 = [X(124), Y(4.92), X(124), 94 * S, 94 * S, X(188), Y(94), Y(183.08), Y(155.02), X(124), 68 * S, 68 * S, X(162), Y(94), Y(32.98)];
+    const D1 = [425, 0, 514, 58, 50, 572, 50, 100, 86, 514, 44, 36, 558, 50, 14];
+    const arc = (n, f) => 'M' + n[0] + ' ' + n[1] + 'H' + n[2] + 'A' + n[3] + ' ' + n[4] + ' 0 0 ' + f + ' ' + n[5] + ' ' + n[6] + 'A' + n[3] + ' ' + n[4] + ' 0 0 ' + f + ' ' + n[2] + ' ' + n[7] + 'H' + n[0] + 'V' + n[8] + 'H' + n[9] + 'A' + n[10] + ' ' + n[11] + ' 0 0 ' + (1 - f) + ' ' + n[12] + ' ' + n[13] + 'A' + n[10] + ' ' + n[11] + ' 0 0 ' + (1 - f) + ' ' + n[9] + ' ' + n[14] + 'H' + n[0] + 'Z';
+    const mix = (a, b, k) => a.map((v, n) => (v + (b[n] - v) * k).toFixed(2));
+    const shape = k => { c.setAttribute('d', arc(mix(C0, C1, k), 0)); d.setAttribute('d', arc(mix(D0, D1, k), 1)); };
+    shape(0);
+    G.set(tile, { attr: { x: X(-42.74), y: Y(-42.74), width: 273.5 * S, height: 273.5 * S, rx: 64.1 * S } });
+    G.set(o, { attr: { x: X(59), y: Y(59), width: 70 * S, height: 70 * S, rx: 35 * S, ry: 35 * S, 'stroke-width': 26 * S } });
+    const mo = { k: 0 };
     const tl = G.timeline();
-    tl.to(parts, { opacity: 1, duration: 0.2, stagger: 0.03 }, 0.06)
-      .to(parts, { x: 0, duration: 0.8, ease: 'expo.inOut' }, 0.12)
-      .to(strokes, { strokeDashoffset: 0, duration: 0.8, ease: 'power2.inOut', stagger: 0.04 }, 0.08)
-      .fromTo($$('rect', parts[3]), { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 0.5, stagger: 0.05, ease: 'power3.out' }, 0.4)
-      .fromTo(parts[4], { scaleY: 0, transformOrigin: '50% 50%' }, { scaleY: 1, duration: 0.5, ease: 'power3.out' }, 0.45)
-      .fromTo($('.loader__glow', ld), { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.6, ease: 'power2.out' }, 0.5);
+    tl.fromTo(tile, { opacity: 0, scale: 0.72, svgOrigin: OR }, { opacity: 1, scale: 1, duration: 0.6, ease: 'expo.out' }, 0.04)
+      .fromTo(c, { opacity: 0, rotation: -110, svgOrigin: OR }, { opacity: 1, rotation: 0, duration: 0.75, ease: 'expo.out' }, 0.1)
+      .fromTo(d, { opacity: 0, rotation: 110, svgOrigin: OR }, { opacity: 1, rotation: 0, duration: 0.75, ease: 'expo.out' }, 0.1)
+      .fromTo(o, { opacity: 0, scale: 0, svgOrigin: OR }, { opacity: 1, scale: 1, duration: 0.55, ease: 'back.out(2.2)' }, 0.2)
+      .to(tile, { opacity: 0, scale: 1.3, duration: 0.55, ease: 'power2.inOut' }, 0.7)
+      .to(mo, { k: 1, duration: 0.9, ease: 'power3.inOut', onUpdate: () => shape(mo.k) }, 0.72)
+      .to(o, { attr: { x: 215, y: 7, width: 142, height: 86, rx: 51, ry: 43, 'stroke-width': 14 }, duration: 0.9, ease: 'power3.inOut' }, 0.72)
+      .set([e, m], { opacity: 1 }, 1.1)
+      .fromTo($$('rect', e), { scaleX: 0, transformOrigin: '0% 50%' }, { scaleX: 1, duration: 0.45, stagger: 0.05, ease: 'power3.out' }, 1.1)
+      .fromTo(m, { scaleY: 0, transformOrigin: '50% 50%' }, { scaleY: 1, duration: 0.45, ease: 'power3.out' }, 1.18);
     const fonts = D.fonts && D.fonts.ready ? Promise.race([D.fonts.ready, new Promise(r => setTimeout(r, 1100))]) : Promise.resolve();
     let left = false;
     const leave = () => {
@@ -1466,12 +1487,11 @@ input{font:inherit}
         const a = logo.getBoundingClientRect(), b = topLogo.getBoundingClientRect();
         ex.to(logo, { x: (b.left + b.width / 2) - (a.left + a.width / 2), y: (b.top + b.height / 2) - (a.top + a.height / 2), scale: b.width / a.width, duration: 0.7, ease: 'expo.inOut' }, 0);
       } else ex.to(logo, { opacity: 0, scale: 0.94, duration: 0.4 }, 0);
-      ex.to($('.loader__glow', ld), { opacity: 0, duration: 0.3 }, 0)
-        .to(ld, { backgroundColor: 'rgba(0,0,0,0)', duration: 0.45, ease: 'power2.out' }, 0.2)
+      ex.to(ld, { backgroundColor: 'rgba(0,0,0,0)', duration: 0.45, ease: 'power2.out' }, 0.2)
         .call(fireReady, null, 0.28);
     };
     Promise.all([fonts, new Promise(r => tl.eventCallback('onComplete', () => { fireFormed(); r(); }))]).then(() => setTimeout(leave, 160));
-    setTimeout(function late() { if (D.hidden) { setTimeout(late, 400); return; } fireFormed(); leave(); }, 2200);
+    setTimeout(function late() { if (D.hidden) { setTimeout(late, 400); return; } fireFormed(); leave(); }, 2500);
   });
 
   /* texto dividido em palavras, mantendo o destaque em laranja */
@@ -1512,22 +1532,90 @@ input{font:inherit}
 
   /* ===== números: tudo numa tela; contam e desenham quando aparecem ===== */
   mod('nums', () => {
-    const sec = $('#numeros'); if (!sec || !motion) return;
-    const its = $$('.nums__it', sec);
-    G.set(its, { opacity: 0, y: 30 });
-    G.set($$('.nv--bar i', sec), { scaleX: 0 }); G.set($$('.nv--ten i, .nv--two i', sec), { scale: 0 }); G.set($$('.nv--cols span', sec), { scaleY: 0 });
-    whenSeen(sec, () => {
-      const tl = G.timeline();
-      tl.fromTo('.nums__h', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out' });
-      its.forEach((it, i) => {
-        const at = 0.25 + i * 0.18, n = $('.nums__n', it), to = +n.dataset.to, pre = n.dataset.pre || '', suf = n.dataset.suf || '', o = { v: 0 };
-        tl.to(it, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }, at)
-          .to(o, { v: to, duration: 1.3, ease: 'power3.out', onUpdate() { n.textContent = pre + Math.round(o.v).toLocaleString('pt-BR') + suf; } }, at)
-          .to($$('.nv--bar i', it), { scaleX: 1, duration: 1.3, ease: 'power3.out' }, at + 0.1)
-          .to($$('.nv--ten i, .nv--two i', it), { scale: 1, duration: 0.45, ease: 'back.out(2.4)', stagger: 0.06 }, at + 0.1)
-          .to($$('.nv--cols span', it), { scaleY: 1, duration: 0.8, ease: 'expo.out', stagger: 0.12 }, at + 0.1);
-      });
-    }, { threshold: 0.25 });
+    const sec = $('#numeros'), track = $('#nums-track'); if (!sec || !track || !motion) return;
+    const stage = $('.nums__stage', track), slides = $$('.nums__slide', track), dots = $$('.nums__dots i', track), N = slides.length;
+    sec.classList.add('is-pin');
+    const SPAN = N - 1 + 0.5; /* a altura da trilha no CSS: uma tela + 4,5 passos */
+    let cur = 0, top = 0, step = 1, endY = 0, geoT = 0;
+    const geo = () => {
+      const r = track.getBoundingClientRect(), nx = $('#cem');
+      top = r.top + scrollY; step = Math.max(1, (track.offsetHeight - stage.offsetHeight) / SPAN);
+      endY = nx ? nx.getBoundingClientRect().top + scrollY : top + track.offsetHeight; geoT = performance.now();
+    };
+    const P = i => top + i * step;
+    const full = n => (n.dataset.pre || '') + (+n.dataset.to).toLocaleString('pt-BR') + (n.dataset.suf || '');
+    function play(s, fwd) {
+      const n = $('.nums__n', s);
+      if (n) {
+        if (n._t) n._t.kill();
+        if (fwd) { const v = { v: 0 }; n._t = G.to(v, { v: +n.dataset.to, duration: 1.1, ease: 'power3.out', delay: 0.12, onUpdate() { n.textContent = (n.dataset.pre || '') + Math.round(v.v).toLocaleString('pt-BR') + (n.dataset.suf || ''); } }); }
+        else n.textContent = full(n);
+      }
+      const bar = $$('.nv--bar i', s), dot = $$('.nv--ten i, .nv--two i', s), col = $$('.nv--cols span', s);
+      if (bar.length) G.fromTo(bar, { scaleX: 0 }, { scaleX: 1, duration: 1.1, ease: 'power3.out', delay: 0.2, overwrite: true });
+      if (dot.length) G.fromTo(dot, { scale: 0 }, { scale: 1, duration: 0.45, ease: 'back.out(2.4)', stagger: 0.05, delay: 0.2, overwrite: true });
+      if (col.length) G.fromTo(col, { scaleY: 0 }, { scaleY: 1, duration: 0.8, ease: 'expo.out', stagger: 0.12, delay: 0.2, overwrite: true });
+    }
+    function show(i) {
+      if (i === cur) return;
+      const a = slides[cur], b = slides[i], dir = i > cur ? 1 : -1; cur = i;
+      dots.forEach((dt, k) => dt.classList.toggle('is-on', k === i));
+      G.killTweensOf([a, b]);
+      G.to(a, { opacity: 0, scale: dir > 0 ? 1.06 : 0.94, filter: 'blur(10px)', duration: 0.38, ease: 'power2.in', onComplete() { a.classList.remove('is-on'); G.set(a, { clearProps: 'opacity,scale,filter,transform' }); } });
+      b.classList.add('is-on');
+      G.fromTo(b, { opacity: 0, scale: dir > 0 ? 0.92 : 1.08, filter: 'blur(12px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.7, ease: 'expo.out', delay: 0.12 });
+      play(b, dir > 0);
+    }
+    /* uma frase por gesto: um giro da roda, um toque no trackpad ou um arrasto no celular leva só até a próxima */
+    let base = null, dir = 1, lastY = scrollY, idle = 0, touching = false, snapping = false, target = 0, guard = 0;
+    const busy = () => modal || H.style.overflow === 'hidden' || (lenis && lenis.isStopped);
+    /* a frase mostrada depende só de onde o gesto começou: no máximo uma para frente ou para trás */
+    const want = y => {
+      if (snapping || base === null) return cur;
+      if (base < 0) return 0;
+      if (base >= N) return N - 1;
+      const g = (y - top) / step - base;
+      return Math.max(0, Math.min(N - 1, g > 0.15 ? base + 1 : g < -0.15 ? base - 1 : base));
+    };
+    function goTo(y) {
+      snapping = true; target = y; clearTimeout(guard); guard = setTimeout(() => { snapping = false; }, 1200);
+      const far = Math.abs(y - scrollY) > innerHeight * 0.6;
+      if (lenis) lenis.scrollTo(y, { duration: far ? 1.05 : 0.6, easing: x => 1 - Math.pow(1 - x, 3), onComplete() { snapping = false; } });
+      else W.scrollTo({ top: y, behavior: 'smooth' });
+    }
+    function settle() {
+      if (touching) return;
+      const b0 = base; base = null;
+      if (snapping || busy()) return;
+      geo();
+      const y = scrollY, last = P(N - 1);
+      if (y < top - 2 || y > endY - 2) return; /* fora da dobra: rolagem normal */
+      let to = P(cur);
+      if (y <= last + 2) {
+        if (cur === b0 && Math.abs(y - to) > 12) { const n = Math.max(0, Math.min(N - 1, cur + dir)); if (n !== cur) { show(n); to = P(n); } }
+      } else if (dir > 0 && b0 === N - 1) to = endY; /* já estava na última: segue para a próxima dobra */
+      if (Math.abs(to - y) > 2) goTo(to);
+    }
+    addEventListener('scroll', () => {
+      const y = scrollY;
+      if (performance.now() - geoT > 500) geo();
+      if (y !== lastY && !snapping) dir = y > lastY ? 1 : -1;
+      lastY = y;
+      if (snapping && Math.abs(y - target) < 3) snapping = false;
+      if (base === null && !snapping) base = y < top - 2 ? -1 : y > endY + 2 ? N : cur;
+      const w = want(y); if (w !== cur) show(w);
+      clearTimeout(idle); idle = setTimeout(settle, 160);
+    }, { passive: true });
+    const takeOver = () => { if (snapping) { snapping = false; clearTimeout(guard); } }; /* quem rola durante o ajuste assume o controle */
+    addEventListener('wheel', takeOver, { passive: true });
+    addEventListener('keydown', takeOver);
+    addEventListener('touchstart', () => { touching = true; takeOver(); }, { passive: true });
+    addEventListener('touchend', () => { touching = false; clearTimeout(idle); idle = setTimeout(settle, 200); }, { passive: true });
+    addEventListener('resize', geo);
+    addEventListener('load', geo);
+    geo();
+    const i0 = Math.max(0, Math.min(N - 1, Math.round((scrollY - top) / step)));
+    if (i0) { slides[0].classList.remove('is-on'); slides[i0].classList.add('is-on'); dots.forEach((dt, k) => dt.classList.toggle('is-on', k === i0)); cur = i0; }
   });
 
   /* ===== 100 clientes: 79 pesquisam antes de comprar e, sem site, vão embora ===== */
