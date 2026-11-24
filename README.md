@@ -18,12 +18,12 @@ A Vercel publica a partir da branch `main`.
 2. Topo escuro: a headline em dois estados que se alternam, a subheadline e o botão da prévia, com o celular aparecendo por baixo.
 3. Vídeo automático: o celular vai para o centro e mostra quatro negócios, nesta ordem: hamburgueria, cardápio do bar, reservas e loja de bolsas. Em cada recurso o vídeo para, as peças da tela se soltam em camadas 3D (recortadas de quadros em alta resolução) e montam o recurso ao lado do celular, que continua girando e respirando enquanto ele está fora. Entre um recurso e outro, um anel percorre a tela com uma etiqueta explicando o que acontece, e os trechos sem novidade passam acelerados.
 4. Antes e depois: o mesmo celular desce e para à direita; à esquerda, o "antes" da mesma cena.
-5. Números, em fundo branco: um número de pesquisa real por vez no meio da tela, enquanto a pessoa rola (PwC, Sebrae, Locaweb e Abiacom, com a fonte embaixo de cada um).
+5. Números, em fundo branco e numa tela só: a pergunta de 2027 e quatro números de pesquisa real que contam até o valor com um gráfico pequeno cada (PwC, Sebrae, Locaweb e a projeção do EBANX para 2027, com a fonte embaixo de cada um).
 6. Pense em 100 clientes: 79 pesquisam antes de comprar e, sem site, vão embora; a dobra termina chamando o caso do bar.
 7. Caso real do bar: reservas e cardápio inteligente, com tempo, clientes e pedidos.
 8. Três sites em um: o mesmo site no computador, no tablet e no celular, cada um com o seu layout, saindo de um aparelho só e rolando juntos.
 9. Simulador de perdas, com cara de app de banco: a pessoa escolhe a situação dela e as perguntas mudam para aquele cenário, com uma luz saindo da opção até as perguntas. São quatro controles (pessoas, quantas desistem antes de te achar, quantas desistem depois, gasto médio) e o resultado, em vermelho, mostra quanto ela deixa de faturar por mês, por dia e em 12 meses, e quantos clientes perde.
-10. Sites que já estão vendendo: notebook, tablet e celular, e cartões que se abrem com os porquês de cada site.
+10. Sites que já estão vendendo: notebook, tablet e celular, e cartões que se abrem como stories, um destaque curto por vez que passa sozinho (toque nas laterais para voltar ou avançar, segure para pausar) e, no fim, segue para o próximo site.
 11. Tudo o que faz o seu cliente comprar mais: recursos com vídeo.
 12. Como funciona: quatro passos e a conversa do jeito que o cliente vai ver, ele mandando mensagem e a CODEM respondendo.
 13. Você não paga para ver: R$ 0 para ver o site no ar, 24 horas e risco zero, mais a comparação com agência e site genérico de IA.
@@ -47,7 +47,7 @@ Tudo fica em `index.html`: textos, estilos (variáveis de cor no topo do `<style
 | Números de pesquisa | `#numeros` e `#cem` no HTML (o número, a frase e a fonte de cada um) |
 | Foto do WhatsApp em "Como funciona" | `public/media/gui-av.webp` |
 | "Antes" de cada cena na segunda dobra | objeto `const BEFORE` no script |
-| Sites do portfólio e os porquês de cada um | lista `const SITES` no script |
+| Sites do portfólio e os stories de cada um | lista `const SITES` no script (campo `st`: etiqueta, frase grande e linha de apoio de cada story) |
 | Recursos com vídeo | lista `const F` no script |
 | Vídeos e imagens | `public/media/` (`-s.mp4` é a versão leve para celular fraco ou internet lenta) |
 | Imagem que aparece ao compartilhar o link | `public/og.jpg` (1200 × 630) |

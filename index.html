@@ -409,35 +409,45 @@ input{font:inherit}
 /* cartão expandido: detalhes sem sair do site */
 .xcard{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:clamp(10px,3vw,40px)}
 .xcard[hidden]{display:none}
-.xcard__bg{position:absolute;inset:0;background:rgba(8,8,14,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
-.xcard__panel{--c:#f5f5f7;--f:var(--ink);position:relative;width:min(1040px,100%);max-height:calc(100svh - 2 * clamp(10px,3vw,40px));overflow:auto;overscroll-behavior:contain;border-radius:32px;background:#fff;box-shadow:0 60px 120px -40px rgba(0,0,0,.5);scrollbar-width:thin}
-.xcard__x{position:sticky;top:14px;float:right;margin:14px 14px -58px 0;z-index:5;background:rgba(255,255,255,.85);color:var(--ink);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.xcard__media{position:relative;height:clamp(300px,42vw,470px);overflow:hidden;background:var(--c)}
-.xcard__media .lap{position:absolute;left:7%;top:12%;--lw:min(62%,600px)}
-.xcard__media .iph{position:absolute;right:8%;top:20%;--pw:clamp(120px,15%,190px)}
-.xcard__media .lap,.xcard__media .iph,.xcard__media .lap__screen,.xcard__media .lap__view,.xcard__media .iph__screen,.xcard__media .lap__base{display:block}
-.xcard__body{display:grid;gap:16px;padding:clamp(24px,4vw,48px)}
-.xcard__t{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,1.1rem + 2vw,2.8rem);letter-spacing:-.05em;line-height:1.04}
-.xcard__line{max-width:36em;color:var(--ink2);font-size:1.08rem;line-height:1.5}
-.xcard__k{margin-top:10px;font-weight:600;color:var(--mute)}
-.xcard__feats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.xf{display:grid;gap:8px;align-content:start;padding:20px 22px;border-radius:22px;background:var(--paper)}
-.xf__tag{display:flex;align-items:center;gap:7px;font-weight:600;font-size:.82rem;color:var(--accent-ink)}
-.xf__tag::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
-.xf b{font-family:var(--display);font-weight:600;font-size:1.08rem;letter-spacing:-.035em;line-height:1.15}
-.xf p{color:var(--ink2);line-height:1.5}
-.xcard__foot{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-top:8px}
+.xcard__bg{position:absolute;inset:0;background:rgba(8,8,14,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.xcard__panel{--c:#f5f5f7;--f:var(--ink);position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;grid-template-areas:"top top" "media story" "foot foot";width:min(1120px,100%);height:min(700px,calc(100svh - 2 * clamp(10px,3vw,40px)));overflow:hidden;border-radius:32px;background:var(--c);color:var(--f);box-shadow:0 60px 120px -40px rgba(0,0,0,.6);transition:background .5s,color .5s}
+.xs__top{grid-area:top;display:grid;gap:14px;padding:18px clamp(18px,2.4vw,30px) 0;position:relative;z-index:4}
+.xs__bars{display:flex;gap:6px}
+.xs__bars i{position:relative;flex:1;height:4px;border-radius:4px;background:color-mix(in srgb,var(--f) 22%,transparent);overflow:hidden}
+.xs__bars b{position:absolute;inset:0;background:var(--f);transform-origin:0 50%;transform:scaleX(0)}
+.xs__who{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.xs__name{font-family:var(--display);font-weight:600;font-size:clamp(1.05rem,.9rem + .5vw,1.35rem);letter-spacing:-.035em}
+.xcard__x{background:color-mix(in srgb,var(--f) 12%,transparent);color:var(--f)}
+.xs__media{grid-area:media;position:relative;min-height:0}
+.xs__media .lap,.xs__media .iph,.xs__media .lap__screen,.xs__media .lap__view,.xs__media .iph__screen,.xs__media .lap__base{display:block}
+.xs__media .lap{position:absolute;left:6%;top:50%;--lw:min(78%,520px);transform:translateY(-58%)}
+.xs__media .iph{position:absolute;right:7%;bottom:6%;--pw:clamp(118px,13vw,178px);box-shadow:0 30px 60px -24px rgba(0,0,0,.55)}
+.xs__dev{position:absolute;inset:0;will-change:transform}
+.xs__story{grid-area:story;position:relative;z-index:2;display:grid;align-content:center;gap:clamp(10px,1.4vw,18px);padding:0 clamp(24px,4vw,56px) 0 clamp(8px,1vw,16px)}
+.xs__tag{display:inline-flex;align-items:center;gap:8px;justify-self:start;padding:7px 14px;border-radius:999px;background:color-mix(in srgb,var(--f) 10%,transparent);font-weight:600;font-size:.86rem}
+.xs__tag::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.xs__hook{font-family:var(--display);font-weight:700;font-size:clamp(2.4rem,1rem + 4.4vw,5rem);line-height:.95;letter-spacing:-.065em;text-wrap:balance}
+.xs__hook .w{display:inline-block}
+.xs__line{max-width:17em;font-size:clamp(1.05rem,.95rem + .45vw,1.35rem);line-height:1.35;opacity:.78}
+.xs__tap{position:absolute;top:84px;bottom:92px;z-index:3;width:50%;background:transparent;cursor:pointer}
+.xs__tap--p{left:0;cursor:w-resize}
+.xs__tap--n{right:0;cursor:e-resize}
+.xs__tap:focus-visible{outline:2px solid var(--accent);outline-offset:-6px;border-radius:24px}
+.xs__foot{grid-area:foot;position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px clamp(18px,2.4vw,30px) 20px}
 .xcard__nav{display:flex;gap:10px}
-.xcard__nav button{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:var(--paper)}
+.xcard__nav button{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;background:color-mix(in srgb,var(--f) 10%,transparent);color:var(--f)}
 .xcard__nav svg{width:17px;height:17px}
-@media (max-width:760px){
-  .xcard{padding:0;align-items:end}
-  .xcard__panel{max-height:94svh;border-radius:26px 26px 0 0}
-  .xcard__media{height:min(78vw,360px)}
-  .xcard__media .lap{--lw:74%;left:4%;top:12%}
-  .xcard__media .iph{--pw:27%;right:5%;top:22%}
-  .xcard__feats{grid-template-columns:1fr}
-  .xcard__foot .btn{flex:1}
+@media (max-width:899px){
+  .xcard{padding:0}
+  .xcard__panel{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto auto;grid-template-areas:"top" "media" "story" "foot";width:100%;height:100svh;border-radius:0}
+  .xs__media .lap{display:none}
+  .xs__media .iph{left:50%;right:auto;top:50%;bottom:auto;--pw:min(46vw,calc((100svh - 330px) / 2.2));transform:translate(-50%,-50%)}
+  .xs__story{padding:6px 22px 0;gap:8px;text-align:left}
+  .xs__hook{font-size:clamp(2rem,1rem + 6vw,2.8rem)}
+  .xs__line{font-size:1rem}
+  .xs__tap{top:70px;bottom:160px}
+  .xs__foot{padding:14px 18px calc(16px + env(safe-area-inset-bottom))}
+  .xs__foot .btn{flex:1}
 }
 
 /* ===== recursos ===== */
@@ -835,21 +845,33 @@ input{font:inherit}
 @keyframes caseLit{0%{box-shadow:0 0 0 0 rgba(255,91,31,0)}30%{box-shadow:0 0 34px 0 rgba(255,91,31,.38)}100%{box-shadow:0 0 0 0 rgba(255,91,31,0)}}
 .sim-beam{position:fixed;left:0;top:0;z-index:60;width:120px;height:3px;margin-top:-1.5px;border-radius:3px;background:linear-gradient(90deg,rgba(255,91,31,0),var(--accent) 70%,#fff);box-shadow:0 0 14px 2px rgba(255,91,31,.75);pointer-events:none;transform-origin:100% 50%}
 
-/* ===== números: fundo branco infinito, um número por vez ===== */
-.nums{position:relative;background:#fff}
-.nums__track{position:relative;height:520svh}
-.nums__stage{position:sticky;top:0;height:100svh;overflow:hidden;background:radial-gradient(130% 55% at 50% 118%,#ececef 0%,rgba(255,255,255,0) 62%),#fff}
-.nums__slides{position:absolute;inset:0;display:grid;place-items:center}
-.nums__slide{grid-area:1/1;display:grid;justify-items:center;gap:clamp(10px,1.6vw,22px);width:min(1100px,92vw);text-align:center;opacity:0;visibility:hidden}
-.nums__slide.is-on{opacity:1;visibility:visible}
-.nums__h{display:grid;gap:.3em;font-family:var(--display);font-weight:600;font-size:clamp(2.1rem,1rem + 4.2vw,5.4rem);line-height:1;letter-spacing:-.06em;text-wrap:balance}
+/* ===== números: fundo branco infinito, tudo numa tela ===== */
+.nums{position:relative;padding:clamp(56px,7vw,110px) 0 clamp(40px,5vw,80px);background:radial-gradient(120% 60% at 50% 110%,#efeff2 0%,rgba(255,255,255,0) 60%),#fff}
+.nums__h{display:grid;gap:.25em;max-width:16em;margin:0 auto;text-align:center;font-family:var(--display);font-weight:600;font-size:clamp(2rem,1rem + 3.3vw,4.6rem);line-height:1;letter-spacing:-.06em;text-wrap:balance}
 .nums__h span{color:var(--accent-ink)}
-.nums__n{font-family:var(--display);font-weight:700;font-size:clamp(4.6rem,1rem + 15vw,15rem);line-height:.9;letter-spacing:-.075em;white-space:nowrap;font-variant-numeric:tabular-nums}
-.nums__c{max-width:20em;font-family:var(--display);font-weight:500;font-size:clamp(1.15rem,.8rem + 1.3vw,2rem);line-height:1.18;letter-spacing:-.035em;text-wrap:balance}
-.nums__s{margin-top:clamp(6px,1vw,14px);color:#8e8e93;font-size:.82rem;letter-spacing:.01em}
-.nums__dots{position:absolute;left:50%;bottom:clamp(22px,4svh,40px);display:flex;gap:8px;transform:translateX(-50%)}
-.nums__dots i{width:7px;height:7px;border-radius:50%;background:#d4d4d8;transition:background .3s,transform .3s}
-.nums__dots i.is-on{background:var(--ink);transform:scale(1.25)}
+.nums__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(34px,4.4vw,64px) clamp(28px,5vw,90px);max-width:1180px;margin:clamp(40px,5vw,76px) auto 0;list-style:none}
+.nums__it{display:grid;align-content:start;gap:12px;container-type:inline-size}
+.nums__n{font-family:var(--display);font-weight:700;font-size:min(clamp(3.2rem,1rem + 6.4vw,6.6rem),16.5cqi);line-height:.92;letter-spacing:-.07em;white-space:nowrap;font-variant-numeric:tabular-nums}
+.nums__c{max-width:21em;font-family:var(--display);font-weight:500;font-size:clamp(1.05rem,.85rem + .7vw,1.5rem);line-height:1.2;letter-spacing:-.03em;text-wrap:balance}
+.nums__s{color:#8e8e93;font-size:.8rem}
+.nv{height:30px;display:flex;align-items:center}
+.nv--bar{position:relative;height:12px;border-radius:12px;background:#ececef;overflow:hidden}
+.nv--bar i{position:absolute;left:0;top:0;bottom:0;width:var(--w);border-radius:12px;background:var(--accent);transform-origin:0 50%}
+.nv--ten{gap:8px}
+.nv--ten i{width:22px;height:22px;border-radius:7px;background:var(--ink)}
+.nv--ten i.is-1{background:var(--accent)}
+.nv--two{gap:10px}
+.nv--two i{width:26px;height:26px;border-radius:50%;background:#ececef}
+.nv--two i.is-x{background:var(--ink)}
+.nv--cols{align-items:flex-end;gap:10px;height:56px}
+.nv--cols span{position:relative;display:block;width:44px;height:var(--h);border-radius:6px 6px 2px 2px;background:#d4d4d8;transform-origin:50% 100%}
+.nv--cols span.is-now{background:var(--accent)}
+.nv--cols b{position:absolute;left:50%;bottom:-18px;transform:translateX(-50%);font-weight:500;font-size:.7rem;color:#8e8e93}
+.nv--cols{margin-bottom:16px}
+@media (max-width:899px){
+  .nums__grid{grid-template-columns:minmax(0,1fr);gap:40px}
+  .nums__h{font-size:clamp(1.9rem,1rem + 4.6vw,2.6rem)}
+}
 /* ===== 100 clientes ===== */
 .cem{position:relative;padding:clamp(40px,6vw,90px) 0 clamp(120px,13vw,190px);background:#fff;overflow:clip}
 .cem__in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(36px,6vw,100px);align-items:center}
@@ -956,17 +978,14 @@ input{font:inherit}
   </section>
 
   <section class="nums" id="numeros" aria-labelledby="nums-t">
-    <div class="nums__track" id="nums-track">
-      <div class="nums__stage">
-        <div class="nums__slides">
-          <div class="nums__slide is-on" data-i="0"><h2 id="nums-t" class="nums__h">O seu cliente já está procurando.<span>A pergunta é quem ele encontra.</span></h2></div>
-          <div class="nums__slide" data-i="1"><p class="nums__n" data-to="79" data-pre="" data-suf="%">79%</p><p class="nums__c">dos brasileiros pesquisam antes de comprar.</p><p class="nums__s">PwC, Global Consumer Insights Survey 2026</p></div>
-          <div class="nums__slide" data-i="2"><p class="nums__n" data-to="9" data-pre="" data-suf=" em 10">9 em 10</p><p class="nums__c">pequenos negócios não têm site próprio.</p><p class="nums__s">Sebrae, Transformação Digital nos Pequenos Negócios</p></div>
-          <div class="nums__slide" data-i="3"><p class="nums__n" data-to="1" data-pre="" data-suf=" em 2">1 em 2</p><p class="nums__c">não volta a comprar depois de uma experiência ruim no site.</p><p class="nums__s">Locaweb, pesquisa com 500 consumidores, 2026</p></div>
-          <div class="nums__slide" data-i="4"><p class="nums__n" data-to="260" data-pre="R$ " data-suf=" bi">R$ 260 bi</p><p class="nums__c">devem passar pelas vendas online no Brasil em 2026.</p><p class="nums__s">Abiacom, projeção 2026</p></div>
-        </div>
-        <div class="nums__dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-      </div>
+    <div class="wrap nums__in">
+      <h2 id="nums-t" class="nums__h">O seu cliente já está procurando.<span>Em 2027, quem ele vai encontrar?</span></h2>
+      <ul class="nums__grid">
+        <li class="nums__it"><p class="nums__n" data-to="79" data-suf="%">79%</p><div class="nv nv--bar" aria-hidden="true"><i style="--w:79%"></i></div><p class="nums__c">dos brasileiros pesquisam antes de comprar.</p><p class="nums__s">PwC, Global Consumer Insights Survey 2026</p></li>
+        <li class="nums__it"><p class="nums__n" data-to="9" data-suf=" em 10">9 em 10</p><div class="nv nv--ten" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="is-1"></i></div><p class="nums__c">pequenos negócios não têm site próprio.</p><p class="nums__s">Sebrae, Transformação Digital nos Pequenos Negócios</p></li>
+        <li class="nums__it"><p class="nums__n" data-to="1" data-suf=" em 2">1 em 2</p><div class="nv nv--two" aria-hidden="true"><i class="is-x"></i><i></i></div><p class="nums__c">não volta a comprar depois de uma experiência ruim no site.</p><p class="nums__s">Locaweb, pesquisa com 500 consumidores, 2026</p></li>
+        <li class="nums__it"><p class="nums__n" data-to="421" data-pre="US$ " data-suf=" bi">US$ 421 bi</p><div class="nv nv--cols" aria-hidden="true"><span style="--h:91%"><b>2026</b></span><span class="is-now" style="--h:100%"><b>2027</b></span></div><p class="nums__c">em vendas online no Brasil em 2027, a primeira vez acima de US$ 400 bilhões.</p><p class="nums__s">EBANX com dados da PCMI, projeção de novembro de 2026</p></li>
+      </ul>
     </div>
   </section>
 
@@ -1268,18 +1287,12 @@ input{font:inherit}
 <div class="xcard" id="xcard" role="dialog" aria-modal="true" aria-labelledby="xc-t" hidden>
   <div class="xcard__bg" data-x-close></div>
   <article class="xcard__panel" id="xc-panel">
-    <button class="xbtn xcard__x" type="button" data-x-close aria-label="Fechar"></button>
-    <div class="xcard__media" id="xc-media"></div>
-    <div class="xcard__body">
-      <h3 id="xc-t" class="xcard__t"></h3>
-      <p class="xcard__line" id="xc-line"></p>
-      <p class="xcard__k">Por que esse site vende mais</p>
-      <ul class="xcard__feats" id="xc-feats"></ul>
-      <div class="xcard__foot">
-        <a class="btn btn--accent" data-form href="https://wa.me/5511937654207?text=Ol%C3%A1!%20Quero%20minha%20pr%C3%A9via%20gr%C3%A1tis.">Quero um site assim</a>
-        <div class="xcard__nav"><button type="button" id="xc-p" aria-label="Site anterior"><svg style="transform:scaleX(-1)"><use href="#arr"/></svg></button><button type="button" id="xc-n" aria-label="Próximo site"><svg><use href="#arr"/></svg></button></div>
-      </div>
-    </div>
+    <div class="xs__top"><div class="xs__bars" id="xs-bars"></div><div class="xs__who"><p class="xs__name" id="xc-t"></p><button class="xbtn xcard__x" type="button" data-x-close aria-label="Fechar"></button></div></div>
+    <div class="xs__media" id="xc-media"></div>
+    <div class="xs__story" id="xs-story" aria-live="polite"><p class="xs__tag" id="xs-tag"></p><p class="xs__hook" id="xs-hook"></p><p class="xs__line" id="xs-line"></p></div>
+    <button class="xs__tap xs__tap--p" type="button" tabindex="-1" id="xs-prev" aria-label="Destaque anterior"></button>
+    <button class="xs__tap xs__tap--n" type="button" tabindex="-1" id="xs-next" aria-label="Próximo destaque"></button>
+    <div class="xs__foot"><a class="btn btn--accent" data-form href="https://wa.me/5511937654207?text=Ol%C3%A1!%20Quero%20minha%20pr%C3%A9via%20gr%C3%A1tis.">Quero um site assim</a><div class="xcard__nav"><button type="button" id="xc-p" aria-label="Site anterior"><svg style="transform:scaleX(-1)"><use href="#arr"/></svg></button><button type="button" id="xc-n" aria-label="Próximo site"><svg><use href="#arr"/></svg></button></div></div>
   </article>
 </div>
 
@@ -1497,32 +1510,24 @@ input{font:inherit}
   }
   mod('alt', () => { alternate($('#hero-alt'), 5600, true); alternate($('#case-alt'), 5200, false); });
 
-  /* ===== números: um por vez, no meio da tela, enquanto a pessoa rola ===== */
+  /* ===== números: tudo numa tela; contam e desenham quando aparecem ===== */
   mod('nums', () => {
-    const track = $('#nums-track'); if (!track) return;
-    const slides = $$('.nums__slide', track), dots = $$('.nums__dots i', track), N = slides.length;
-    let cur = 0;
-    dots[0].classList.add('is-on');
-    const count = el => {
-      const to = +el.dataset.to, pre = el.dataset.pre || '', suf = el.dataset.suf || '', o = { v: 0 };
-      G.to(o, { v: to, duration: 1.1, ease: 'power3.out', onUpdate() { el.textContent = pre + Math.round(o.v).toLocaleString('pt-BR') + suf; } });
-    };
-    function show(i) {
-      if (i === cur) return;
-      const a = slides[cur], b = slides[i], dir = i > cur ? 1 : -1; cur = i;
-      dots.forEach((d, k) => d.classList.toggle('is-on', k === i));
-      if (!motion) { a.classList.remove('is-on'); b.classList.add('is-on'); return; }
-      G.killTweensOf([a, b]);
-      G.to(a, { opacity: 0, scale: dir > 0 ? 1.08 : 0.92, filter: 'blur(10px)', duration: 0.42, ease: 'power2.in', onComplete() { a.classList.remove('is-on'); G.set(a, { clearProps: 'opacity,scale,filter,transform' }); } });
-      b.classList.add('is-on');
-      G.fromTo(b, { opacity: 0, scale: dir > 0 ? 0.9 : 1.1, filter: 'blur(12px)' }, { opacity: 1, scale: 1, filter: 'blur(0px)', duration: 0.75, ease: 'expo.out', delay: 0.16 });
-      const n = $('.nums__n', b); if (n && dir > 0) count(n);
-    }
-    const onScroll = () => {
-      const r = track.getBoundingClientRect(), total = Math.max(1, r.height - innerHeight);
-      show(Math.min(N - 1, Math.floor(clamp(-r.top / total) * N * 0.9999)));
-    };
-    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+    const sec = $('#numeros'); if (!sec || !motion) return;
+    const its = $$('.nums__it', sec);
+    G.set(its, { opacity: 0, y: 30 });
+    G.set($$('.nv--bar i', sec), { scaleX: 0 }); G.set($$('.nv--ten i, .nv--two i', sec), { scale: 0 }); G.set($$('.nv--cols span', sec), { scaleY: 0 });
+    whenSeen(sec, () => {
+      const tl = G.timeline();
+      tl.fromTo('.nums__h', { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.8, ease: 'expo.out' });
+      its.forEach((it, i) => {
+        const at = 0.25 + i * 0.18, n = $('.nums__n', it), to = +n.dataset.to, pre = n.dataset.pre || '', suf = n.dataset.suf || '', o = { v: 0 };
+        tl.to(it, { opacity: 1, y: 0, duration: 0.7, ease: 'expo.out' }, at)
+          .to(o, { v: to, duration: 1.3, ease: 'power3.out', onUpdate() { n.textContent = pre + Math.round(o.v).toLocaleString('pt-BR') + suf; } }, at)
+          .to($$('.nv--bar i', it), { scaleX: 1, duration: 1.3, ease: 'power3.out' }, at + 0.1)
+          .to($$('.nv--ten i, .nv--two i', it), { scale: 1, duration: 0.45, ease: 'back.out(2.4)', stagger: 0.06 }, at + 0.1)
+          .to($$('.nv--cols span', it), { scaleY: 1, duration: 0.8, ease: 'expo.out', stagger: 0.12 }, at + 0.1);
+      });
+    }, { threshold: 0.25 });
   });
 
   /* ===== 100 clientes: 79 pesquisam antes de comprar e, sem site, vão embora ===== */
@@ -1533,7 +1538,7 @@ input{font:inherit}
     const who = order.slice(0, 79);
     if (!motion) { who.forEach(i => dots[i].classList.add('is-g')); steps.forEach(s => s.classList.add('is-on')); return; }
     G.set(dots, { scale: 0 }); G.set(end, { opacity: 0, y: 20 });
-    whenSeen(grid, () => {
+    whenSeen($('#cem'), () => {
       const tl = G.timeline();
       tl.to(dots, { scale: 1, duration: 0.5, ease: 'back.out(2)', stagger: { each: 0.008, from: 'center', grid: [10, 10] } })
         .call(() => steps[0].classList.add('is-on'), null, 0.6)
@@ -1543,7 +1548,7 @@ input{font:inherit}
         .call(() => who.forEach(i => { dots[i].classList.remove('is-k'); dots[i].classList.add('is-g'); }), null, 2.85)
         .to(who.map(i => dots[i]), { x: () => 180 + Math.random() * 160, scale: 0.5, opacity: 0, duration: 0.9, ease: 'power2.in', stagger: { each: 0.008, from: 'end' } }, 3.0)
         .to(end, { opacity: 1, y: 0, duration: 0.75, ease: 'expo.out' }, 3.9);
-    }, { threshold: 0.35 });
+    }, { threshold: 0.3 });
   });
 
   /* ===== três sites em um: os três aparelhos saem de um só e rolam o mesmo site juntos ===== */
@@ -2736,27 +2741,27 @@ input{font:inherit}
   });
 
   const SITES = [
-    { t: 'Cardápio de bar', l: 'Cardápio com a cara do bar, que sugere o que pedir junto.', m: 'cardapio-m', d: 'cardapio-d', c: '#0e0b12', f: '#ffffff', big: 1, feats: [
+    { t: 'Cardápio de bar', st: [['Encanta', 'A cara do bar', 'Neon e cores da casa em cada tela.'], ['Vende mais', '+ porção na mesa', 'O drink sugere o que pedir junto.'], ['Vende mais', '+ bebida também', 'A porção sugere o drink certo.'], ['Facilita', 'Zero zoom', 'Sem PDF: abre na hora pelo QR Code.']], l: 'Cardápio com a cara do bar, que sugere o que pedir junto.', m: 'cardapio-m', d: 'cardapio-d', c: '#0e0b12', f: '#ffffff', big: 1, feats: [
       ['Estética', 'A cara do bar em cada tela', 'Neon, cores e letras do próprio bar. O cliente reconhece a casa no celular e o cardápio vira parte da experiência.'],
       ['Conversão', 'O drink sugere a porção', 'Cada drink mostra o que vai bem com ele. Quem pediu um drink leva a porção junto, e o valor da mesa sobe.'],
       ['Conversão', 'A comida sugere a bebida', 'Na tela da porção aparece o que beber junto. A sugestão vale nos dois sentidos.'],
       ['Experiência', 'Sem PDF e sem zoom', 'Categorias em um toque e busca por nome. Abre na hora pelo QR Code da mesa.']] },
-    { t: 'Hamburgueria', l: 'O cliente monta o pedido e ele chega pronto no WhatsApp.', m: 'hamb-m', d: 'hamb-d', c: '#f6ecdd', f: '#1d1208', feats: [
+    { t: 'Hamburgueria', st: [['Encanta', 'Dá fome', 'A foto aparece antes do preço.'], ['Vende mais', '1 toque', 'Pedido montado, sem cadastro.'], ['Vende mais', 'Total à vista', 'Ninguém desiste no meio.'], ['Facilita', 'Direto no WhatsApp', 'Retirada ou delivery, já escolhidos.']], l: 'O cliente monta o pedido e ele chega pronto no WhatsApp.', m: 'hamb-m', d: 'hamb-d', c: '#f6ecdd', f: '#1d1208', feats: [
       ['Estética', 'Foto que dá fome', 'A primeira coisa que o cliente vê é o hambúrguer em destaque. A vontade vem antes do preço.'],
       ['Conversão', 'Pedido montado em um toque', 'O botão de adicionar fica em cada item. Sem formulário e sem cadastro.'],
       ['Conversão', 'Total sempre à vista', 'O carrinho mostra quantos itens e quanto dá, o tempo todo. O cliente não desiste no meio por dúvida.'],
       ['Experiência', 'Retirada ou delivery logo no começo', 'O cliente escolhe como quer receber e o pedido chega no WhatsApp com tudo certo.']] },
-    { t: 'Loja de bolsas', l: 'Vitrine de grife, sacola e pedido direto no WhatsApp.', m: 'bolsa-m', d: 'bolsa-d', c: '#ecebe7', f: '#151515', feats: [
+    { t: 'Loja de bolsas', st: [['Encanta', 'Cara de grife', 'Fotos grandes e espaço em branco.'], ['Vende mais', 'Sacola', 'O cliente monta o pedido sozinho.'], ['Vende mais', '0% de taxa', 'O pedido chega no seu WhatsApp.'], ['Facilita', 'Achou em segundos', 'Busca entre 57 produtos.']], l: 'Vitrine de grife, sacola e pedido direto no WhatsApp.', m: 'bolsa-m', d: 'bolsa-d', c: '#ecebe7', f: '#151515', feats: [
       ['Estética', 'Vitrine com cara de grife', 'Fotos grandes, letras finas e espaço em branco. A loja parece de marca grande e o produto vale mais.'],
       ['Conversão', 'Sacola que monta o pedido', 'O cliente adiciona, ajusta a quantidade e vê o total. Compra sem precisar perguntar nada.'],
       ['Conversão', 'Direto no WhatsApp, sem taxa', 'O pedido chega pronto no seu WhatsApp. Nenhuma plataforma fica com uma parte de cada venda.'],
       ['Experiência', 'Busca na hora', 'Digitou couro, apareceu. O cliente acha o que quer entre 57 produtos em segundos.']] },
-    { t: 'Reserva de aniversário', l: 'Reserva em seis passos, que chega organizada num painel.', m: 'aniv-m2', p: 'aniv-m-r', d: 'mitte-d', c: '#1c0b1f', f: '#ffffff', feats: [
+    { t: 'Reserva de aniversário', st: [['Facilita', '6 passos', 'Uma pergunta por tela, a qualquer hora.'], ['Facilita', 'Zero erro', 'O cliente confere tudo antes de enviar.'], ['Agiliza', 'Adeus planilha', 'Confirma no painel com um toque.'], ['Resultado', '+500 pedidos', 'Aniversários organizados desde abril.']], l: 'Reserva em seis passos, que chega organizada num painel.', m: 'aniv-m2', p: 'aniv-m-r', d: 'mitte-d', c: '#1c0b1f', f: '#ffffff', feats: [
       ['Experiência', 'Uma pergunta por tela', 'Nome, pessoas, data, horário, observação e WhatsApp. Seis passos curtos que o cliente faz sozinho, a qualquer hora.'],
       ['Experiência', 'Resumo antes de confirmar', 'O cliente revisa tudo antes de enviar. Menos erro e menos mensagem de correção.'],
       ['Velocidade', 'Painel no lugar da planilha', 'Pendentes, confirmados e concluídos num só lugar. O dono confirma e chama o cliente no WhatsApp com um toque.'],
       ['Resultado', 'Mais de 500 pedidos organizados', 'Desde abril, os pedidos de aniversário do bar passam pelo painel.']] },
-    { t: 'Pet shop', l: 'Serviços e preços à mostra, com pedido no WhatsApp.', m: 'pet-m', p: 'pet-m-r', d: 'pet-d', c: '#ff9d24', f: '#1b0f00', feats: [
+    { t: 'Pet shop', st: [['Vende mais', 'Preço à mostra', 'Day care, hotel, banho e passeio.'], ['Encanta', 'Dá vontade de tocar', 'Cartões grandes com foto.'], ['Vende mais', '+ extras', 'Passeio e banho com um toque.'], ['Facilita', 'Tudo num link', 'Horário, contato e serviços juntos.']], l: 'Serviços e preços à mostra, com pedido no WhatsApp.', m: 'pet-m', p: 'pet-m-r', d: 'pet-d', c: '#ff9d24', f: '#1b0f00', feats: [
       ['Conversão', 'Serviço com preço à mostra', 'Day care, hotel, banho e passeio, cada um com o valor. O cliente decide sem perguntar.'],
       ['Estética', 'Categorias em carrossel', 'Cartões grandes com foto convidam a tocar e ver tudo o que o pet shop oferece.'],
       ['Conversão', 'Extras que aumentam o pedido', 'Passeio adicional e banho durante a hospedagem aparecem junto, com um toque para adicionar.'],
@@ -2790,34 +2795,54 @@ input{font:inherit}
     whenSeen(box, () => G.to(cards, { opacity: 1, y: 0, rotationX: 0, duration: 1.1, ease: 'expo.out', stagger: 0.09, clearProps: 'transform' }), { threshold: 0.12 });
   });
 
-  /* o cartão pequeno se abre num cartão grande com os porquês */
+  /* o cartão pequeno se abre em stories: um porquê por vez, curto, passando sozinho */
   mod('xcard', () => {
     const xc = $('#xcard'); if (!xc) return;
-    const panel = $('#xc-panel'), bg = $('.xcard__bg', xc), media = $('#xc-media'), tEl = $('#xc-t'), line = $('#xc-line'), feats = $('#xc-feats');
-    let idx = 0, from = null, last = null;
+    const panel = $('#xc-panel'), bg = $('.xcard__bg', xc), media = $('#xc-media'), tEl = $('#xc-t');
+    const barsEl = $('#xs-bars'), tag = $('#xs-tag'), hook = $('#xs-hook'), line = $('#xs-line');
+    const DUR = 3.4;
+    let idx = 0, k = 0, from = null, last = null, run = null, paused = false, dev = null;
     const pauseAll = on => { modal = on; W.dispatchEvent(new CustomEvent('codem:modal', { detail: on })); if (on) $$('main video, footer video').forEach(v => v.pause()); else resume(); };
+    const POSE = [{ s: 1.02, ry: -4, y: 0 }, { s: 1.08, ry: 3, y: -10 }, { s: 1.04, ry: -2, y: 6 }, { s: 1.1, ry: 4, y: -6 }];
     function fill(i) {
       idx = (i + SITES.length) % SITES.length; const s = SITES[idx];
       panel.style.setProperty('--c', s.c); panel.style.setProperty('--f', s.f);
-      media.innerHTML = '<span class="lap"><span class="lap__screen"><span class="lap__view"><video src="' + vsrc('/media/' + s.d + '.mp4') + '" poster="/media/' + s.d + '.jpg" muted loop playsinline autoplay></video></span></span><span class="lap__base"></span></span><span class="iph"><span class="iph__screen"><video src="' + vsrc('/media/' + s.m + '.mp4') + '" poster="/media/' + (s.p || s.m) + '.jpg" muted loop playsinline autoplay></video></span></span>';
-      $$('video', media).forEach(v => { const p = v.play(); if (p) p.catch(() => {}); });
-      tEl.textContent = s.t; line.textContent = s.l;
-      feats.innerHTML = s.feats.map(f => '<li class="xf"><p class="xf__tag">' + f[0] + '</p><b>' + f[1] + '</b><p>' + f[2] + '</p></li>').join('');
-      panel.scrollTop = 0;
+      media.innerHTML = '<div class="xs__dev"><span class="lap"><span class="lap__screen"><span class="lap__view"><video src="' + vsrc('/media/' + s.d + '.mp4') + '" poster="/media/' + s.d + '.jpg" muted loop playsinline autoplay></video></span></span><span class="lap__base"></span></span><span class="iph"><span class="iph__screen"><video src="' + vsrc('/media/' + s.m + '.mp4') + '" poster="/media/' + (s.p || s.m) + '.jpg" muted loop playsinline autoplay></video></span></span></div>';
+      dev = $('.xs__dev', media);
+      $$('video', media).forEach(v => { const pr = v.play(); if (pr) pr.catch(() => {}); });
+      tEl.textContent = s.t;
+      barsEl.innerHTML = s.st.map(() => '<i><b></b></i>').join('');
+      story(0, true);
     }
+    function story(n, fresh) {
+      const s = SITES[idx]; k = n;
+      const [tg, hk, ln] = s.st[k], bars = $$('b', barsEl);
+      tag.textContent = tg; line.textContent = ln;
+      hook.innerHTML = hk.split(' ').map(w => '<span class="w">' + w + '</span>').join(' ');
+      if (run) run.kill();
+      bars.forEach((b, i) => G ? G.set(b, { scaleX: i < k ? 1 : 0 }) : (b.style.transform = 'scaleX(' + (i < k ? 1 : 0) + ')'));
+      if (!motion) { bars[k].style.transform = 'scaleX(1)'; return; }
+      G.fromTo($$('.w', hook), { yPercent: 70, opacity: 0, filter: 'blur(8px)' }, { yPercent: 0, opacity: 1, filter: 'blur(0px)', duration: 0.6, stagger: 0.06, ease: 'expo.out' });
+      G.fromTo([tag, line], { opacity: 0, y: 10 }, { opacity: (i) => i ? 0.78 : 1, y: 0, duration: 0.5, stagger: 0.12, delay: 0.12, ease: 'power3.out' });
+      if (dev) G.to(dev, { scale: POSE[k % 4].s, rotationY: POSE[k % 4].ry, y: POSE[k % 4].y, transformPerspective: 1400, duration: 1.2, ease: 'power3.inOut' });
+      run = G.fromTo(bars[k], { scaleX: 0 }, { scaleX: 1, duration: DUR, ease: 'none', onComplete: next });
+      if (paused) run.pause();
+    }
+    function next() { const s = SITES[idx]; if (k < s.st.length - 1) story(k + 1); else { fill(idx + 1); from = $$('.site')[idx]; } }
+    function prev() { if (k > 0) story(k - 1); else { fill(idx - 1); from = $$('.site')[idx]; } }
     function open(i, el) {
-      from = el; last = D.activeElement; fill(i); xc.hidden = false; lockPage(true); pauseAll(true);
+      from = el; last = D.activeElement; xc.hidden = false; lockPage(true); pauseAll(true); paused = false; fill(i);
       if (motion && el) {
         const pr = panel.getBoundingClientRect(), cr = el.getBoundingClientRect();
         const ins = [cr.top - pr.top, pr.right - cr.right, pr.bottom - cr.bottom, cr.left - pr.left].map(v => Math.max(0, v).toFixed(1) + 'px').join(' ');
         G.fromTo(panel, { clipPath: 'inset(' + ins + ' round 30px)' }, { clipPath: 'inset(0px 0px 0px 0px round 32px)', duration: 0.8, ease: 'expo.inOut', onComplete() { panel.style.clipPath = ''; } });
         G.fromTo(bg, { opacity: 0 }, { opacity: 1, duration: 0.4 });
-        G.fromTo($$('.xcard__body > *', panel), { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.05, delay: 0.4, ease: 'power3.out' });
       }
       $('.xcard__x', xc).focus({ preventScroll: true });
     }
     function close() {
-      const done = () => { xc.hidden = true; media.innerHTML = ''; lockPage(false); pauseAll(false); last && last.focus && last.focus({ preventScroll: true }); };
+      if (run) { run.kill(); run = null; }
+      const done = () => { xc.hidden = true; media.innerHTML = ''; dev = null; lockPage(false); pauseAll(false); last && last.focus && last.focus({ preventScroll: true }); };
       if (!motion) { done(); return; }
       const el = from && from.isConnected ? from : null;
       if (el) {
@@ -2829,9 +2854,15 @@ input{font:inherit}
     }
     openX = open;
     $$('[data-x-close]', xc).forEach(b => b.addEventListener('click', close));
+    $('#xs-next').addEventListener('click', next);
+    $('#xs-prev').addEventListener('click', prev);
     $('#xc-p').addEventListener('click', () => { fill(idx - 1); from = $$('.site')[idx]; });
     $('#xc-n').addEventListener('click', () => { fill(idx + 1); from = $$('.site')[idx]; });
-    D.addEventListener('keydown', e => { if (xc.hidden || !$('#qf').hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowRight') { fill(idx + 1); from = $$('.site')[idx]; } if (e.key === 'ArrowLeft') { fill(idx - 1); from = $$('.site')[idx]; } });
+    /* segurar pausa, como nos stories */
+    let held = 0;
+    panel.addEventListener('pointerdown', e => { if (e.target.closest('a, .xcard__nav, .xcard__x')) return; held = setTimeout(() => { paused = true; run && run.pause(); }, 220); });
+    ['pointerup', 'pointercancel', 'pointerleave'].forEach(ev => panel.addEventListener(ev, () => { clearTimeout(held); if (paused) { paused = false; run && run.resume(); } }));
+    D.addEventListener('keydown', e => { if (xc.hidden || !$('#qf').hidden) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowRight') next(); if (e.key === 'ArrowLeft') prev(); });
   });
 
   /* ===== recursos ===== */
